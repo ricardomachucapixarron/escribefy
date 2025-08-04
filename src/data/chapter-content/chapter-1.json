@@ -1,0 +1,397 @@
+{
+  "chapter": {
+    "id": "chapter-1",
+    "title": "El Despertar",
+    "synopsis": "En las primeras horas del amanecer, Lyra Nightwhisper se prepara para su ritual de iniciación en el Círculo de Magos de Sombra. Lo que debería ser una ceremonia rutinaria se convierte en una catástrofe cuando sus poderes latentes explotan sin control, destruyendo parte del templo y alertando a fuerzas oscuras sobre su existencia. Mientras huye por los tejados de Umbraluna, Lyra debe enfrentar la realidad de que ya no es la aprendiz insegura que era ayer.",
+    "status": "completed",
+    "wordCount": 2500,
+    "mood": "transformative",
+    "themes": ["awakening", "responsibility", "power", "transformation"],
+    "keyEvents": [
+      "Ritual de iniciación fallido",
+      "Explosión de poderes de sombra",
+      "Huida por los tejados",
+      "Encuentro con las fuerzas oscuras"
+    ],
+    "lastModified": "2024-01-24T08:30:00Z"
+  },
+  "content": "# Capítulo 1: El Despertar\n\nLas primeras luces del amanecer se filtraban a través de las ventanas de cristal del Círculo de Magos de Sombra, creando patrones danzantes en el suelo de mármol negro. Lyra Nightwhisper se encontraba en el centro del círculo ritual, sus manos temblando ligeramente mientras sostenía el cristal de sombra que había sido de su mentor.\n\n*[MARKER: ritual-beginning]*\n\nLos cánticos antiguos resonaban en las paredes del templo, una melodía hipnótica que había sido entonada durante siglos en ceremonias como esta. Lyra cerró los ojos y dejó que las palabras fluyeran a través de ella, sintiendo cómo la energía mágica comenzaba a acumularse en el aire.\n\n\"Umbra et lux, equilibrium aeternum...\" murmuró, siguiendo las instrucciones que había memorizado durante años de entrenamiento.\n\nPero algo estaba mal. La energía que fluía a través del cristal era diferente, más intensa, más salvaje de lo que había experimentado antes. Las sombras en la habitación comenzaron a moverse por sí solas, arremolinándose alrededor de sus pies como criaturas vivas.\n\n*[MARKER: power-building]*\n\nLyra abrió los ojos, alarmada. Las runas grabadas en el suelo brillaban con una luz violeta que nunca había visto antes. El cristal en sus manos se calentaba rápidamente, casi quemándole la piel.\n\n\"¿Qué está pasando?\" susurró, pero su voz se perdió en el rugido creciente de energía mágica.\n\nLas sombras se alzaron como una tormenta, girando más y más rápido alrededor del círculo. Los otros aprendices que observaban desde las gradas retrocedieron con terror. Los maestros gritaron órdenes, pero sus voces fueron ahogadas por el estruendo sobrenatural.\n\n*[MARKER: power-explosion]*\n\nEntonces sucedió.\n\nUna explosión de poder puro emanó del cristal, enviando ondas de energía sombría en todas las direcciones. Los pilares de mármol se agrietaron, las ventanas se hicieron añicos, y un grito que no era completamente humano escapó de la garganta de Lyra.\n\nCuando el humo y los destellos se desvanecieron, el templo estaba en ruinas. Lyra se encontraba de pie en el centro de un cráter perfecto, su túnica ondeando en una brisa que no existía. Sus ojos, antes de un violeta suave, ahora brillaban con una intensidad que hacía que las sombras danzaran a su alrededor.\n\n*[MARKER: aftermath-silence]*\n\nEl silencio que siguió fue ensordecedor. Los maestros habían desaparecido. Los otros aprendices yacían inconscientes. Y en la distancia, Lyra podía escuchar algo que helaba su sangre: el aullido de criaturas que no deberían existir en este mundo.\n\nSin pensarlo dos veces, corrió hacia la ventana rota y saltó al tejado. La ciudad de Umbraluna se extendía ante ella, sus torres de cristal brillando bajo la luz del amanecer. Pero ahora podía ver las sombras que se movían entre los edificios, las criaturas que su explosión de poder había liberado.\n\n*[MARKER: rooftop-chase]*\n\nMientras corría por los tejados, saltando de edificio en edificio con una agilidad que no sabía que tenía, Lyra se dio cuenta de que su vida había cambiado para siempre. Ya no era la aprendiz insegura que había entrado al templo esa mañana. Era algo más, algo poderoso y peligroso.\n\nY las fuerzas oscuras que ahora la perseguían lo sabían también.\n\n*[MARKER: chapter-end]*\n\n---\n\n*Fin del Capítulo 1*",
+  "audioAssets": [
+    {
+      "id": "ch1-audio-001",
+      "filename": "ritual-chanting.mp3",
+      "path": "/chapter-audio/chapter-1/ritual-chanting.mp3",
+      "description": "Cánticos místicos del ritual de iniciación en latín arcano",
+      "duration": 45,
+      "loop": true,
+      "fadeIn": 2,
+      "fadeOut": 3,
+      "volume": 0.6,
+      "tags": ["chanting", "mystical", "ritual", "ambient", "latin"]
+    },
+    {
+      "id": "ch1-audio-002",
+      "filename": "power-building.mp3",
+      "path": "/chapter-audio/chapter-1/power-building.mp3",
+      "description": "Sonido de energía mágica acumulándose, zumbido creciente",
+      "duration": 20,
+      "loop": false,
+      "volume": 0.7,
+      "tags": ["magic", "building", "tension", "energy", "crescendo"]
+    },
+    {
+      "id": "ch1-audio-003",
+      "filename": "explosion-sound.mp3",
+      "path": "/chapter-audio/chapter-1/explosion-sound.mp3",
+      "description": "Explosión mágica masiva con ecos sobrenaturales",
+      "duration": 8,
+      "loop": false,
+      "volume": 0.9,
+      "tags": ["explosion", "magic", "dramatic", "sfx", "powerful"]
+    },
+    {
+      "id": "ch1-audio-004",
+      "filename": "eerie-silence.mp3",
+      "path": "/chapter-audio/chapter-1/eerie-silence.mp3",
+      "description": "Silencio inquietante con susurros distantes",
+      "duration": 15,
+      "loop": true,
+      "volume": 0.4,
+      "tags": ["silence", "eerie", "whispers", "aftermath", "ominous"]
+    },
+    {
+      "id": "ch1-audio-005",
+      "filename": "rooftop-chase.mp3",
+      "path": "/chapter-audio/chapter-1/rooftop-chase.mp3",
+      "description": "Música de persecución con viento y pasos sobre tejados",
+      "duration": 30,
+      "loop": true,
+      "volume": 0.8,
+      "tags": ["chase", "action", "wind", "footsteps", "urgent"]
+    }
+  ],
+  "videoAssets": [
+    {
+      "id": "ch1-video-001",
+      "filename": "shadow-swirl.mp4",
+      "path": "/chapter-videos/chapter-1/shadow-swirl.mp4",
+      "description": "Animación de sombras arremolinándose alrededor del círculo ritual",
+      "duration": 12,
+      "loop": true,
+      "autoplay": true,
+      "muted": true,
+      "overlay": true,
+      "opacity": 0.6,
+      "tags": ["shadows", "animation", "magical", "overlay", "ritual"]
+    },
+    {
+      "id": "ch1-video-002",
+      "filename": "power-explosion.mp4",
+      "path": "/chapter-videos/chapter-1/power-explosion.mp4",
+      "description": "Explosión de energía mágica con ondas de choque visuales",
+      "duration": 6,
+      "loop": false,
+      "autoplay": false,
+      "muted": false,
+      "overlay": false,
+      "opacity": 1.0,
+      "tags": ["explosion", "energy", "shockwave", "dramatic", "climax"]
+    },
+    {
+      "id": "ch1-video-003",
+      "filename": "rooftop-parkour.mp4",
+      "path": "/chapter-videos/chapter-1/rooftop-parkour.mp4",
+      "description": "Secuencia de Lyra saltando por los tejados de Umbraluna",
+      "duration": 25,
+      "loop": true,
+      "autoplay": true,
+      "muted": true,
+      "overlay": false,
+      "opacity": 0.8,
+      "tags": ["parkour", "rooftops", "chase", "action", "city"]
+    }
+  ],
+  "imageAssets": [
+    {
+      "id": "ch1-img-001",
+      "filename": "ritual-circle-dawn.png",
+      "path": "/chapter-images/chapter-1/ritual-circle-dawn.png",
+      "description": "El círculo ritual al amanecer con Lyra en el centro",
+      "prompt": "Mystical ritual circle at dawn with Lyra in center, crystal in hands, morning light streaming through windows",
+      "tags": ["ritual", "dawn", "circle", "mystical", "beginning"],
+      "mood": "serene",
+      "context": "chapter opening"
+    },
+    {
+      "id": "ch1-img-002",
+      "filename": "power-explosion-moment.png",
+      "path": "/chapter-images/chapter-1/power-explosion-moment.png",
+      "description": "El momento exacto de la explosión de poder con Lyra en el epicentro",
+      "prompt": "Magical power explosion with Lyra at epicenter, violet energy radiating outward, temple cracking",
+      "tags": ["explosion", "power", "violet", "climax", "destruction"],
+      "mood": "dramatic",
+      "context": "key scene"
+    },
+    {
+      "id": "ch1-img-003",
+      "filename": "lyra-transformed.png",
+      "path": "/chapter-images/chapter-1/lyra-transformed.png",
+      "description": "Lyra después de la transformación con ojos brillantes y sombras danzantes",
+      "prompt": "Lyra after transformation with glowing violet eyes, shadows dancing around her, powerful aura",
+      "tags": ["transformation", "glowing-eyes", "shadows", "power", "changed"],
+      "mood": "powerful",
+      "context": "character moment"
+    },
+    {
+      "id": "ch1-img-004",
+      "filename": "rooftop-escape.png",
+      "path": "/chapter-images/chapter-1/rooftop-escape.png",
+      "description": "Lyra escapando por los tejados de Umbraluna con la ciudad al fondo",
+      "prompt": "Lyra running across rooftops of Umbraluna, crystal towers in background, dawn sky",
+      "tags": ["escape", "rooftops", "city", "action", "chase"],
+      "mood": "urgent",
+      "context": "action sequence"
+    }
+  ],
+  "mediaMarkers": [
+    {
+      "id": "marker-ritual-beginning",
+      "position": "ritual-beginning",
+      "trigger": "scroll",
+      "name": "Inicio del Ritual",
+      "description": "Ambiente místico cuando comienza la ceremonia de iniciación",
+      "elements": [
+        {
+          "type": "image",
+          "assetId": "ch1-img-001",
+          "action": "show",
+          "duration": null,
+          "transition": "fade-in",
+          "transitionDuration": 2.0,
+          "delay": 0
+        },
+        {
+          "type": "audio",
+          "assetId": "ch1-audio-001",
+          "action": "play",
+          "delay": 1.0,
+          "fadeIn": 3.0
+        },
+        {
+          "type": "video",
+          "assetId": "ch1-video-001",
+          "action": "play",
+          "delay": 2.0,
+          "overlay": true,
+          "opacity": 0.4
+        }
+      ]
+    },
+    {
+      "id": "marker-power-building",
+      "position": "power-building",
+      "trigger": "scroll",
+      "name": "Acumulación de Poder",
+      "description": "La energía mágica comienza a acumularse peligrosamente",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch1-audio-002",
+          "action": "play",
+          "delay": 0,
+          "volume": 0.7
+        },
+        {
+          "type": "video",
+          "assetId": "ch1-video-001",
+          "action": "speed-up",
+          "speed": 1.5,
+          "duration": 15
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-img-001",
+          "action": "brighten",
+          "intensity": 1.3,
+          "duration": 10
+        }
+      ]
+    },
+    {
+      "id": "marker-power-explosion",
+      "position": "power-explosion",
+      "trigger": "automatic",
+      "name": "Explosión de Poder",
+      "description": "El momento climático cuando los poderes de Lyra explotan sin control",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch1-audio-001",
+          "action": "stop",
+          "fadeOut": 0.5
+        },
+        {
+          "type": "audio",
+          "assetId": "ch1-audio-002",
+          "action": "stop",
+          "fadeOut": 0.2
+        },
+        {
+          "type": "audio",
+          "assetId": "ch1-audio-003",
+          "action": "play",
+          "delay": 0,
+          "volume": 0.9
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-img-001",
+          "action": "hide",
+          "transition": "fade-out",
+          "transitionDuration": 0.5
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-img-002",
+          "action": "show",
+          "transition": "flash",
+          "transitionDuration": 0.3,
+          "delay": 0.5
+        },
+        {
+          "type": "video",
+          "assetId": "ch1-video-001",
+          "action": "stop"
+        },
+        {
+          "type": "video",
+          "assetId": "ch1-video-002",
+          "action": "play",
+          "delay": 0.3
+        },
+        {
+          "type": "effect",
+          "assetId": "screen-shake",
+          "action": "trigger",
+          "intensity": "high",
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "id": "marker-aftermath-silence",
+      "position": "aftermath-silence",
+      "trigger": "scroll",
+      "name": "Silencio Inquietante",
+      "description": "El silencio ominoso después de la explosión",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch1-audio-003",
+          "action": "fade-out",
+          "duration": 2.0
+        },
+        {
+          "type": "audio",
+          "assetId": "ch1-audio-004",
+          "action": "play",
+          "delay": 2.5,
+          "fadeIn": 3.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-img-002",
+          "action": "hide",
+          "transition": "fade-out",
+          "transitionDuration": 2.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-img-003",
+          "action": "show",
+          "transition": "fade-in",
+          "transitionDuration": 3.0,
+          "delay": 2.0
+        },
+        {
+          "type": "video",
+          "assetId": "ch1-video-002",
+          "action": "fade-out",
+          "duration": 2.0
+        }
+      ]
+    },
+    {
+      "id": "marker-rooftop-chase",
+      "position": "rooftop-chase",
+      "trigger": "scroll",
+      "name": "Persecución en los Tejados",
+      "description": "Lyra escapa por los tejados de Umbraluna",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch1-audio-004",
+          "action": "fade-out",
+          "duration": 2.0
+        },
+        {
+          "type": "audio",
+          "assetId": "ch1-audio-005",
+          "action": "play",
+          "delay": 1.0,
+          "fadeIn": 2.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-img-003",
+          "action": "hide",
+          "transition": "slide-left",
+          "transitionDuration": 1.5
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-img-004",
+          "action": "show",
+          "transition": "slide-right",
+          "transitionDuration": 1.5,
+          "delay": 1.0
+        },
+        {
+          "type": "video",
+          "assetId": "ch1-video-003",
+          "action": "play",
+          "delay": 1.5,
+          "overlay": false
+        }
+      ]
+    },
+    {
+      "id": "marker-chapter-end",
+      "position": "chapter-end",
+      "trigger": "scroll",
+      "name": "Final del Capítulo",
+      "description": "Conclusión del primer capítulo con ambiente de misterio",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch1-audio-005",
+          "action": "fade-out",
+          "duration": 4.0
+        },
+        {
+          "type": "video",
+          "assetId": "ch1-video-003",
+          "action": "fade-out",
+          "duration": 3.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-img-004",
+          "action": "desaturate",
+          "intensity": 0.5,
+          "duration": 3.0
+        }
+      ]
+    }
+  ]
+}

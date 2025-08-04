@@ -1,0 +1,407 @@
+{
+  "project": {
+    "id": "reino-sombras",
+    "title": "El Reino de las Sombras Perdidas",
+    "author": "Elena Martínez",
+    "genre": "Fantasía Épica",
+    "synopsis": "En un reino donde las sombras cobran vida propia y los antiguos secretos amenazan con destruir el equilibrio entre la luz y la oscuridad, Lyra Nightwhisper debe dominar poderes que no comprende completamente. Acompañada por el valiente guerrero Kael Stormforge, se embarca en una épica aventura que la llevará desde las torres de cristal de Umbraluna hasta las ruinas malditas de Corazón del Vacío. Mientras las fuerzas del mal se alzan bajo el liderazgo del corrupto Lord Malachar, nuestra heroína descubrirá que su destino está entrelazado con la supervivencia misma del reino. Una historia de magia ancestral, sacrificio y el poder redentor del amor verdadero.",
+    "cinematicMode": true,
+    "arEnabled": true,
+    "visualStyle": "dark-fantasy-cinematic",
+    "progress": 65,
+    "wordCount": 89500,
+    "chaptersCount": 24,
+    "charactersCount": 16,
+    "lastModified": "2024-01-25T10:00:00Z",
+    "portfolio": [
+      {
+        "id": "project-img-001",
+        "filename": "reino-sombras-cover-2024.png",
+        "path": "/project-portfolio/reino-sombras-cover-2024.png",
+        "description": "Portada principal del proyecto con logo y arte conceptual épico",
+        "prompt": "Epic fantasy book cover for 'El Reino de las Sombras Perdidas' with mystical shadows, crystal towers, and magical energy",
+        "tags": ["cover", "logo", "branding", "official", "epic"],
+        "mood": "epic",
+        "context": "project branding",
+        "createdAt": "2024-01-25T10:00:00Z",
+        "vector": [0.7, 0.8, 0.6, 0.9, 0.5, 0.8, 0.7, 0.6, 0.4, 0.9]
+      },
+      {
+        "id": "project-img-002",
+        "filename": "world-map-overview-2024.png",
+        "path": "/project-portfolio/world-map-overview-2024.png",
+        "description": "Mapa general del mundo de las Sombras Perdidas con reinos y ubicaciones clave",
+        "prompt": "Fantasy world map showing kingdoms, crystal cities, shadow forests, and mystical locations with ancient runes",
+        "tags": ["map", "world", "overview", "reference", "geography"],
+        "mood": "mysterious",
+        "context": "world building",
+        "createdAt": "2024-01-20T15:30:00Z",
+        "vector": [0.5, 0.6, 0.8, 0.7, 0.4, 0.9, 0.3, 0.8, 0.6, 0.7]
+      }
+    ]
+  },
+  "groupingTypes": [
+    {
+      "id": "factions",
+      "name": "Facciones",
+      "description": "Organizaciones políticas, militares y mágicas",
+      "icon": "shield",
+      "color": "#8B5CF6",
+      "allowMultiple": true,
+      "createdAt": "2024-01-01T00:00:00Z",
+      "createdBy": "system"
+    },
+    {
+      "id": "philosophical",
+      "name": "Filosóficas",
+      "description": "Creencias religiosas y sistemas de pensamiento",
+      "icon": "brain",
+      "color": "#6366F1",
+      "allowMultiple": true,
+      "createdAt": "2024-01-01T00:00:00Z",
+      "createdBy": "system"
+    },
+    {
+      "id": "social",
+      "name": "Sociales",
+      "description": "Clases sociales y estratos económicos",
+      "icon": "users",
+      "color": "#EC4899",
+      "allowMultiple": false,
+      "createdAt": "2024-01-01T00:00:00Z",
+      "createdBy": "system"
+    },
+    {
+      "id": "dynasties",
+      "name": "Dinastías",
+      "description": "Linajes familiares y casas nobles",
+      "icon": "crown",
+      "color": "#F59E0B",
+      "allowMultiple": false,
+      "createdAt": "2024-01-01T00:00:00Z",
+      "createdBy": "system"
+    }
+  ],
+  "groups": [
+    {
+      "id": "guardianes-sombra",
+      "name": "Guardianes de la Sombra",
+      "description": "Orden mágica que protege el equilibrio entre luz y oscuridad",
+      "type": "factions",
+      "color": "#8B5CF6",
+      "memberCount": 3,
+      "portfolio": [
+        {
+          "id": "guardianes-img-001",
+          "filename": "guardianes-ceremony-2024.png",
+          "path": "/group-portfolio/guardianes-sombra/guardianes-ceremony-2024.png",
+          "description": "Ceremonia de iniciación de los Guardianes de la Sombra en templo lunar",
+          "prompt": "Shadow Guardians in dark robes performing mystical ceremony in moonlit temple with floating runes",
+          "tags": ["ceremony", "ritual", "robes", "temple", "mystical"],
+          "mood": "solemn",
+          "context": "group ritual",
+          "createdAt": "2024-01-23T20:00:00Z",
+          "vector": [0.9, 0.5, 0.8, 0.6, 0.7, 0.9, 0.4, 0.8, 0.5, 0.9]
+        }
+      ]
+    },
+    {
+      "id": "guardia-real",
+      "name": "Guardia Real",
+      "description": "Protectores élite del reino y la familia real",
+      "type": "factions",
+      "color": "#3B82F6",
+      "memberCount": 5,
+      "portfolio": [
+        {
+          "id": "guardia-img-001",
+          "filename": "guardia-formation-2024.png",
+          "path": "/group-portfolio/guardia-real/guardia-formation-2024.png",
+          "description": "Formación de la Guardia Real en el patio del castillo",
+          "prompt": "Elite royal guards in golden armor with blue cloaks, standing in formation in grand castle courtyard",
+          "tags": ["formation", "armor", "castle", "elite", "official"],
+          "mood": "disciplined",
+          "context": "military ceremony",
+          "createdAt": "2024-01-22T14:00:00Z",
+          "vector": [0.6, 0.8, 0.5, 0.9, 0.7, 0.4, 0.8, 0.6, 0.3, 0.9]
+        }
+      ]
+    },
+    {
+      "id": "culto-lunar",
+      "name": "Culto Lunar",
+      "description": "Adoradores de la luna y las sombras sagradas",
+      "type": "philosophical",
+      "color": "#6366F1",
+      "memberCount": 8,
+      "portfolio": [
+        {
+          "id": "culto-img-001",
+          "filename": "culto-ritual-lunar-2024.png",
+          "path": "/group-portfolio/culto-lunar/culto-ritual-lunar-2024.png",
+          "description": "Ritual nocturno del Culto Lunar bajo la luna llena",
+          "prompt": "Lunar cult members in silver robes performing night ritual under full moon with mystical energy",
+          "tags": ["lunar", "ritual", "night", "silver", "mystical"],
+          "mood": "mystical",
+          "context": "religious ceremony",
+          "createdAt": "2024-01-21T23:30:00Z",
+          "vector": [0.7, 0.9, 0.4, 0.8, 0.6, 0.5, 0.9, 0.3, 0.7, 0.8]
+        }
+      ]
+    }
+  ],
+  "agents": [
+    {
+      "id": "agent-1",
+      "name": "El Arquitecto Narrativo",
+      "role": "Estructura y Coherencia",
+      "status": "online",
+      "specialties": ["plot structure", "narrative coherence", "story pacing", "character arcs"],
+      "portfolio": [
+        {
+          "id": "architect-img-001",
+          "filename": "arquitecto-avatar-2024.png",
+          "path": "/agent-portfolio/arquitecto-avatar-2024.png",
+          "description": "Avatar del Arquitecto Narrativo con planos y estructuras narrativas flotantes",
+          "prompt": "Wise narrative architect with blueprints and story structures floating around, professional and analytical",
+          "tags": ["avatar", "professional", "blueprints", "wisdom", "analysis"],
+          "mood": "professional",
+          "context": "agent interface",
+          "createdAt": "2024-01-22T09:00:00Z",
+          "vector": [0.6, 0.7, 0.5, 0.8, 0.4, 0.9, 0.6, 0.7, 0.3, 0.8]
+        }
+      ]
+    },
+    {
+      "id": "agent-2",
+      "name": "La Crítica Literaria",
+      "role": "Análisis y Mejora",
+      "status": "busy",
+      "specialties": ["literary analysis", "style improvement", "character development", "dialogue enhancement"],
+      "portfolio": [
+        {
+          "id": "critica-img-001",
+          "filename": "critica-avatar-2024.png",
+          "path": "/agent-portfolio/critica-avatar-2024.png",
+          "description": "Avatar de la Crítica Literaria con libros y análisis textuales",
+          "prompt": "Literary critic with floating books, text analysis, and critical annotations, intellectual and perceptive",
+          "tags": ["avatar", "books", "analysis", "intellectual", "critical"],
+          "mood": "analytical",
+          "context": "agent interface",
+          "createdAt": "2024-01-21T15:45:00Z",
+          "vector": [0.8, 0.5, 0.7, 0.9, 0.3, 0.8, 0.6, 0.4, 0.9, 0.7]
+        }
+      ]
+    },
+    {
+      "id": "agent-3",
+      "name": "El Científico",
+      "role": "Consistencia Técnica",
+      "status": "online",
+      "specialties": ["world building", "magic systems", "technical consistency", "research"],
+      "portfolio": [
+        {
+          "id": "cientifico-img-001",
+          "filename": "cientifico-avatar-2024.png",
+          "path": "/agent-portfolio/cientifico-avatar-2024.png",
+          "description": "Avatar del Científico con fórmulas mágicas y diagramas técnicos",
+          "prompt": "Scientific advisor with magical formulas, technical diagrams, and research equipment, methodical and precise",
+          "tags": ["avatar", "formulas", "diagrams", "scientific", "precise"],
+          "mood": "methodical",
+          "context": "agent interface",
+          "createdAt": "2024-01-20T11:20:00Z",
+          "vector": [0.5, 0.8, 0.6, 0.7, 0.9, 0.4, 0.8, 0.5, 0.6, 0.9]
+        }
+      ]
+    }
+  ],
+  "characters": [
+    {
+      "id": "char-1",
+      "name": "Lyra Nightwhisper",
+      "age": 24,
+      "role": "Hechicera de Sombras",
+      "status": "alive",
+      "physicalDescription": "Una joven hechicera de cabello negro azulado y ojos violetas que brillan con magia ancestral. Lleva túnicas oscuras bordadas con runas plateadas.",
+      "motivations": "Proteger el equilibrio entre luz y sombra, vengar la muerte de su mentor",
+      "fears": "Perder el control de sus poderes de sombra, fallar en su misión",
+      "biography": "Huérfana criada por el Círculo de Magos de Sombra, descubrió sus poderes a los 16 años",
+      "narrative_arc": "De aprendiz insegura a maestra de las sombras",
+      "relationships": ["char-2", "char-5"],
+      "developmentLevel": "complete",
+      "dynasty": "Linaje Nightwhisper",
+      "appearances": 156,
+      "groups": ["guardianes-sombra", "culto-lunar"],
+      "portfolio": [
+        {
+          "id": "lyra-img-001",
+          "filename": "lyra-portrait-latest-2024.png",
+          "path": "/character-portfolio/lyra/lyra-portrait-latest-2024.png",
+          "description": "Retrato oficial más reciente de Lyra Nightwhisper con túnicas de sombra",
+          "prompt": "Official portrait of Lyra Nightwhisper, shadow sorceress with violet eyes and dark robes with silver runes",
+          "tags": ["portrait", "official", "headshot", "neutral", "robes"],
+          "mood": "neutral",
+          "context": "official",
+          "createdAt": "2024-01-22T16:45:00Z",
+          "vector": [0.5, 0.7, 0.2, 0.8, 0.3, 0.9, 0.1, 0.6, 0.4, 0.8]
+        },
+        {
+          "id": "lyra-img-002",
+          "filename": "lyra-casting-spell-2024.png",
+          "path": "/character-portfolio/lyra/lyra-casting-spell-2024.png",
+          "description": "Lyra lanzando un hechizo de sombras con energía violeta",
+          "prompt": "Lyra Nightwhisper casting shadow magic spell, dynamic pose with hands glowing with violet energy",
+          "tags": ["casting", "magic", "action", "full-body", "violet"],
+          "mood": "focused",
+          "context": "combat",
+          "createdAt": "2024-01-18T09:15:00Z",
+          "vector": [0.2, 0.9, 0.1, 0.8, 0.4, 0.6, 0.7, 0.3, 0.5, 0.9]
+        }
+      ]
+    },
+    {
+      "id": "char-2",
+      "name": "Kael Stormforge",
+      "age": 28,
+      "role": "Capitán de la Guardia",
+      "status": "alive",
+      "physicalDescription": "Un guerrero alto y musculoso con cicatrices de batalla. Cabello rubio y barba, ojos azul acero. Porta una armadura de placas encantada.",
+      "motivations": "Redimir su pasado como mercenario, proteger a los inocentes",
+      "fears": "Repetir los errores de su pasado, perder a sus nuevos compañeros",
+      "biography": "Ex-mercenario que encontró la redención al salvar una aldea",
+      "narrative_arc": "De mercenario sin honor a paladín de la justicia",
+      "relationships": ["char-1", "char-3"],
+      "developmentLevel": "complete",
+      "dynasty": "Casa Stormforge",
+      "appearances": 142,
+      "groups": ["guardia-real"],
+      "portfolio": [
+        {
+          "id": "kael-img-001",
+          "filename": "kael-portrait-2024.png",
+          "path": "/character-portfolio/kael/kael-portrait-2024.png",
+          "description": "Retrato oficial de Kael Stormforge en armadura de la Guardia Real",
+          "prompt": "Official portrait of Kael Stormforge, captain of royal guard with golden armor and blue cloak",
+          "tags": ["portrait", "official", "armor", "captain", "noble"],
+          "mood": "determined",
+          "context": "official",
+          "createdAt": "2024-01-21T14:30:00Z",
+          "vector": [0.7, 0.6, 0.8, 0.5, 0.9, 0.4, 0.7, 0.6, 0.5, 0.8]
+        }
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "loc-1",
+      "name": "Umbraluna",
+      "description": "Ciudad de torres de cristal donde la magia y la tecnología se fusionan",
+      "atmosphere": "Mystical urban fantasy with crystal spires reaching toward the moon",
+      "history": "Antigua capital construida sobre un nexo de energía mágica",
+      "plotRelevance": "Lugar de origen de Lyra y escenario de los primeros capítulos",
+      "portfolio": [
+        {
+          "id": "umbraluna-img-001",
+          "filename": "umbraluna-skyline-2024.png",
+          "path": "/location-portfolio/umbraluna/umbraluna-skyline-2024.png",
+          "description": "Vista panorámica nocturna de Umbraluna con sus torres de cristal brillando",
+          "prompt": "Mystical city of Umbraluna with crystal towers reaching toward the moon, magical lights and floating platforms",
+          "tags": ["skyline", "towers", "crystal", "panoramic", "night", "magical"],
+          "mood": "mystical",
+          "context": "establishing shot",
+          "createdAt": "2024-01-21T11:30:00Z",
+          "vector": [0.8, 0.6, 0.7, 0.9, 0.5, 0.8, 0.4, 0.7, 0.6, 0.9]
+        }
+      ]
+    },
+    {
+      "id": "loc-2",
+      "name": "Corazón del Vacío",
+      "description": "Ruinas malditas donde antiguos experimentos mágicos salieron mal",
+      "atmosphere": "Dark and foreboding wasteland with twisted magical energy",
+      "history": "Sitio de una catástrofe mágica que creó un vacío en la realidad",
+      "plotRelevance": "Destino final donde se resolverá el conflicto principal",
+      "portfolio": [
+        {
+          "id": "corazon-img-001",
+          "filename": "corazon-vacio-ruins-2024.png",
+          "path": "/location-portfolio/corazon-vacio/corazon-vacio-ruins-2024.png",
+          "description": "Las ruinas desoladas del Corazón del Vacío con energía mágica distorsionada",
+          "prompt": "Desolate ruins of Corazón del Vacío with twisted magical energy, broken spires and void rifts",
+          "tags": ["ruins", "desolate", "void", "twisted", "magical", "dark"],
+          "mood": "ominous",
+          "context": "climax location",
+          "createdAt": "2024-01-19T16:20:00Z",
+          "vector": [0.9, 0.3, 0.8, 0.2, 0.7, 0.4, 0.9, 0.5, 0.6, 0.3]
+        }
+      ]
+    }
+  ],
+  "chapters": [
+    {
+      "id": "chapter-1",
+      "title": "El Despertar",
+      "synopsis": "En las primeras horas del amanecer, Lyra Nightwhisper se prepara para su ritual de iniciación en el Círculo de Magos de Sombra. Lo que debería ser una ceremonia rutinaria se convierte en una catástrofe cuando sus poderes latentes explotan sin control, destruyendo parte del templo y alertando a fuerzas oscuras sobre su existencia. Mientras huye por los tejados de Umbraluna, Lyra debe enfrentar la realidad de que ya no es la aprendiz insegura que era ayer. Sus mentores han desaparecido, la ciudad está en alerta, y ella es la única que puede detener las sombras que ha liberado accidentalmente.",
+      "status": "completed",
+      "wordCount": 2500,
+      "mood": "transformative",
+      "themes": ["awakening", "responsibility", "power", "transformation"],
+      "keyEvents": [
+        "Ritual de iniciación fallido",
+        "Explosión de poderes de sombra",
+        "Huida por los tejados",
+        "Encuentro con las fuerzas oscuras"
+      ],
+      "contentFile": "chapter-1.md",
+      "contentEndpoint": "/api/chapters/chapter-1/content",
+      "aiSummary": "Lyra's initiation ritual goes wrong, her shadow powers explode uncontrollably, she flees across rooftops, mentors disappear, dark forces are alerted to her existence. Key transformation from apprentice to sorceress begins. Inciting incident of the story.",
+      "portfolio": [
+        {
+          "id": "ch1-img-001",
+          "filename": "chapter-1-cover-2024.png",
+          "path": "/chapter-portfolio/chapter-1/chapter-1-cover-2024.png",
+          "description": "Portada del Capítulo 1: El Despertar mostrando a Lyra en el momento de la transformación",
+          "prompt": "Chapter cover showing Lyra awakening to her shadow powers at dawn with magical energy exploding around her",
+          "tags": ["cover", "awakening", "dawn", "powers", "transformation"],
+          "mood": "transformative",
+          "context": "chapter cover",
+          "createdAt": "2024-01-24T08:30:00Z",
+          "vector": [0.8, 0.7, 0.9, 0.6, 0.8, 0.5, 0.7, 0.9, 0.4, 0.8]
+        }
+      ]
+    },
+    {
+      "id": "chapter-2",
+      "title": "Sombras del Pasado",
+      "synopsis": "Tras la catástrofe del ritual, Lyra se refugia en los barrios bajos de Umbraluna, donde conoce a Kael Stormforge, un ex-mercenario con un pasado turbulento. Mientras los Cazadores de Sombras peinan la ciudad buscándola, Lyra descubre un diario oculto de su madre que revela la verdad sobre el Linaje Nightwhisper y su conexión con una antigua profecía. Las visiones del pasado la atormentan, mostrándole una guerra olvidada entre los Guardianes de la Luz y los Señores de la Sombra.",
+      "status": "in-progress",
+      "wordCount": 1800,
+      "mood": "mysterious",
+      "themes": ["heritage", "alliance", "pursuit", "revelation"],
+      "keyEvents": [
+        "Encuentro con Kael Stormforge",
+        "Descubrimiento del diario materno",
+        "Visiones del pasado",
+        "Persecución de los Cazadores",
+        "Formación de la alianza"
+      ],
+      "contentFile": "chapter-2.md",
+      "contentEndpoint": "/api/chapters/chapter-2/content",
+      "aiSummary": "Lyra meets Kael Stormforge in lower districts, discovers mother's diary revealing Nightwhisper lineage secrets, experiences visions of ancient war between Light Guardians and Shadow Lords, forms alliance with Kael while being hunted by Shadow Hunters.",
+      "portfolio": [
+        {
+          "id": "ch2-img-001",
+          "filename": "chapter-2-cover-2024.png",
+          "path": "/chapter-portfolio/chapter-2/chapter-2-cover-2024.png",
+          "description": "Portada del Capítulo 2: Sombras del Pasado con Lyra y Kael en los barrios bajos",
+          "prompt": "Chapter cover showing Lyra and Kael in the shadowy lower districts of Umbraluna, with ghostly visions of the past",
+          "tags": ["cover", "alliance", "past", "shadows", "mystery"],
+          "mood": "mysterious",
+          "context": "chapter cover",
+          "createdAt": "2024-01-23T16:20:00Z",
+          "vector": [0.7, 0.9, 0.6, 0.8, 0.7, 0.9, 0.5, 0.8, 0.6, 0.9]
+        }
+      ]
+    }
+  ]
+}

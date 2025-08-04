@@ -1,0 +1,290 @@
+{
+  "user": {
+    "id": "user-001",
+    "username": "pixarron",
+    "displayName": "Ricardo Machuca",
+    "email": "ricardo@pixarron.com",
+    "avatar": "/user-avatars/pixarron-avatar.png",
+    "bio": "Escritor de fantasía épica y desarrollador de experiencias narrativas inmersivas. Especializado en worldbuilding y storytelling cinematográfico.",
+    "preferences": {
+      "theme": "dark",
+      "language": "es",
+      "timezone": "America/New_York",
+      "autoSave": true,
+      "cinematicMode": true,
+      "arMode": false,
+      "notifications": {
+        "email": true,
+        "push": false,
+        "aiSuggestions": true
+      }
+    },
+    "subscription": {
+      "plan": "premium",
+      "status": "active",
+      "expiresAt": "2024-12-31T23:59:59Z",
+      "features": [
+        "unlimited_projects",
+        "ai_agents",
+        "multimedia_integration",
+        "advanced_export",
+        "collaboration",
+        "version_control"
+      ]
+    },
+    "stats": {
+      "totalProjects": 3,
+      "totalWords": 125000,
+      "totalCharacters": 47,
+      "totalChapters": 28,
+      "joinedAt": "2023-06-15T10:30:00Z",
+      "lastActive": "2024-01-24T15:45:00Z",
+      "writingStreak": 12
+    },
+    "portfolio": [
+      {
+        "id": "user-img-001",
+        "filename": "pixarron-profile.png",
+        "path": "/user-avatars/pixarron-profile.png",
+        "description": "Foto de perfil profesional de Ricardo Machuca",
+        "createdAt": "2024-01-20T14:30:00Z",
+        "vector": [0.8, 0.2, 0.9, 0.1, 0.7, 0.3, 0.6, 0.4, 0.5, 0.8],
+        "prompt": "Professional author headshot, warm lighting, creative background",
+        "tags": ["profile", "professional", "author", "headshot"],
+        "mood": "confident",
+        "context": "profile picture"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "reino-sombras",
+      "title": "El Reino de las Sombras Perdidas",
+      "author": "Ricardo Machuca",
+      "genre": "Fantasía Épica",
+      "status": "in_progress",
+      "visibility": "private",
+      "synopsis": "En un mundo donde las sombras tienen vida propia y la magia se alimenta de los secretos más oscuros del alma, Lyra Nightwhisper debe dominar poderes que podrían destruir todo lo que ama. Cuando las fuerzas ancestrales despiertan y amenazan con sumir el reino en la oscuridad eterna, ella y sus aliados deberán enfrentar no solo enemigos externos, sino también los demonios internos que los han perseguido toda su vida.",
+      "targetWordCount": 120000,
+      "currentWordCount": 45000,
+      "progress": 37.5,
+      "createdAt": "2023-08-15T09:00:00Z",
+      "lastModified": "2024-01-24T16:20:00Z",
+      "settings": {
+        "cinematicMode": true,
+        "arMode": true,
+        "aiAssistance": true,
+        "autoBackup": true
+      },
+      "stats": {
+        "chaptersCount": 12,
+        "charactersCount": 16,
+        "locationsCount": 8,
+        "factionsCount": 5,
+        "agentsCount": 3,
+        "averageChapterLength": 3750,
+        "readingTime": 180
+      },
+      "portfolio": [
+        {
+          "id": "reino-img-001",
+          "filename": "reino-cover-v2.png",
+          "path": "/book-covers/reino-sombras-cover-v2.png",
+          "description": "Portada principal con Lyra y las sombras danzantes",
+          "createdAt": "2024-01-22T11:15:00Z",
+          "vector": [0.9, 0.1, 0.8, 0.2, 0.7, 0.3, 0.9, 0.1, 0.6, 0.4],
+          "prompt": "Epic fantasy book cover with Lyra surrounded by dancing shadows, mystical purple lighting",
+          "tags": ["cover", "epic", "shadows", "mystical", "purple"],
+          "mood": "mysterious",
+          "context": "book cover"
+        },
+        {
+          "id": "reino-img-002",
+          "filename": "reino-cover-v1.png",
+          "path": "/book-covers/reino-sombras-cover-v1.png",
+          "description": "Primera versión de la portada con enfoque en el reino",
+          "createdAt": "2024-01-15T14:30:00Z",
+          "vector": [0.7, 0.3, 0.6, 0.4, 0.8, 0.2, 0.5, 0.5, 0.9, 0.1],
+          "prompt": "Fantasy kingdom landscape with shadow creatures, dark towers, mystical atmosphere",
+          "tags": ["cover", "kingdom", "landscape", "towers", "atmospheric"],
+          "mood": "ominous",
+          "context": "book cover alternate"
+        }
+      ],
+      "dataPath": "/data/reino-sombras.json"
+    },
+    {
+      "id": "ecos-manana",
+      "title": "Ecos del Mañana",
+      "author": "Ricardo Machuca",
+      "genre": "Ciencia Ficción",
+      "status": "completed",
+      "visibility": "public",
+      "synopsis": "En el año 2157, la humanidad ha desarrollado la capacidad de enviar mensajes al pasado a través de ondas cuánticas. Maya Chen, una científica especializada en paradojas temporales, descubre que alguien del futuro está tratando de alterar eventos clave de la historia. Con la ayuda de ecos temporales y fragmentos de memoria de líneas de tiempo alternativas, debe evitar que la realidad se desmorone mientras navega por las consecuencias de sus propias decisiones.",
+      "targetWordCount": 80000,
+      "currentWordCount": 82500,
+      "progress": 100,
+      "createdAt": "2023-03-10T12:00:00Z",
+      "lastModified": "2023-11-28T18:45:00Z",
+      "settings": {
+        "cinematicMode": true,
+        "arMode": false,
+        "aiAssistance": true,
+        "autoBackup": true
+      },
+      "stats": {
+        "chaptersCount": 16,
+        "charactersCount": 12,
+        "locationsCount": 6,
+        "factionsCount": 3,
+        "agentsCount": 2,
+        "averageChapterLength": 5156,
+        "readingTime": 330
+      },
+      "portfolio": [
+        {
+          "id": "ecos-img-001",
+          "filename": "ecos-cover-final.png",
+          "path": "/book-covers/ecos-manana-cover.png",
+          "description": "Portada con Maya Chen y ondas cuánticas temporales",
+          "createdAt": "2023-11-25T16:20:00Z",
+          "vector": [0.6, 0.4, 0.9, 0.1, 0.5, 0.5, 0.8, 0.2, 0.7, 0.3],
+          "prompt": "Sci-fi book cover with Maya Chen surrounded by quantum waves, futuristic cityscape, time distortion effects",
+          "tags": ["cover", "sci-fi", "quantum", "futuristic", "time"],
+          "mood": "technological",
+          "context": "book cover"
+        }
+      ],
+      "dataPath": "/data/ecos-manana.json"
+    },
+    {
+      "id": "susurros-viento",
+      "title": "Susurros en el Viento",
+      "author": "Ricardo Machuca",
+      "genre": "Realismo Mágico",
+      "status": "planning",
+      "visibility": "private",
+      "synopsis": "En un pequeño pueblo costero de Colombia, Elena Morales hereda la casa de su abuela junto con la extraña habilidad de escuchar los secretos que el viento lleva consigo. A medida que los susurros revelan historias ocultas del pueblo, Elena debe decidir si usar este don para sanar heridas del pasado o si algunos secretos es mejor que permanezcan enterrados.",
+      "targetWordCount": 65000,
+      "currentWordCount": 8500,
+      "progress": 13.1,
+      "createdAt": "2024-01-10T08:30:00Z",
+      "lastModified": "2024-01-23T20:15:00Z",
+      "settings": {
+        "cinematicMode": false,
+        "arMode": false,
+        "aiAssistance": true,
+        "autoBackup": true
+      },
+      "stats": {
+        "chaptersCount": 3,
+        "charactersCount": 8,
+        "locationsCount": 4,
+        "factionsCount": 0,
+        "agentsCount": 1,
+        "averageChapterLength": 2833,
+        "readingTime": 34
+      },
+      "portfolio": [
+        {
+          "id": "susurros-img-001",
+          "filename": "susurros-concept.png",
+          "path": "/book-covers/susurros-viento-concept.png",
+          "description": "Concepto inicial con Elena en el pueblo costero",
+          "createdAt": "2024-01-12T10:45:00Z",
+          "vector": [0.5, 0.5, 0.7, 0.3, 0.6, 0.4, 0.4, 0.6, 0.8, 0.2],
+          "prompt": "Magical realism scene with Elena in Colombian coastal town, wind carrying whispers, warm colors",
+          "tags": ["concept", "magical-realism", "coastal", "colombia", "wind"],
+          "mood": "nostalgic",
+          "context": "concept art"
+        }
+      ],
+      "dataPath": "/data/susurros-viento.json"
+    }
+  ],
+  "recentActivity": [
+    {
+      "id": "activity-001",
+      "type": "chapter_edited",
+      "projectId": "reino-sombras",
+      "chapterId": "chapter-1",
+      "description": "Editó el Capítulo 1: El Despertar",
+      "timestamp": "2024-01-24T16:20:00Z"
+    },
+    {
+      "id": "activity-002",
+      "type": "character_created",
+      "projectId": "reino-sombras",
+      "characterId": "char-017",
+      "description": "Creó el personaje Maestro Valen",
+      "timestamp": "2024-01-24T14:30:00Z"
+    },
+    {
+      "id": "activity-003",
+      "type": "chapter_created",
+      "projectId": "susurros-viento",
+      "chapterId": "chapter-3",
+      "description": "Creó el Capítulo 3: Los Secretos del Faro",
+      "timestamp": "2024-01-23T20:15:00Z"
+    },
+    {
+      "id": "activity-004",
+      "type": "project_settings",
+      "projectId": "reino-sombras",
+      "description": "Activó el modo cinematográfico y AR",
+      "timestamp": "2024-01-23T18:45:00Z"
+    },
+    {
+      "id": "activity-005",
+      "type": "ai_suggestion",
+      "projectId": "reino-sombras",
+      "description": "El Agente Arquitecto sugirió mejoras en el worldbuilding",
+      "timestamp": "2024-01-23T16:30:00Z"
+    }
+  ],
+  "favorites": [
+    {
+      "type": "project",
+      "id": "reino-sombras",
+      "addedAt": "2023-08-20T12:00:00Z"
+    },
+    {
+      "type": "character",
+      "projectId": "reino-sombras",
+      "id": "char-001",
+      "addedAt": "2023-09-15T14:30:00Z"
+    },
+    {
+      "type": "chapter",
+      "projectId": "ecos-manana",
+      "id": "chapter-8",
+      "addedAt": "2023-10-22T16:45:00Z"
+    }
+  ],
+  "collaborations": [
+    {
+      "projectId": "ecos-manana",
+      "collaborators": [
+        {
+          "userId": "user-002",
+          "username": "sofia_editor",
+          "role": "editor",
+          "permissions": ["read", "comment", "suggest"],
+          "addedAt": "2023-10-01T09:00:00Z"
+        }
+      ]
+    }
+  ],
+  "aiAgents": {
+    "totalInteractions": 1247,
+    "favoriteAgent": "arquitecto-narrativo",
+    "lastInteraction": "2024-01-24T15:30:00Z",
+    "topSuggestions": [
+      "Desarrollo de personajes secundarios",
+      "Mejoras en descripciones ambientales",
+      "Coherencia en el sistema mágico",
+      "Pacing de capítulos de acción",
+      "Diálogos más naturales"
+    ]
+  }
+}

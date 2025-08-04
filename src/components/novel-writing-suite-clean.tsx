@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge"
 import { BookOpen, FileText, Brain, Download, Settings, Sparkles, ArrowLeft, Home, Menu, X, Users, MapPin, ChevronDown, ChevronUp } from "lucide-react"
 import { ProjectDashboard } from "@/components/project-dashboard"
 import { DossierModule } from "@/components/dossier-module"
-import { ChapterWriter } from "@/components/chapter-writer"
 import { useProjects, type Project } from "@/hooks/use-projects"
 
 interface NovelWritingSuiteProps {
@@ -27,36 +26,11 @@ export function NovelWritingSuite({ project, onBackToProjects }: NovelWritingSui
     factions: false
   })
   
-  // Estado para el acordeón del sidebar izquierdo
-  const [leftSidebarExpanded, setLeftSidebarExpanded] = useState({
-    chapters: true
-  })
-  
-  // Estado para el editor de capítulos
-  const [selectedChapterId, setSelectedChapterId] = useState<number | undefined>()
-  
   const toggleSection = (sectionId: keyof typeof expandedSections) => {
     setExpandedSections(prev => ({
       ...prev,
       [sectionId]: !prev[sectionId]
     }))
-  }
-  
-  const toggleLeftSection = (sectionId: keyof typeof leftSidebarExpanded) => {
-    setLeftSidebarExpanded(prev => ({
-      ...prev,
-      [sectionId]: !prev[sectionId]
-    }))
-  }
-  
-  const handleChapterSelect = (chapterId: number) => {
-    setSelectedChapterId(chapterId)
-    setActiveModule('writing')
-  }
-  
-  const handleChapterSave = (chapterId: number, content: string, wordCount: number) => {
-    // Aquí se podría actualizar el proyecto con el contenido del capítulo
-    console.log(`Guardando capítulo ${chapterId}:`, { content, wordCount })
   }
 
   const modules = [
@@ -142,53 +116,34 @@ export function NovelWritingSuite({ project, onBackToProjects }: NovelWritingSui
             </div>
           </div>
           
-          {/* Acordeón de Capítulos - Interactive */}
+          <h3 className="text-lg font-bold text-white mb-4">Capítulos</h3>
+          
           <div className="space-y-2">
-            <button
-              onClick={() => toggleLeftSection('chapters')}
-              className="w-full flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-white"
-            >
-              <span className="text-lg font-bold">Capítulos</span>
-              {leftSidebarExpanded.chapters ? (
-                <ChevronUp className="h-4 w-4" />
-              ) : (
-                <ChevronDown className="h-4 w-4" />
-              )}
-            </button>
-            
-            {leftSidebarExpanded.chapters && (
-              <div className="space-y-2 pl-2">
-                {[
-                  { id: 1, title: "El Despertar", status: "completed", wordCount: 2500 },
-                  { id: 2, title: "Primeros Pasos", status: "in-progress", wordCount: 1800 },
-                  { id: 3, title: "El Encuentro", status: "draft", wordCount: 500 },
-                  { id: 4, title: "Revelaciones", status: "planned", wordCount: 0 },
-                  { id: 5, title: "La Batalla Final", status: "planned", wordCount: 0 }
-                ].map((chapter) => (
-                  <button
-                    key={chapter.id}
-                    onClick={() => handleChapterSelect(chapter.id)}
-                    className="w-full group p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer border border-white/10 text-left"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="text-sm font-medium text-white group-hover:text-blue-300 transition-colors">
-                        Capítulo {chapter.id}
-                      </h4>
-                      <div className={`w-2 h-2 rounded-full ${
-                        chapter.status === 'completed' ? 'bg-green-500' :
-                        chapter.status === 'in-progress' ? 'bg-yellow-500' :
-                        chapter.status === 'draft' ? 'bg-blue-500' : 'bg-gray-500'
-                      }`} />
-                    </div>
-                    <p className="text-xs text-gray-300 mb-2 line-clamp-1">{chapter.title}</p>
-                    <div className="flex items-center justify-between text-xs text-gray-400">
-                      <span className="capitalize">{chapter.status.split('-').join(' ')}</span>
-                      <span>{chapter.wordCount} palabras</span>
-                    </div>
-                  </button>
-                ))}
+            {[
+              { id: 1, title: "El Despertar", status: "completed", wordCount: 2500 },
+              { id: 2, title: "Sombras del Pasado", status: "in-progress", wordCount: 1800 },
+              { id: 3, title: "El Primer Encuentro", status: "draft", wordCount: 0 },
+              { id: 4, title: "Revelaciones", status: "planned", wordCount: 0 },
+              { id: 5, title: "La Batalla Final", status: "planned", wordCount: 0 }
+            ].map((chapter) => (
+              <div key={chapter.id} className="group p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer border border-white/10">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="text-sm font-medium text-white group-hover:text-blue-300 transition-colors">
+                    Capítulo {chapter.id}
+                  </h4>
+                  <div className={`w-2 h-2 rounded-full ${
+                    chapter.status === 'completed' ? 'bg-green-500' :
+                    chapter.status === 'in-progress' ? 'bg-yellow-500' :
+                    chapter.status === 'draft' ? 'bg-blue-500' : 'bg-gray-500'
+                  }`} />
+                </div>
+                <p className="text-xs text-gray-300 mb-2 line-clamp-1">{chapter.title}</p>
+                <div className="flex items-center justify-between text-xs text-gray-400">
+                  <span className="capitalize">{chapter.status.split('-').join(' ')}</span>
+                  <span>{chapter.wordCount} palabras</span>
+                </div>
               </div>
-            )}
+            ))}
           </div>
           
           {/* Navigation Modules */}
@@ -231,29 +186,27 @@ export function NovelWritingSuite({ project, onBackToProjects }: NovelWritingSui
           />
         )}
         {activeModule === "structure" && (
-          <div className="p-6 pt-24">
-            <h2 className="text-2xl font-bold mb-4 text-white">Estructura Narrativa</h2>
-            <p className="text-gray-300">Módulo en desarrollo...</p>
+          <div className="p-6">
+            <h2 className="text-2xl font-bold mb-4">Estructura Narrativa</h2>
+            <p className="text-gray-600">Módulo en desarrollo...</p>
           </div>
         )}
         {activeModule === "agents" && (
-          <div className="p-6 pt-24">
-            <h2 className="text-2xl font-bold mb-4 text-white">Agentes IA</h2>
-            <p className="text-gray-300">Módulo en desarrollo...</p>
+          <div className="p-6">
+            <h2 className="text-2xl font-bold mb-4">Agentes IA</h2>
+            <p className="text-gray-600">Módulo en desarrollo...</p>
           </div>
         )}
         {activeModule === "writing" && (
-          <ChapterWriter
-            project={safeProject}
-            selectedChapterId={selectedChapterId}
-            onChapterSelect={handleChapterSelect}
-            onSave={handleChapterSave}
-          />
+          <div className="p-6">
+            <h2 className="text-2xl font-bold mb-4">Escritura</h2>
+            <p className="text-gray-600">Módulo en desarrollo...</p>
+          </div>
         )}
         {activeModule === "export" && (
-          <div className="p-6 pt-24">
-            <h2 className="text-2xl font-bold mb-4 text-white">Exportación</h2>
-            <p className="text-gray-300">Módulo en desarrollo...</p>
+          <div className="p-6">
+            <h2 className="text-2xl font-bold mb-4">Exportación</h2>
+            <p className="text-gray-600">Módulo en desarrollo...</p>
           </div>
         )}
       </main>
@@ -339,7 +292,7 @@ export function NovelWritingSuite({ project, onBackToProjects }: NovelWritingSui
                 <div className="flex items-center gap-2">
                   <Users className="h-4 w-4 text-blue-400" />
                   <span className="text-sm font-semibold text-white">Personajes</span>
-                  <span className="text-xs text-gray-400">({safeProject.characters.length})</span>
+                  <span className="text-xs text-gray-400">(3)</span>
                 </div>
                 {expandedSections.characters ? 
                   <ChevronUp className="h-4 w-4 text-gray-400" /> : 
@@ -348,17 +301,36 @@ export function NovelWritingSuite({ project, onBackToProjects }: NovelWritingSui
               </button>
               {expandedSections.characters && (
                 <div className="p-3 space-y-2 bg-black/20">
-                  {safeProject.characters.map((character) => (
+                  {[
+                    {
+                      id: 1,
+                      name: "Lyra Shadowweaver",
+                      role: "Protagonista",
+                      avatar: "/character-portraits/lyra.png"
+                    },
+                    {
+                      id: 2,
+                      name: "Kael Nightbane",
+                      role: "Antagonista",
+                      avatar: "/character-portraits/kael.png"
+                    },
+                    {
+                      id: 3,
+                      name: "Aria Stormwind",
+                      role: "Aliada",
+                      avatar: "/character-portraits/aria.png"
+                    }
+                  ].map((character) => (
                     <div key={character.id} className="group p-2 rounded-lg hover:bg-white/5 transition-colors cursor-pointer">
                       <div className="flex items-center gap-2">
                         <img
-                          src={character.image || "/placeholder.svg"}
+                          src={character.avatar || "/placeholder.svg"}
                           alt={character.name}
                           className="w-8 h-8 rounded-full object-cover border border-white/20"
                         />
                         <div className="flex-1 min-w-0">
                           <h5 className="text-xs font-medium text-white truncate">{character.name}</h5>
-                          <p className="text-xs text-gray-400 truncate">{character.role || character.faction || 'Personaje'}</p>
+                          <p className="text-xs text-gray-400 truncate">{character.role}</p>
                         </div>
                       </div>
                     </div>
