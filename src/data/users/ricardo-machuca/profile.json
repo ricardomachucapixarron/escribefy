@@ -1,10 +1,10 @@
 {
   "user": {
-    "id": "user-001",
-    "username": "pixarron",
+    "id": "ricardo-machuca",
+    "username": "ricardo-machuca",
     "displayName": "Ricardo Machuca",
     "email": "ricardo@pixarron.com",
-    "avatar": "/user-avatars/pixarron-avatar.png",
+    "avatar": "/user-avatars/ricardo-machuca-avatar.png",
     "bio": "Escritor de fantasía épica y desarrollador de experiencias narrativas inmersivas. Especializado en worldbuilding y storytelling cinematográfico.",
     "preferences": {
       "theme": "dark",
@@ -43,9 +43,9 @@
     },
     "portfolio": [
       {
-        "id": "user-img-001",
-        "filename": "pixarron-profile.png",
-        "path": "/user-avatars/pixarron-profile.png",
+        "id": "ricardo-img-001",
+        "filename": "ricardo-profile.png",
+        "path": "/user-avatars/ricardo-machuca-profile.png",
         "description": "Foto de perfil profesional de Ricardo Machuca",
         "createdAt": "2024-01-20T14:30:00Z",
         "vector": [0.8, 0.2, 0.9, 0.1, 0.7, 0.3, 0.6, 0.4, 0.5, 0.8],
@@ -97,21 +97,9 @@
           "tags": ["cover", "epic", "shadows", "mystical", "purple"],
           "mood": "mysterious",
           "context": "book cover"
-        },
-        {
-          "id": "reino-img-002",
-          "filename": "reino-cover-v1.png",
-          "path": "/book-covers/reino-sombras-cover-v1.png",
-          "description": "Primera versión de la portada con enfoque en el reino",
-          "createdAt": "2024-01-15T14:30:00Z",
-          "vector": [0.7, 0.3, 0.6, 0.4, 0.8, 0.2, 0.5, 0.5, 0.9, 0.1],
-          "prompt": "Fantasy kingdom landscape with shadow creatures, dark towers, mystical atmosphere",
-          "tags": ["cover", "kingdom", "landscape", "towers", "atmospheric"],
-          "mood": "ominous",
-          "context": "book cover alternate"
         }
       ],
-      "dataPath": "/data/reino-sombras.json"
+      "dataPath": "/users/ricardo-machuca/projects/reino-sombras/project.json"
     },
     {
       "id": "ecos-manana",
@@ -155,7 +143,7 @@
           "context": "book cover"
         }
       ],
-      "dataPath": "/data/ecos-manana.json"
+      "dataPath": "/users/ricardo-machuca/projects/ecos-manana/project.json"
     },
     {
       "id": "susurros-viento",
@@ -199,7 +187,7 @@
           "context": "concept art"
         }
       ],
-      "dataPath": "/data/susurros-viento.json"
+      "dataPath": "/users/ricardo-machuca/projects/susurros-viento/project.json"
     }
   ],
   "recentActivity": [
@@ -226,20 +214,6 @@
       "chapterId": "chapter-3",
       "description": "Creó el Capítulo 3: Los Secretos del Faro",
       "timestamp": "2024-01-23T20:15:00Z"
-    },
-    {
-      "id": "activity-004",
-      "type": "project_settings",
-      "projectId": "reino-sombras",
-      "description": "Activó el modo cinematográfico y AR",
-      "timestamp": "2024-01-23T18:45:00Z"
-    },
-    {
-      "id": "activity-005",
-      "type": "ai_suggestion",
-      "projectId": "reino-sombras",
-      "description": "El Agente Arquitecto sugirió mejoras en el worldbuilding",
-      "timestamp": "2024-01-23T16:30:00Z"
     }
   ],
   "favorites": [
@@ -253,26 +227,6 @@
       "projectId": "reino-sombras",
       "id": "char-001",
       "addedAt": "2023-09-15T14:30:00Z"
-    },
-    {
-      "type": "chapter",
-      "projectId": "ecos-manana",
-      "id": "chapter-8",
-      "addedAt": "2023-10-22T16:45:00Z"
-    }
-  ],
-  "collaborations": [
-    {
-      "projectId": "ecos-manana",
-      "collaborators": [
-        {
-          "userId": "user-002",
-          "username": "sofia_editor",
-          "role": "editor",
-          "permissions": ["read", "comment", "suggest"],
-          "addedAt": "2023-10-01T09:00:00Z"
-        }
-      ]
     }
   ],
   "aiAgents": {
@@ -282,9 +236,7 @@
     "topSuggestions": [
       "Desarrollo de personajes secundarios",
       "Mejoras en descripciones ambientales",
-      "Coherencia en el sistema mágico",
-      "Pacing de capítulos de acción",
-      "Diálogos más naturales"
+      "Coherencia en el sistema mágico"
     ]
   }
 }

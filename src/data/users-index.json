@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": "ricardo-machuca",
+      "username": "ricardo-machuca",
+      "displayName": "Ricardo Machuca",
+      "avatar": "/user-avatars/ricardo-machuca-avatar.png",
+      "status": "active",
+      "plan": "premium",
+      "joinedAt": "2023-06-15T10:30:00Z",
+      "lastActive": "2024-01-24T15:45:00Z",
+      "projectsCount": 3,
+      "totalWords": 125000,
+      "profilePath": "/users/ricardo-machuca/profile.json"
+    },
+    {
+      "id": "solange-gongora",
+      "username": "solange-gongora",
+      "displayName": "Solange Góngora",
+      "avatar": "/user-avatars/solange-gongora-avatar.png",
+      "status": "active",
+      "plan": "free",
+      "joinedAt": "2024-01-20T14:15:00Z",
+      "lastActive": "2024-01-24T12:30:00Z",
+      "projectsCount": 0,
+      "totalWords": 0,
+      "profilePath": "/users/solange-gongora/profile.json"
+    }
+  ],
+  "stats": {
+    "totalUsers": 2,
+    "activeUsers": 2,
+    "premiumUsers": 1,
+    "freeUsers": 1,
+    "totalProjects": 3,
+    "totalWords": 125000,
+    "lastUpdated": "2024-01-24T15:52:00Z"
+  }
+}

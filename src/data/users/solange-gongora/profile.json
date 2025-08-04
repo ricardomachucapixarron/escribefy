@@ -1,0 +1,88 @@
+{
+  "user": {
+    "id": "solange-gongora",
+    "username": "solange-gongora",
+    "displayName": "Solange Góngora",
+    "email": "solange.gongora@gmail.com",
+    "avatar": "/user-avatars/solange-gongora-avatar.png",
+    "bio": "Escritora emergente apasionada por la literatura contemporánea y los relatos de realismo mágico. Explorando nuevas formas de narrativa digital.",
+    "preferences": {
+      "theme": "light",
+      "language": "es",
+      "timezone": "America/Bogota",
+      "autoSave": true,
+      "cinematicMode": false,
+      "arMode": false,
+      "notifications": {
+        "email": true,
+        "push": true,
+        "aiSuggestions": true
+      }
+    },
+    "subscription": {
+      "plan": "free",
+      "status": "active",
+      "expiresAt": null,
+      "features": [
+        "basic_projects",
+        "limited_ai_assistance",
+        "basic_export"
+      ]
+    },
+    "stats": {
+      "totalProjects": 0,
+      "totalWords": 0,
+      "totalCharacters": 0,
+      "totalChapters": 0,
+      "joinedAt": "2024-01-20T14:15:00Z",
+      "lastActive": "2024-01-24T12:30:00Z",
+      "writingStreak": 0
+    },
+    "portfolio": [
+      {
+        "id": "solange-img-001",
+        "filename": "solange-profile.png",
+        "path": "/user-avatars/solange-gongora-profile.png",
+        "description": "Foto de perfil de Solange Góngora",
+        "createdAt": "2024-01-20T14:15:00Z",
+        "vector": [0.7, 0.3, 0.6, 0.4, 0.8, 0.2, 0.5, 0.5, 0.9, 0.1],
+        "prompt": "Young writer portrait, natural lighting, bookshelf background",
+        "tags": ["profile", "writer", "natural", "books"],
+        "mood": "inspiring",
+        "context": "profile picture"
+      }
+    ]
+  },
+  "projects": [],
+  "recentActivity": [
+    {
+      "id": "activity-001",
+      "type": "account_created",
+      "description": "Se unió a NovelCraft",
+      "timestamp": "2024-01-20T14:15:00Z"
+    },
+    {
+      "id": "activity-002",
+      "type": "tutorial_completed",
+      "description": "Completó el tutorial de introducción",
+      "timestamp": "2024-01-20T15:30:00Z"
+    },
+    {
+      "id": "activity-003",
+      "type": "profile_updated",
+      "description": "Actualizó su perfil y foto",
+      "timestamp": "2024-01-22T10:45:00Z"
+    }
+  ],
+  "favorites": [],
+  "aiAgents": {
+    "totalInteractions": 5,
+    "favoriteAgent": null,
+    "lastInteraction": "2024-01-22T11:00:00Z",
+    "topSuggestions": [
+      "Crear tu primer proyecto",
+      "Explorar géneros literarios",
+      "Configurar preferencias de escritura"
+    ]
+  }
+}

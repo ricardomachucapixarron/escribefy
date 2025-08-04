@@ -1,0 +1,377 @@
+{
+  "chapter": {
+    "id": "chapter-2",
+    "title": "Fragmentos de Realidad",
+    "synopsis": "Maya comienza a experimentar visiones de líneas temporales alternativas. Cada eco temporal le muestra versiones diferentes de la historia, revelando que alguien está alterando eventos clave del pasado.",
+    "status": "completed",
+    "wordCount": 4800,
+    "mood": "disorienting",
+    "themes": ["alternate-reality", "confusion", "revelation", "time"],
+    "keyEvents": [
+      "Primeras visiones de líneas temporales alternativas",
+      "Encuentro con versiones alternativas de conocidos",
+      "Comprensión de la magnitud del problema"
+    ],
+    "lastModified": "2023-11-26T14:20:00Z"
+  },
+  "content": "# Capítulo 2: Fragmentos de Realidad\n\nMaya despertó con la sensación de que algo fundamental había cambiado en el mundo. No era solo el mensaje temporal de la noche anterior; era como si la realidad misma hubiera comenzado a desdibujarse en los bordes.\n\n*[MARKER: reality-shift]*\n\nMientras se dirigía al laboratorio esa mañana, Neo-Tokio se veía... diferente. Los edificios holográficos que conocía desde la infancia mostraban arquitecturas que no recordaba. El Distrito Central tenía una torre que juraba no haber visto antes, y sin embargo, los transeúntes pasaban junto a ella como si hubiera estado ahí toda la vida.\n\n\"¿Estoy perdiendo la razón?\" murmuró Maya, deteniéndose frente a una pantalla de noticias públicas.\n\n*[MARKER: first-vision]*\n\nDe repente, la realidad se fragmentó.\n\nUna onda invisible atravesó su consciencia, y Maya se encontró viendo múltiples versiones de la misma escena. En una, la pantalla de noticias mostraba titulares sobre una guerra que nunca había ocurrido. En otra, el presidente era una mujer que no reconocía. En una tercera, la fecha era completamente diferente.\n\n\"No, no, no...\" Maya se aferró a un poste de luz, tratando de anclar su mente a una sola realidad.\n\n*[MARKER: temporal-echoes]*\n\nLas visiones se intensificaron. Podía ver ecos de conversaciones que nunca había tenido, recuerdos de eventos que no habían sucedido, versiones de sí misma tomando decisiones diferentes. Era como si todas las líneas temporales posibles estuvieran convergiendo en su mente.\n\nEn una visión, se vio a sí misma trabajando para los Alteradores, convencida de que cambiar el pasado era la única forma de salvar el futuro. En otra, había muerto en un accidente de laboratorio años atrás. En una más, nunca había estudiado física temporal.\n\n*[MARKER: colleague-encounter]*\n\n\"¿Maya? ¿Estás bien?\"\n\nLa voz la sacó de su trance temporal. Era Dr. Kenji Nakamura, su colega del laboratorio, pero algo estaba mal. En sus recuerdos, Kenji tenía una cicatriz en la mejilla izquierda de un accidente de la infancia. Ahora, esa cicatriz no existía.\n\n\"Kenji,\" dijo Maya cautelosamente, \"¿recuerdas cuando te hiciste esa cicatriz jugando con tu hermano?\"\n\nKenji la miró confundido. \"¿Qué cicatriz? Maya, no tengo hermanos. Soy hijo único, siempre lo he sido.\"\n\nPero Maya recordaba claramente haber conocido a su hermano menor en la fiesta de Año Nuevo del laboratorio.\n\n*[MARKER: reality-breakdown]*\n\nLas visiones regresaron con más fuerza. Maya podía ver las líneas temporales como hilos brillantes entrelazándose y separándose. Alguien estaba tirando de esos hilos, alterando eventos, creando nuevas realidades y borrando otras.\n\nEn una línea temporal, la Segunda Guerra Mundial había durado hasta 1950. En otra, la tecnología cuántica se había desarrollado en el siglo XIX. En una más, la humanidad nunca había llegado a las estrellas.\n\n\"Los Alteradores,\" susurró Maya, comprendiendo finalmente la magnitud del problema. \"Ya han comenzado.\"\n\n*[MARKER: message-memory]*\n\nRecordó las palabras del mensaje temporal: \"Los Alteradores ya han comenzado.\" No era una advertencia sobre el futuro; era una descripción del presente. Alguien ya estaba cambiando el pasado, y los efectos se estaban propagando como ondas a través del tiempo.\n\nCada alteración creaba nuevas líneas temporales, nuevas realidades que se superponían con la original. Y por alguna razón, Maya podía percibirlas todas.\n\n*[MARKER: determination]*\n\nMaya cerró los ojos y se concentró en anclar su mente a la línea temporal que conocía como \"real\". Tenía que encontrar a los Preservadores. Tenía que detener a los Alteradores antes de que la realidad se fragmentara completamente.\n\nCuando abrió los ojos, Neo-Tokio había vuelto a la normalidad... o al menos, a la versión de normalidad que recordaba. Pero sabía que era solo temporal. Las líneas temporales seguían cambiando, y ella era la única que podía verlo.\n\n*[MARKER: chapter-end]*\n\nLa guerra por el tiempo había comenzado, y Maya Chen estaba atrapada en el centro de la batalla.\n\n---\n\n*Fin del Capítulo 2*",
+  "audioAssets": [
+    {
+      "id": "ch2-ecos-audio-001",
+      "filename": "reality-distortion.mp3",
+      "path": "/chapter-audio/ecos-manana/chapter-2/reality-distortion.mp3",
+      "description": "Sonidos de distorsión de la realidad, ecos temporales",
+      "duration": 30,
+      "loop": true,
+      "fadeIn": 4,
+      "fadeOut": 3,
+      "volume": 0.6,
+      "tags": ["distortion", "temporal", "reality", "echoes", "surreal"]
+    },
+    {
+      "id": "ch2-ecos-audio-002",
+      "filename": "temporal-visions.mp3",
+      "path": "/chapter-audio/ecos-manana/chapter-2/temporal-visions.mp3",
+      "description": "Sonido etéreo de visiones temporales superpuestas",
+      "duration": 25,
+      "loop": false,
+      "volume": 0.8,
+      "tags": ["visions", "ethereal", "overlapping", "temporal", "mystical"]
+    },
+    {
+      "id": "ch2-ecos-audio-003",
+      "filename": "timeline-fragments.mp3",
+      "path": "/chapter-audio/ecos-manana/chapter-2/timeline-fragments.mp3",
+      "description": "Fragmentos de sonido de diferentes líneas temporales",
+      "duration": 40,
+      "loop": true,
+      "volume": 0.5,
+      "tags": ["fragments", "timeline", "multiple", "overlapping", "chaotic"]
+    },
+    {
+      "id": "ch2-ecos-audio-004",
+      "filename": "anchor-reality.mp3",
+      "path": "/chapter-audio/ecos-manana/chapter-2/anchor-reality.mp3",
+      "description": "Sonido de Maya anclándose a la realidad original",
+      "duration": 15,
+      "loop": false,
+      "volume": 0.7,
+      "tags": ["anchor", "focus", "determination", "reality", "stabilizing"]
+    }
+  ],
+  "videoAssets": [
+    {
+      "id": "ch2-ecos-video-001",
+      "filename": "reality-fragments.mp4",
+      "path": "/chapter-videos/ecos-manana/chapter-2/reality-fragments.mp4",
+      "description": "Animación de fragmentos de realidad superponiéndose",
+      "duration": 35,
+      "loop": true,
+      "autoplay": true,
+      "muted": true,
+      "overlay": true,
+      "opacity": 0.6,
+      "tags": ["fragments", "reality", "overlay", "surreal", "temporal"]
+    },
+    {
+      "id": "ch2-ecos-video-002",
+      "filename": "temporal-visions-sequence.mp4",
+      "path": "/chapter-videos/ecos-manana/chapter-2/temporal-visions-sequence.mp4",
+      "description": "Secuencia de visiones temporales de Maya",
+      "duration": 45,
+      "loop": false,
+      "autoplay": false,
+      "muted": false,
+      "overlay": false,
+      "opacity": 1.0,
+      "tags": ["visions", "sequence", "temporal", "maya", "dramatic"]
+    },
+    {
+      "id": "ch2-ecos-video-003",
+      "filename": "timeline-threads.mp4",
+      "path": "/chapter-videos/ecos-manana/chapter-2/timeline-threads.mp4",
+      "description": "Visualización de hilos temporales entrelazándose",
+      "duration": 30,
+      "loop": true,
+      "autoplay": true,
+      "muted": true,
+      "overlay": true,
+      "opacity": 0.4,
+      "tags": ["threads", "timeline", "visualization", "abstract", "temporal"]
+    }
+  ],
+  "imageAssets": [
+    {
+      "id": "ch2-ecos-img-001",
+      "filename": "neo-tokio-altered.png",
+      "path": "/chapter-images/ecos-manana/chapter-2/neo-tokio-altered.png",
+      "description": "Neo-Tokio con arquitectura alterada por cambios temporales",
+      "prompt": "Neo-Tokyo cityscape with impossible architecture, buildings shifting between realities, surreal atmosphere",
+      "tags": ["neo-tokio", "altered", "surreal", "architecture", "temporal"],
+      "mood": "disorienting",
+      "context": "setting change"
+    },
+    {
+      "id": "ch2-ecos-img-002",
+      "filename": "maya-temporal-visions.png",
+      "path": "/chapter-images/ecos-manana/chapter-2/maya-temporal-visions.png",
+      "description": "Maya experimentando visiones de múltiples líneas temporales",
+      "prompt": "Maya Chen surrounded by swirling temporal visions, multiple reality fragments, overwhelmed expression",
+      "tags": ["maya", "visions", "temporal", "multiple-realities", "overwhelmed"],
+      "mood": "chaotic",
+      "context": "key scene"
+    },
+    {
+      "id": "ch2-ecos-img-003",
+      "filename": "kenji-altered.png",
+      "path": "/chapter-images/ecos-manana/chapter-2/kenji-altered.png",
+      "description": "Dr. Kenji Nakamura sin la cicatriz que Maya recordaba",
+      "prompt": "Dr. Kenji Nakamura in lab coat, concerned expression, no facial scars, clean appearance",
+      "tags": ["kenji", "altered", "colleague", "concerned", "clean"],
+      "mood": "unsettling",
+      "context": "character encounter"
+    },
+    {
+      "id": "ch2-ecos-img-004",
+      "filename": "timeline-threads-visual.png",
+      "path": "/chapter-images/ecos-manana/chapter-2/timeline-threads-visual.png",
+      "description": "Visualización de hilos temporales siendo manipulados",
+      "prompt": "Abstract visualization of temporal threads being pulled and manipulated, glowing lines, cosmic background",
+      "tags": ["threads", "temporal", "manipulation", "abstract", "cosmic"],
+      "mood": "revelatory",
+      "context": "concept visualization"
+    }
+  ],
+  "mediaMarkers": [
+    {
+      "id": "marker-reality-shift",
+      "position": "reality-shift",
+      "trigger": "scroll",
+      "name": "Cambio de Realidad",
+      "description": "Maya percibe que algo fundamental ha cambiado",
+      "elements": [
+        {
+          "type": "image",
+          "assetId": "ch2-ecos-img-001",
+          "action": "show",
+          "duration": null,
+          "transition": "distortion",
+          "transitionDuration": 3.0,
+          "delay": 0
+        },
+        {
+          "type": "audio",
+          "assetId": "ch2-ecos-audio-001",
+          "action": "play",
+          "delay": 1.0,
+          "fadeIn": 4.0
+        },
+        {
+          "type": "video",
+          "assetId": "ch2-ecos-video-001",
+          "action": "play",
+          "delay": 2.0,
+          "overlay": true,
+          "opacity": 0.3
+        }
+      ]
+    },
+    {
+      "id": "marker-first-vision",
+      "position": "first-vision",
+      "trigger": "scroll",
+      "name": "Primera Visión Temporal",
+      "description": "Maya experimenta su primera visión de líneas temporales múltiples",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch2-ecos-audio-002",
+          "action": "play",
+          "delay": 0,
+          "volume": 0.8
+        },
+        {
+          "type": "image",
+          "assetId": "ch2-ecos-img-002",
+          "action": "show",
+          "transition": "fragment-in",
+          "transitionDuration": 2.5,
+          "delay": 1.0
+        },
+        {
+          "type": "video",
+          "assetId": "ch2-ecos-video-002",
+          "action": "play",
+          "delay": 1.5
+        },
+        {
+          "type": "effect",
+          "assetId": "reality-fragment",
+          "action": "trigger",
+          "intensity": "medium",
+          "duration": 8.0
+        }
+      ]
+    },
+    {
+      "id": "marker-temporal-echoes",
+      "position": "temporal-echoes",
+      "trigger": "scroll",
+      "name": "Ecos Temporales",
+      "description": "Intensificación de las visiones temporales",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch2-ecos-audio-003",
+          "action": "play",
+          "delay": 0,
+          "fadeIn": 3.0
+        },
+        {
+          "type": "video",
+          "assetId": "ch2-ecos-video-001",
+          "action": "speed-up",
+          "speed": 2.0,
+          "duration": 15
+        },
+        {
+          "type": "image",
+          "assetId": "ch2-ecos-img-002",
+          "action": "multiply",
+          "copies": 3,
+          "opacity": 0.4,
+          "duration": 12
+        }
+      ]
+    },
+    {
+      "id": "marker-colleague-encounter",
+      "position": "colleague-encounter",
+      "trigger": "scroll",
+      "name": "Encuentro con Kenji",
+      "description": "Maya se encuentra con una versión alterada de su colega",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch2-ecos-audio-003",
+          "action": "fade-out",
+          "duration": 2.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch2-ecos-img-002",
+          "action": "hide",
+          "transition": "fade-out",
+          "transitionDuration": 1.5
+        },
+        {
+          "type": "image",
+          "assetId": "ch2-ecos-img-003",
+          "action": "show",
+          "transition": "fade-in",
+          "transitionDuration": 2.0,
+          "delay": 1.0
+        }
+      ]
+    },
+    {
+      "id": "marker-reality-breakdown",
+      "position": "reality-breakdown",
+      "trigger": "scroll",
+      "name": "Colapso de la Realidad",
+      "description": "Maya ve las líneas temporales siendo manipuladas",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch2-ecos-audio-002",
+          "action": "play",
+          "delay": 0,
+          "volume": 0.9
+        },
+        {
+          "type": "image",
+          "assetId": "ch2-ecos-img-004",
+          "action": "show",
+          "transition": "cosmic-zoom",
+          "transitionDuration": 3.0,
+          "delay": 1.0
+        },
+        {
+          "type": "video",
+          "assetId": "ch2-ecos-video-003",
+          "action": "play",
+          "delay": 2.0,
+          "overlay": true
+        },
+        {
+          "type": "effect",
+          "assetId": "timeline-visualization",
+          "action": "trigger",
+          "intensity": "high",
+          "duration": 10.0
+        }
+      ]
+    },
+    {
+      "id": "marker-determination",
+      "position": "determination",
+      "trigger": "scroll",
+      "name": "Determinación",
+      "description": "Maya se ancla a la realidad y toma determinación",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch2-ecos-audio-004",
+          "action": "play",
+          "delay": 0,
+          "fadeIn": 2.0
+        },
+        {
+          "type": "audio",
+          "assetId": "ch2-ecos-audio-002",
+          "action": "fade-out",
+          "duration": 3.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch2-ecos-img-004",
+          "action": "stabilize",
+          "duration": 5.0
+        },
+        {
+          "type": "video",
+          "assetId": "ch2-ecos-video-003",
+          "action": "fade-out",
+          "duration": 4.0
+        }
+      ]
+    },
+    {
+      "id": "marker-chapter-end",
+      "position": "chapter-end",
+      "trigger": "scroll",
+      "name": "Final del Capítulo",
+      "description": "Conclusión con Maya determinada a encontrar a los Preservadores",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch2-ecos-audio-001",
+          "action": "fade-out",
+          "duration": 5.0
+        },
+        {
+          "type": "audio",
+          "assetId": "ch2-ecos-audio-004",
+          "action": "fade-out",
+          "duration": 4.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch2-ecos-img-004",
+          "action": "fade-out",
+          "duration": 3.0
+        }
+      ]
+    }
+  ]
+}

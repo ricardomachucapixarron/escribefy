@@ -1,0 +1,341 @@
+{
+  "chapter": {
+    "id": "chapter-1",
+    "title": "Ecos del Pasado",
+    "synopsis": "Maya Chen recibe el primer mensaje temporal anómalo que cambiará su vida para siempre. Mientras analiza las ondas cuánticas en su laboratorio, descubre patrones que no deberían existir: alguien del futuro está enviando información al pasado.",
+    "status": "completed",
+    "wordCount": 5200,
+    "mood": "intriguing",
+    "themes": ["discovery", "mystery", "science", "destiny"],
+    "keyEvents": [
+      "Recepción del primer mensaje temporal",
+      "Análisis de patrones cuánticos anómalos",
+      "Primera sospecha de manipulación temporal"
+    ],
+    "lastModified": "2023-11-28T18:45:00Z"
+  },
+  "content": "# Capítulo 1: Ecos del Pasado\n\nLa pantalla holográfica parpadeó con una intensidad que Maya Chen nunca había visto antes. En el laboratorio cuántico de Neo-Tokio, rodeada por el zumbido constante de los aceleradores de partículas, algo extraordinario estaba sucediendo.\n\n*[MARKER: anomaly-detection]*\n\n\"Computadora, analiza la frecuencia de las ondas cuánticas del sector 7-Alpha,\" murmuró Maya, ajustando los controles de su estación de trabajo. Los datos que aparecían en la pantalla desafiaban toda lógica conocida.\n\nLas ondas temporales mostraban un patrón que no debería existir: información viajando hacia atrás en el tiempo, pero no desde su laboratorio. Alguien, en algún momento del futuro, estaba enviando mensajes al pasado.\n\n*[MARKER: first-message]*\n\nDe repente, los hologramas se estabilizaron y una secuencia de datos comenzó a materializarse en el aire frente a ella. No eran números aleatorios ni ruido cuántico. Era un mensaje coherente, codificado en patrones temporales que solo alguien con su nivel de conocimiento podría descifrar.\n\n\"Imposible,\" susurró Maya, sus ojos reflejando la luz azul de los hologramas. \"La comunicación temporal bidireccional es teóricamente imposible según las leyes de...\"\n\nPero ahí estaba, desafiando todo lo que creía saber sobre la física temporal.\n\n*[MARKER: message-decoding]*\n\nCon manos temblorosas, Maya comenzó a decodificar el mensaje. Cada símbolo que traducía la llenaba de una mezcla de fascinación y terror. El mensaje era claro:\n\n\"Maya Chen. Laboratorio Cuántico Neo-Tokio. Fecha: 15 de marzo, 2157. El futuro está en peligro. La línea temporal original debe ser preservada. Confía solo en los Preservadores. Los Alteradores ya han comenzado. - Un amigo del mañana.\"\n\n*[MARKER: realization]*\n\nMaya se quedó inmóvil, procesando las implicaciones. Si esto era real, significaba que alguien en el futuro tenía la capacidad no solo de enviar información al pasado, sino que había facciones enfrentadas sobre qué hacer con esa tecnología.\n\nSus años de investigación en paradojas temporales le habían enseñado que cualquier alteración del pasado podría tener consecuencias catastróficas. Pero ahora, aparentemente, alguien ya estaba jugando con las reglas fundamentales del tiempo.\n\n*[MARKER: decision-point]*\n\nMaya guardó los datos en un dispositivo de almacenamiento cuántico encriptado. Sabía que su vida acababa de cambiar para siempre. Ya no era solo una científica estudiando teorías temporales; se había convertido en una pieza clave en una guerra que aún no había comenzado.\n\nMientras las luces de Neo-Tokio brillaban a través de las ventanas del laboratorio, Maya Chen tomó la decisión que definiría no solo su destino, sino posiblemente el destino de toda la humanidad.\n\n*[MARKER: chapter-end]*\n\nTenía que encontrar a los Preservadores.\n\n---\n\n*Fin del Capítulo 1*",
+  "audioAssets": [
+    {
+      "id": "ch1-ecos-audio-001",
+      "filename": "quantum-lab-ambient.mp3",
+      "path": "/chapter-audio/ecos-manana/chapter-1/quantum-lab-ambient.mp3",
+      "description": "Ambiente del laboratorio cuántico con zumbidos tecnológicos",
+      "duration": 60,
+      "loop": true,
+      "fadeIn": 3,
+      "fadeOut": 2,
+      "volume": 0.4,
+      "tags": ["ambient", "laboratory", "futuristic", "technology", "subtle"]
+    },
+    {
+      "id": "ch1-ecos-audio-002",
+      "filename": "anomaly-alert.mp3",
+      "path": "/chapter-audio/ecos-manana/chapter-1/anomaly-alert.mp3",
+      "description": "Sonido de alerta cuando se detecta la anomalía temporal",
+      "duration": 8,
+      "loop": false,
+      "volume": 0.7,
+      "tags": ["alert", "anomaly", "tension", "discovery", "electronic"]
+    },
+    {
+      "id": "ch1-ecos-audio-003",
+      "filename": "temporal-message.mp3",
+      "path": "/chapter-audio/ecos-manana/chapter-1/temporal-message.mp3",
+      "description": "Sonido etéreo cuando llega el mensaje temporal",
+      "duration": 15,
+      "loop": false,
+      "volume": 0.8,
+      "tags": ["temporal", "ethereal", "message", "mystical", "communication"]
+    },
+    {
+      "id": "ch1-ecos-audio-004",
+      "filename": "neo-tokio-night.mp3",
+      "path": "/chapter-audio/ecos-manana/chapter-1/neo-tokio-night.mp3",
+      "description": "Sonidos de la ciudad futurista de Neo-Tokio por la noche",
+      "duration": 45,
+      "loop": true,
+      "volume": 0.3,
+      "tags": ["cityscape", "futuristic", "night", "ambient", "urban"]
+    }
+  ],
+  "videoAssets": [
+    {
+      "id": "ch1-ecos-video-001",
+      "filename": "holographic-data.mp4",
+      "path": "/chapter-videos/ecos-manana/chapter-1/holographic-data.mp4",
+      "description": "Animación de datos holográficos apareciendo en el laboratorio",
+      "duration": 20,
+      "loop": true,
+      "autoplay": true,
+      "muted": true,
+      "overlay": true,
+      "opacity": 0.7,
+      "tags": ["holographic", "data", "futuristic", "overlay", "laboratory"]
+    },
+    {
+      "id": "ch1-ecos-video-002",
+      "filename": "temporal-waves.mp4",
+      "path": "/chapter-videos/ecos-manana/chapter-1/temporal-waves.mp4",
+      "description": "Visualización de ondas temporales y patrones cuánticos",
+      "duration": 25,
+      "loop": true,
+      "autoplay": false,
+      "muted": false,
+      "overlay": false,
+      "opacity": 1.0,
+      "tags": ["temporal", "waves", "quantum", "visualization", "scientific"]
+    },
+    {
+      "id": "ch1-ecos-video-003",
+      "filename": "neo-tokio-skyline.mp4",
+      "path": "/chapter-videos/ecos-manana/chapter-1/neo-tokio-skyline.mp4",
+      "description": "Vista panorámica de Neo-Tokio con luces nocturnas",
+      "duration": 30,
+      "loop": true,
+      "autoplay": true,
+      "muted": true,
+      "overlay": false,
+      "opacity": 0.8,
+      "tags": ["cityscape", "neo-tokio", "futuristic", "night", "panoramic"]
+    }
+  ],
+  "imageAssets": [
+    {
+      "id": "ch1-ecos-img-001",
+      "filename": "maya-lab-discovery.png",
+      "path": "/chapter-images/ecos-manana/chapter-1/maya-lab-discovery.png",
+      "description": "Maya Chen en el laboratorio descubriendo la anomalía temporal",
+      "prompt": "Maya Chen in futuristic quantum laboratory, holographic displays showing temporal anomalies, surprised expression",
+      "tags": ["maya", "laboratory", "discovery", "holographic", "quantum"],
+      "mood": "intriguing",
+      "context": "chapter opening"
+    },
+    {
+      "id": "ch1-ecos-img-002",
+      "filename": "temporal-message-hologram.png",
+      "path": "/chapter-images/ecos-manana/chapter-1/temporal-message-hologram.png",
+      "description": "El mensaje temporal materializándose como holograma",
+      "prompt": "Holographic temporal message floating in quantum lab, blue ethereal light, futuristic text",
+      "tags": ["hologram", "message", "temporal", "ethereal", "futuristic"],
+      "mood": "mysterious",
+      "context": "key scene"
+    },
+    {
+      "id": "ch1-ecos-img-003",
+      "filename": "maya-realization.png",
+      "path": "/chapter-images/ecos-manana/chapter-1/maya-realization.png",
+      "description": "Maya procesando las implicaciones del mensaje temporal",
+      "prompt": "Maya Chen with intense realization expression, temporal data swirling around her, dramatic lighting",
+      "tags": ["maya", "realization", "dramatic", "temporal", "intense"],
+      "mood": "pivotal",
+      "context": "character moment"
+    },
+    {
+      "id": "ch1-ecos-img-004",
+      "filename": "neo-tokio-night-lab.png",
+      "path": "/chapter-images/ecos-manana/chapter-1/neo-tokio-night-lab.png",
+      "description": "Vista del laboratorio con Neo-Tokio iluminada al fondo",
+      "prompt": "Quantum laboratory interior with Neo-Tokyo futuristic cityscape visible through windows, night scene",
+      "tags": ["laboratory", "neo-tokio", "night", "cityscape", "futuristic"],
+      "mood": "atmospheric",
+      "context": "setting"
+    }
+  ],
+  "mediaMarkers": [
+    {
+      "id": "marker-anomaly-detection",
+      "position": "anomaly-detection",
+      "trigger": "scroll",
+      "name": "Detección de Anomalía",
+      "description": "Maya detecta patrones temporales anómalos en su laboratorio",
+      "elements": [
+        {
+          "type": "image",
+          "assetId": "ch1-ecos-img-001",
+          "action": "show",
+          "duration": null,
+          "transition": "fade-in",
+          "transitionDuration": 2.0,
+          "delay": 0
+        },
+        {
+          "type": "audio",
+          "assetId": "ch1-ecos-audio-001",
+          "action": "play",
+          "delay": 0.5,
+          "fadeIn": 3.0
+        },
+        {
+          "type": "video",
+          "assetId": "ch1-ecos-video-001",
+          "action": "play",
+          "delay": 1.0,
+          "overlay": true,
+          "opacity": 0.5
+        }
+      ]
+    },
+    {
+      "id": "marker-first-message",
+      "position": "first-message",
+      "trigger": "scroll",
+      "name": "Primer Mensaje Temporal",
+      "description": "Aparición del primer mensaje del futuro",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch1-ecos-audio-002",
+          "action": "play",
+          "delay": 0,
+          "volume": 0.7
+        },
+        {
+          "type": "video",
+          "assetId": "ch1-ecos-video-002",
+          "action": "play",
+          "delay": 1.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-ecos-img-001",
+          "action": "brighten",
+          "intensity": 1.2,
+          "duration": 8
+        }
+      ]
+    },
+    {
+      "id": "marker-message-decoding",
+      "position": "message-decoding",
+      "trigger": "scroll",
+      "name": "Decodificación del Mensaje",
+      "description": "Maya decodifica el mensaje temporal",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch1-ecos-audio-003",
+          "action": "play",
+          "delay": 0,
+          "fadeIn": 2.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-ecos-img-002",
+          "action": "show",
+          "transition": "materialize",
+          "transitionDuration": 3.0,
+          "delay": 1.0
+        },
+        {
+          "type": "video",
+          "assetId": "ch1-ecos-video-001",
+          "action": "speed-up",
+          "speed": 1.5,
+          "duration": 10
+        }
+      ]
+    },
+    {
+      "id": "marker-realization",
+      "position": "realization",
+      "trigger": "scroll",
+      "name": "Momento de Comprensión",
+      "description": "Maya comprende las implicaciones del mensaje",
+      "elements": [
+        {
+          "type": "image",
+          "assetId": "ch1-ecos-img-002",
+          "action": "hide",
+          "transition": "fade-out",
+          "transitionDuration": 2.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-ecos-img-003",
+          "action": "show",
+          "transition": "dramatic-zoom",
+          "transitionDuration": 2.5,
+          "delay": 1.0
+        },
+        {
+          "type": "audio",
+          "assetId": "ch1-ecos-audio-003",
+          "action": "fade-out",
+          "duration": 3.0
+        }
+      ]
+    },
+    {
+      "id": "marker-decision-point",
+      "position": "decision-point",
+      "trigger": "scroll",
+      "name": "Punto de Decisión",
+      "description": "Maya toma la decisión que cambiará su destino",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch1-ecos-audio-004",
+          "action": "play",
+          "delay": 0,
+          "fadeIn": 4.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-ecos-img-003",
+          "action": "hide",
+          "transition": "slide-left",
+          "transitionDuration": 2.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-ecos-img-004",
+          "action": "show",
+          "transition": "slide-right",
+          "transitionDuration": 2.0,
+          "delay": 1.5
+        },
+        {
+          "type": "video",
+          "assetId": "ch1-ecos-video-003",
+          "action": "play",
+          "delay": 2.0
+        }
+      ]
+    },
+    {
+      "id": "marker-chapter-end",
+      "position": "chapter-end",
+      "trigger": "scroll",
+      "name": "Final del Capítulo",
+      "description": "Conclusión del primer capítulo con vista de Neo-Tokio",
+      "elements": [
+        {
+          "type": "audio",
+          "assetId": "ch1-ecos-audio-001",
+          "action": "fade-out",
+          "duration": 5.0
+        },
+        {
+          "type": "audio",
+          "assetId": "ch1-ecos-audio-004",
+          "action": "fade-out",
+          "duration": 4.0
+        },
+        {
+          "type": "video",
+          "assetId": "ch1-ecos-video-003",
+          "action": "fade-out",
+          "duration": 3.0
+        },
+        {
+          "type": "image",
+          "assetId": "ch1-ecos-img-004",
+          "action": "desaturate",
+          "intensity": 0.6,
+          "duration": 4.0
+        }
+      ]
+    }
+  ]
+}
