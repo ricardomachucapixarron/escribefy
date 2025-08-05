@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { LandingPage } from "@/components/landing-page"
 import { ProjectManager } from "@/components/project-manager"
 import { NovelWritingSuite } from "@/components/novel-writing-suite"
+import { GlobalHeader } from "@/components/global-header"
 import { useProjects, type Project } from "@/hooks/use-projects"
 
 export default function App() {
@@ -31,17 +32,28 @@ export default function App() {
     setCurrentView("projects")
   }
 
-  if (currentView === "landing") {
-    return <LandingPage onGetStarted={handleGetStarted} />
-  }
-
-  if (currentView === "projects") {
-    return <ProjectManager projects={projects} onProjectSelect={handleProjectSelect} />
-  }
-
-  if (currentView === "suite" && currentProject) {
-    return <NovelWritingSuite project={currentProject} onBackToProjects={handleBackToProjects} />
-  }
-
-  return <LandingPage onGetStarted={handleGetStarted} />
+  return (
+    <>
+      {/* Global Header - shown in all views except landing */}
+      {currentView !== "landing" && (
+        <GlobalHeader 
+          currentView={currentView as 'projects' | 'suite'}
+          projectTitle={currentProject?.title}
+          onNavigateToProjects={handleBackToProjects}
+        />
+      )}
+      
+      {/* Main Content */}
+      <div>
+        {currentView === "landing" && <LandingPage onGetStarted={handleGetStarted} />}
+        {currentView === "projects" && <ProjectManager projects={projects} onProjectSelect={handleProjectSelect} />}
+        {currentView === "suite" && currentProject && (
+          <NovelWritingSuite project={currentProject} onBackToProjects={handleBackToProjects} />
+        )}
+        {currentView !== "landing" && currentView !== "projects" && currentView !== "suite" && (
+          <LandingPage onGetStarted={handleGetStarted} />
+        )}
+      </div>
+    </>
+  )
 }

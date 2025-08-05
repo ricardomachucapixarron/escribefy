@@ -622,8 +622,8 @@ export function ProjectManager({ projects, onProjectSelect }: ProjectManagerProp
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
 
-        {/* Navigation Header */}
-        <div className="absolute top-0 left-0 right-0 z-30 p-6">
+        {/* Navigation Header - Hidden to use global header */}
+        <div className="hidden absolute top-0 left-0 right-0 z-30 p-6">
           <div className="flex items-center justify-between">
             <motion.div
               className="flex items-center gap-4"
@@ -726,7 +726,7 @@ export function ProjectManager({ projects, onProjectSelect }: ProjectManagerProp
         )}
 
         {/* Main Content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Book Cover */}
           <motion.div
             className="flex justify-center lg:justify-end"
