@@ -378,9 +378,9 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.8 }}
             >
-              <div className="h-full flex items-end justify-center">
+              <div className="h-full flex items-end justify-center overflow-hidden">
                 {displayedText ? (
-                  <div className="text-xl md:text-2xl lg:text-3xl font-light leading-relaxed text-white/90 font-mono text-center">
+                  <div className="text-xl md:text-2xl lg:text-3xl font-light leading-relaxed text-white/90 font-mono text-left">
                     <HighlightedText text={displayedText} />
                     <motion.span
                       className="inline-block w-1 h-6 bg-purple-400 ml-2"
