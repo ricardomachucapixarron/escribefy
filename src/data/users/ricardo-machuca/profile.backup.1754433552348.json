@@ -75,7 +75,7 @@
   "projects": [
     {
       "id": "reino-sombras",
-      "title": "El Reino de las Sombrah Perdidah",
+      "title": "El Reino de las Sombras Perdidas",
       "author": "Ricardo Machuca",
       "genre": "Fantasía Épica",
       "status": "in_progress",
@@ -255,67 +255,6 @@
         }
       ],
       "dataPath": "/users/ricardo-machuca/projects/susurros-viento/project.json"
-    },
-    {
-      "id": "ecos-manana",
-      "title": "Ecos del Mañana",
-      "author": "Ricardo Machuca",
-      "genre": "Ciencia Ficción",
-      "status": "in_progress",
-      "visibility": "private",
-      "synopsis": "En un futuro donde la tecnología permite enviar información al pasado, Maya Chen descubre que alguien está alterando la línea temporal. Debe usar ecos temporales para restaurar la realidad antes de que las paradojas destruyan el continuum espacio-tiempo.",
-      "targetWordCount": 80000,
-      "currentWordCount": 15000,
-      "progress": 18.8,
-      "createdAt": "2024-01-05T12:00:00Z",
-      "lastModified": "2024-01-25T10:30:00Z",
-      "settings": {
-        "cinematicMode": true,
-        "arMode": false,
-        "aiAssistance": true,
-        "autoBackup": true
-      },
-      "stats": {
-        "chaptersCount": 5,
-        "charactersCount": 12,
-        "locationsCount": 6,
-        "factionsCount": 3,
-        "agentsCount": 2,
-        "averageChapterLength": 3000,
-        "readingTime": 60
-      },
-      "portfolio": [
-        {
-          "id": "ecos-img-001",
-          "filename": "ecos-cover.png",
-          "path": "/book-covers/ecos-manana-cover.png",
-          "description": "Portada con Maya y efectos temporales cuánticos",
-          "createdAt": "2024-01-08T14:20:00Z",
-          "vector": [
-            0.8,
-            0.2,
-            0.9,
-            0.1,
-            0.7,
-            0.3,
-            0.6,
-            0.4,
-            0.9,
-            0.1
-          ],
-          "prompt": "Futuristic sci-fi scene with quantum temporal effects, Maya Chen in high-tech laboratory",
-          "tags": [
-            "cover",
-            "sci-fi",
-            "temporal",
-            "quantum",
-            "maya"
-          ],
-          "mood": "mysterious",
-          "context": "book cover"
-        }
-      ],
-      "dataPath": "/users/ricardo-machuca/projects/ecos-manana/project.json"
     }
   ],
   "recentActivity": [

@@ -99,6 +99,34 @@ export const mockCharacters: Character[] = [
         angle: 'three-quarter',
         composition: 'portrait',
         lighting: 'studio'
+      },
+      {
+        id: 'maya-portrait-001',
+        filename: 'elara-moonweaver.png',
+        path: '/users/ricardo-machuca/projects/ecos-manana/characters/elara-moonweaver.png',
+        description: 'Retrato formal de Maya Chen para documentos oficiales',
+        createdAt: '2023-11-18T14:20:00Z',
+        tags: ['portrait', 'official', 'professional', 'headshot'],
+        mood: 'confident',
+        context: 'official documentation',
+        shotType: 'close-up',
+        angle: 'front',
+        composition: 'portrait',
+        lighting: 'soft'
+      },
+      {
+        id: 'maya-action-001',
+        filename: 'lyra-nightwhisper.png',
+        path: '/users/ricardo-machuca/projects/ecos-manana/characters/lyra-nightwhisper.png',
+        description: 'Maya en acción durante una crisis temporal',
+        createdAt: '2023-11-22T16:45:00Z',
+        tags: ['action', 'crisis', 'determined', 'heroic'],
+        mood: 'intense',
+        context: 'action sequence',
+        shotType: 'medium-shot',
+        angle: 'low-angle',
+        composition: 'portrait',
+        lighting: 'dramatic'
       }
     ]
   },
@@ -126,6 +154,116 @@ export const mockCharacters: Character[] = [
         angle: 'front',
         composition: 'portrait',
         lighting: 'dramatic'
+      },
+      {
+        id: 'webb-villain-002',
+        filename: 'villain-detailed.png',
+        path: '/users/ricardo-machuca/projects/ecos-manana/characters/villain-detailed.png',
+        description: 'Webb en su forma más amenazante y poderosa',
+        createdAt: '2023-11-19T11:30:00Z',
+        tags: ['villain', 'powerful', 'threatening', 'detailed'],
+        mood: 'menacing',
+        context: 'climactic reveal',
+        shotType: 'full-body',
+        angle: 'low-angle',
+        composition: 'portrait',
+        lighting: 'harsh'
+      },
+      {
+        id: 'webb-shadow-001',
+        filename: 'shadow-character.png',
+        path: '/users/ricardo-machuca/projects/ecos-manana/characters/shadow-character.png',
+        description: 'Webb emergiendo de las sombras temporales',
+        createdAt: '2023-11-21T09:15:00Z',
+        tags: ['shadow', 'mysterious', 'temporal', 'emergence'],
+        mood: 'ominous',
+        context: 'dramatic entrance',
+        shotType: 'wide-shot',
+        angle: 'high-angle',
+        composition: 'landscape',
+        lighting: 'backlit'
+      }
+    ]
+  },
+  {
+    id: 'kenji-nakamura',
+    name: 'Dr. Kenji Nakamura',
+    age: 35,
+    role: 'supporting',
+    occupation: 'Científico Asociado',
+    description: 'Colega y amigo cercano de Maya, especialista en física cuántica aplicada.',
+    personality: ['leal', 'intelectual', 'cauteloso', 'empático'],
+    groupings: ['Preservadores', 'Científicos'],
+    tags: ['Kenji', 'Dr. Nakamura', 'Nakamura', 'Dr. Kenji'],
+    portfolio: [
+      {
+        id: 'kenji-portrait-001',
+        filename: 'sir-marcus.png',
+        path: '/users/ricardo-machuca/projects/ecos-manana/characters/sir-marcus.png',
+        description: 'Retrato profesional de Dr. Kenji Nakamura',
+        createdAt: '2023-11-17T13:25:00Z',
+        tags: ['scientist', 'colleague', 'professional', 'friendly'],
+        mood: 'thoughtful',
+        context: 'professional headshot',
+        shotType: 'close-up',
+        angle: 'three-quarter',
+        composition: 'portrait',
+        lighting: 'natural'
+      },
+      {
+        id: 'kenji-lab-001',
+        filename: 'elder-mage.png',
+        path: '/users/ricardo-machuca/projects/ecos-manana/characters/elder-mage.png',
+        description: 'Kenji analizando datos temporales complejos',
+        createdAt: '2023-11-20T15:40:00Z',
+        tags: ['analysis', 'data', 'concentration', 'research'],
+        mood: 'focused',
+        context: 'research work',
+        shotType: 'medium-shot',
+        angle: 'profile',
+        composition: 'portrait',
+        lighting: 'studio'
+      }
+    ]
+  },
+  {
+    id: 'seraphina-vex',
+    name: 'Seraphina Vex',
+    age: 32,
+    role: 'supporting',
+    occupation: 'Agente Temporal',
+    description: 'Misteriosa agente que trabaja en las sombras para mantener el equilibrio temporal.',
+    personality: ['misteriosa', 'hábil', 'independiente', 'calculadora'],
+    groupings: ['Agentes Temporales'],
+    tags: ['Seraphina', 'Vex', 'Agente Vex'],
+    portfolio: [
+      {
+        id: 'seraphina-portrait-001',
+        filename: 'queen-seraphina.png',
+        path: '/users/ricardo-machuca/projects/ecos-manana/characters/queen-seraphina.png',
+        description: 'Seraphina Vex en su aspecto más elegante y poderoso',
+        createdAt: '2023-11-19T10:15:00Z',
+        tags: ['elegant', 'powerful', 'mysterious', 'regal'],
+        mood: 'commanding',
+        context: 'formal introduction',
+        shotType: 'full-body',
+        angle: 'front',
+        composition: 'portrait',
+        lighting: 'dramatic'
+      },
+      {
+        id: 'seraphina-action-001',
+        filename: 'lady-morgana.png',
+        path: '/users/ricardo-machuca/projects/ecos-manana/characters/lady-morgana.png',
+        description: 'Seraphina en misión secreta',
+        createdAt: '2023-11-21T14:30:00Z',
+        tags: ['stealth', 'mission', 'action', 'covert'],
+        mood: 'stealthy',
+        context: 'covert operation',
+        shotType: 'medium-shot',
+        angle: 'three-quarter',
+        composition: 'portrait',
+        lighting: 'ambient'
       }
     ]
   }

@@ -5,7 +5,8 @@ import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { LogIn, UserPlus, BookOpen, Sparkles, Eye, HelpCircle, ChevronDown, MousePointer } from "lucide-react"
+import { LogIn, UserPlus, BookOpen, Sparkles, Eye, HelpCircle, ChevronDown, MousePointer, Database } from "lucide-react"
+import Link from "next/link"
 
 interface LandingPageProps {
   onGetStarted: () => void
@@ -320,10 +321,18 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 <BookOpen className="h-4 w-4 mr-2" />
                 Ejemplos
               </Button>
-              <Button variant="ghost" className="text-white hover:text-purple-400 hover:bg-white/5">
-                <Eye className="h-4 w-4 mr-2" />
-                Demo
-              </Button>
+              <Link href="/data-demo">
+                <Button variant="ghost" className="text-white hover:text-purple-400 hover:bg-white/5">
+                  <Eye className="h-4 w-4 mr-2" />
+                  Demo
+                </Button>
+              </Link>
+              <Link href="/data-manager">
+                <Button variant="ghost" className="text-white hover:text-purple-400 hover:bg-white/5">
+                  <Database className="h-4 w-4 mr-2" />
+                  Data Manager
+                </Button>
+              </Link>
               <Button variant="ghost" className="text-white hover:text-purple-400 hover:bg-white/5">
                 <HelpCircle className="h-4 w-4 mr-2" />
                 Ayuda

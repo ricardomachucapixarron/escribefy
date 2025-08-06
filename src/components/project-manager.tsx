@@ -150,14 +150,23 @@ const TypewriterText = ({
   )
 }
 
-// Descripciones más largas para cada proyecto
-const extendedDescriptions: Record<string, string> = {
-  "reino-sombras":
-    "En un reino donde las sombras cobran vida propia y los antiguos secretos amenazan con destruir el equilibrio entre la luz y la oscuridad, Lyra Nightwhisper debe dominar poderes que no comprende completamente. Acompañada por el valiente guerrero Kael Stormforge, se embarca en una épica aventura que la llevará desde las torres de cristal de Umbraluna hasta las ruinas malditas de Corazón del Vacío. Mientras las fuerzas del mal se alzan bajo el liderazgo del corrupto Lord Malachar, nuestra heroína descubrirá que su destino está entrelazado con la supervivencia misma del reino. Una historia de magia ancestral, sacrificio y el poder redentor del amor verdadero.",
-  "ecos-manana":
-    "La brillante física cuántica Dr. Elena Vásquez creía que había logrado el mayor avance científico de la humanidad: un dispositivo capaz de permitir viajes entre realidades paralelas. Sin embargo, su primer experimento desata una cascada de consecuencias imprevistas que amenazan con destruir no solo su realidad, sino todo el multiverso. Mientras navega entre mundos alternativos donde las decisiones tomadas llevaron a futuros radicalmente diferentes, Elena debe enfrentar versiones de sí misma que tomaron caminos distintos. Con el tiempo agotándose y la realidad fragmentándose, deberá encontrar una manera de reparar el daño antes de que todas las dimensiones colapsen en una singularidad destructiva.",
-  "corazones-conflicto":
-    "Sofia Herrera ha construido una carrera exitosa como abogada corporativa, sacrificando su vida personal en el altar del éxito profesional. Su mundo perfectamente ordenado se tambalea cuando se reencuentra con Diego Morales, su primer amor de la universidad, en el caso legal más importante de su carrera. Él ahora es el abogado defensor del lado opuesto, representando a una comunidad que lucha contra la corporación de Sofia. Entre alegatos legales y tensiones no resueltas, ambos deben navegar no solo las complejidades del caso, sino también los sentimientos que creían enterrados. Una historia sobre segundas oportunidades, el precio del éxito y la valentía necesaria para elegir el amor por encima de la ambición.",
+// Las descripciones ahora se obtienen directamente del profile.json a través del hook useProjects
+
+// Función para cargar datos del proyecto desde JSON
+const loadProjectData = async (projectId: string) => {
+  try {
+    const response = await fetch(`/api/project-data/${projectId}`)
+    if (response.ok) {
+      const data = await response.json()
+      console.log('Loaded project data:', data)
+      return data
+    } else {
+      console.error('Failed to load project data:', response.status, response.statusText)
+    }
+  } catch (error) {
+    console.error('Error loading project data:', error)
+  }
+  return null
 }
 
 // Prompts prediseñados para generar imágenes de capítulos
@@ -214,6 +223,7 @@ export function ProjectManager({ projects, onProjectSelect }: ProjectManagerProp
     genre: "",
     description: "",
   })
+  const [projectData, setProjectData] = useState<any>(null)
   const [chaptersData, setChaptersData] = useState<Record<string, Chapter[]>>({
     "reino-sombras": [
       {
@@ -249,22 +259,22 @@ export function ProjectManager({ projects, onProjectSelect }: ProjectManagerProp
     ],
     "ecos-manana": [
       {
-        id: "ch-1",
-        title: "El Experimento",
+        id: "chapter-1",
+        title: "Ecos del Pasaoh",
         synopsis:
-          "La Dr. Elena Vásquez activa por primera vez su dispositivo de salto dimensional, sin imaginar las terribles consecuencias que desatará.",
-        image: "/chapter-images/ecos-ch1.png",
-        duration: "35 min lectura",
+          "Maya Chen recibe el primer mensaje temporal anómalo que cambiará su vida para siempre. Mientras analiza las ondas cuánticas en su laboratorio, descubre patrones que no deberían existir: alguien del futuro está enviando información al pasado.",
+        image: "/chapter-images/ecos-manana/chapter-1/maya-first-message.png",
+        duration: "26 min lectura",
         episode: 1,
         status: "published",
       },
       {
-        id: "ch-2",
-        title: "Realidades Paralelas",
+        id: "chapter-2",
+        title: "Fragmentos de Realidad",
         synopsis:
-          "Elena descubre que ha fracturado el multiverso y debe viajar entre realidades alternativas para reparar el daño antes de que sea demasiado tarde.",
-        image: "/chapter-images/ecos-ch2.png",
-        duration: "42 min lectura",
+          "Maya comienza a experimentar visiones de líneas temporales alternativas. Cada eco temporal le muestra versiones diferentes de la historia, revelando que alguien está alterando eventos clave del pasado.",
+        image: "/chapter-images/ecos-manana/chapter-2/temporal-visions.png",
+        duration: "24 min lectura",
         episode: 2,
         status: "published",
       },
@@ -318,7 +328,53 @@ export function ProjectManager({ projects, onProjectSelect }: ProjectManagerProp
   )
 
   const currentProject = sortedProjects[currentProjectIndex] || sortedProjects[0]
-  const currentChapters = currentProject ? chaptersData[currentProject.id] || [] : []
+  
+  // Cargar datos del proyecto cuando cambie el proyecto actual
+  useEffect(() => {
+    console.log('useEffect triggered - currentProject:', currentProject)
+    console.log('projectData state:', projectData)
+    if (currentProject && currentProject.id === 'ecos-manana') {
+      console.log('Loading project data for ecos-manana')
+      loadProjectData(currentProject.id).then(data => {
+        console.log('API response:', data)
+        if (data) {
+          setProjectData(data)
+          console.log('projectData updated to:', data)
+        }
+      }).catch(error => {
+        console.error('Error loading project data:', error)
+      })
+    }
+  }, [currentProject?.id])
+
+  // Obtener capítulos del JSON o usar fallback hardcodeado
+  const getChaptersFromProject = (): Chapter[] => {
+    console.log('getChaptersFromProject called')
+    console.log('projectData:', projectData)
+    console.log('currentProject.id:', currentProject?.id)
+    
+    if (projectData && projectData.chapters) {
+      console.log('Using JSON data - chapters:', projectData.chapters)
+      const mappedChapters = projectData.chapters.map((chapter: any, index: number) => ({
+        id: chapter.id,
+        title: chapter.title,
+        synopsis: chapter.synopsis,
+        image: chapter.portfolio?.[0]?.path || `/chapter-images/${currentProject.id}-ch${index + 1}.png`,
+        duration: `${Math.ceil(chapter.wordCount / 200)} min lectura`,
+        episode: index + 1,
+        status: chapter.status === 'completed' ? 'published' : 'in-construction'
+      }))
+      console.log('Mapped chapters:', mappedChapters)
+      return mappedChapters
+    }
+    
+    console.log('Using fallback hardcoded data')
+    const fallbackChapters = chaptersData[currentProject?.id] || []
+    console.log('Fallback chapters:', fallbackChapters)
+    return fallbackChapters
+  }
+  
+  const currentChapters = currentProject ? getChaptersFromProject() : []
 
   // Función para marcar proyecto como visto (solo cuando termine la animación)
   const handleAnimationComplete = () => {
@@ -778,7 +834,7 @@ export function ProjectManager({ projects, onProjectSelect }: ProjectManagerProp
               <div className="text-lg text-gray-300 leading-relaxed mb-6 max-w-lg min-h-[200px]">
                 <TypewriterText
                   key={currentProject.id} // Forzar re-render cuando cambia el proyecto
-                  text={extendedDescriptions[currentProject.id] || currentProject.description}
+                  text={currentProject.description}
                   delay={hasBeenViewed ? 0 : 800}
                   speed={hasBeenViewed ? 0 : 0.015}
                   skipAnimation={hasBeenViewed}

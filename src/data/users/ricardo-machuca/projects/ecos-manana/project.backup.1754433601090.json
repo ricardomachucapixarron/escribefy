@@ -27,26 +27,9 @@
         "path": "/book-covers/ecos-manana-cover.png",
         "description": "Portada con Maya Chen y ondas cuánticas temporales",
         "createdAt": "2023-11-25T16:20:00Z",
-        "vector": [
-          0.6,
-          0.4,
-          0.9,
-          0.1,
-          0.5,
-          0.5,
-          0.8,
-          0.2,
-          0.7,
-          0.3
-        ],
+        "vector": [0.6, 0.4, 0.9, 0.1, 0.5, 0.5, 0.8, 0.2, 0.7, 0.3],
         "prompt": "Sci-fi book cover with Maya Chen surrounded by quantum waves, futuristic cityscape, time distortion effects",
-        "tags": [
-          "cover",
-          "sci-fi",
-          "quantum",
-          "futuristic",
-          "time"
-        ],
+        "tags": ["cover", "sci-fi", "quantum", "futuristic", "time"],
         "mood": "technological",
         "context": "book cover"
       },
@@ -56,26 +39,9 @@
         "path": "/book-covers/ecos-manana-concept.png",
         "description": "Arte conceptual del laboratorio cuántico de Maya",
         "createdAt": "2023-10-15T14:30:00Z",
-        "vector": [
-          0.8,
-          0.2,
-          0.7,
-          0.3,
-          0.6,
-          0.4,
-          0.9,
-          0.1,
-          0.5,
-          0.5
-        ],
+        "vector": [0.8, 0.2, 0.7, 0.3, 0.6, 0.4, 0.9, 0.1, 0.5, 0.5],
         "prompt": "Futuristic quantum laboratory with holographic displays, temporal distortion effects, Maya working",
-        "tags": [
-          "concept",
-          "laboratory",
-          "quantum",
-          "holographic",
-          "futuristic"
-        ],
+        "tags": ["concept", "laboratory", "quantum", "holographic", "futuristic"],
         "mood": "scientific",
         "context": "concept art"
       }
@@ -118,26 +84,9 @@
           "path": "/faction-images/preservadores-logo.png",
           "description": "Logo de Los Preservadores con símbolo de estabilidad temporal",
           "createdAt": "2023-08-20T10:15:00Z",
-          "vector": [
-            0.7,
-            0.3,
-            0.8,
-            0.2,
-            0.6,
-            0.4,
-            0.5,
-            0.5,
-            0.9,
-            0.1
-          ],
+          "vector": [0.7, 0.3, 0.8, 0.2, 0.6, 0.4, 0.5, 0.5, 0.9, 0.1],
           "prompt": "Clean scientific logo with temporal stability symbols, blue and silver colors",
-          "tags": [
-            "logo",
-            "faction",
-            "stability",
-            "scientific",
-            "blue"
-          ],
+          "tags": ["logo", "faction", "stability", "scientific", "blue"],
           "mood": "professional",
           "context": "faction symbol"
         }
@@ -156,26 +105,9 @@
           "path": "/faction-images/alteradores-symbol.png",
           "description": "Símbolo de Los Alteradores con ondas temporales fragmentadas",
           "createdAt": "2023-08-22T14:45:00Z",
-          "vector": [
-            0.9,
-            0.1,
-            0.6,
-            0.4,
-            0.8,
-            0.2,
-            0.7,
-            0.3,
-            0.5,
-            0.5
-          ],
+          "vector": [0.9, 0.1, 0.6, 0.4, 0.8, 0.2, 0.7, 0.3, 0.5, 0.5],
           "prompt": "Radical symbol with fragmented time waves, red and gold colors, dynamic design",
-          "tags": [
-            "symbol",
-            "faction",
-            "radical",
-            "fragmented",
-            "red"
-          ],
+          "tags": ["symbol", "faction", "radical", "fragmented", "red"],
           "mood": "revolutionary",
           "context": "faction symbol"
         }
@@ -202,26 +134,9 @@
           "path": "/agent-avatars/dr-chronos.png",
           "description": "Avatar del Dr. Chronos con elementos temporales",
           "createdAt": "2023-09-10T11:30:00Z",
-          "vector": [
-            0.8,
-            0.2,
-            0.9,
-            0.1,
-            0.7,
-            0.3,
-            0.6,
-            0.4,
-            0.5,
-            0.5
-          ],
+          "vector": [0.8, 0.2, 0.9, 0.1, 0.7, 0.3, 0.6, 0.4, 0.5, 0.5],
           "prompt": "Sophisticated AI avatar with temporal elements, clock motifs, blue energy",
-          "tags": [
-            "avatar",
-            "temporal",
-            "sophisticated",
-            "blue",
-            "clock"
-          ],
+          "tags": ["avatar", "temporal", "sophisticated", "blue", "clock"],
           "mood": "analytical",
           "context": "agent avatar"
         }
@@ -246,26 +161,9 @@
           "path": "/agent-avatars/dra-quanta.png",
           "description": "Avatar de la Dra. Quanta con partículas cuánticas",
           "createdAt": "2023-09-12T16:20:00Z",
-          "vector": [
-            0.6,
-            0.4,
-            0.8,
-            0.2,
-            0.9,
-            0.1,
-            0.7,
-            0.3,
-            0.4,
-            0.6
-          ],
+          "vector": [0.6, 0.4, 0.8, 0.2, 0.9, 0.1, 0.7, 0.3, 0.4, 0.6],
           "prompt": "Dynamic AI avatar with quantum particles, energy fields, purple and green colors",
-          "tags": [
-            "avatar",
-            "quantum",
-            "particles",
-            "dynamic",
-            "purple"
-          ],
+          "tags": ["avatar", "quantum", "particles", "dynamic", "purple"],
           "mood": "innovative",
           "context": "agent avatar"
         }
@@ -280,16 +178,8 @@
       "age": 34,
       "occupation": "Científica Temporal",
       "description": "Brillante física especializada en paradojas temporales, Maya descubre la conspiración que amenaza la realidad misma",
-      "personality": [
-        "determinada",
-        "intelectual",
-        "empática",
-        "obsesiva"
-      ],
-      "groupings": [
-        "preservadores",
-        "quantum-physics"
-      ],
+      "personality": ["determinada", "intelectual", "empática", "obsesiva"],
+      "groupings": ["preservadores", "quantum-physics"],
       "portfolio": [
         {
           "id": "maya-img-001",
@@ -297,26 +187,9 @@
           "path": "/users/ricardo-machuca/projects/ecos-manana/characters/maya-chen-lab.png",
           "description": "Maya Chen en su laboratorio cuántico",
           "createdAt": "2023-11-20T14:15:00Z",
-          "vector": [
-            0.9,
-            0.1,
-            0.8,
-            0.2,
-            0.7,
-            0.3,
-            0.6,
-            0.4,
-            0.5,
-            0.5
-          ],
+          "vector": [0.9, 0.1, 0.8, 0.2, 0.7, 0.3, 0.6, 0.4, 0.5, 0.5],
           "prompt": "Asian scientist woman in futuristic quantum lab, intelligent expression, lab coat",
-          "tags": [
-            "portrait",
-            "scientist",
-            "laboratory",
-            "intelligent",
-            "professional"
-          ],
+          "tags": ["portrait", "scientist", "laboratory", "intelligent", "professional"],
           "mood": "focused",
           "context": "character portrait"
         },
@@ -326,26 +199,9 @@
           "path": "/users/ricardo-machuca/projects/ecos-manana/characters/maya-chen-vision.png",
           "description": "Maya experimentando visiones de líneas temporales alternativas",
           "createdAt": "2023-11-18T10:30:00Z",
-          "vector": [
-            0.8,
-            0.2,
-            0.9,
-            0.1,
-            0.6,
-            0.4,
-            0.7,
-            0.3,
-            0.4,
-            0.6
-          ],
+          "vector": [0.8, 0.2, 0.9, 0.1, 0.6, 0.4, 0.7, 0.3, 0.4, 0.6],
           "prompt": "Maya Chen with temporal visions swirling around her, multiple timeline fragments",
-          "tags": [
-            "portrait",
-            "visions",
-            "temporal",
-            "dramatic",
-            "mystical"
-          ],
+          "tags": ["portrait", "visions", "temporal", "dramatic", "mystical"],
           "mood": "transcendent",
           "context": "key scene"
         }
@@ -358,16 +214,8 @@
       "age": 52,
       "occupation": "Líder de Los Alteradores",
       "description": "Científico brillante pero radical que cree que cambiar el pasado es necesario para salvar el futuro",
-      "personality": [
-        "carismático",
-        "manipulador",
-        "visionario",
-        "despiadado"
-      ],
-      "groupings": [
-        "alteradores",
-        "temporal-physics"
-      ],
+      "personality": ["carismático", "manipulador", "visionario", "despiadado"],
+      "groupings": ["alteradores", "temporal-physics"],
       "portfolio": [
         {
           "id": "webb-img-001",
@@ -375,26 +223,9 @@
           "path": "/users/ricardo-machuca/projects/ecos-manana/characters/marcus-webb.png",
           "description": "Dr. Marcus Webb con expresión determinada",
           "createdAt": "2023-10-25T16:45:00Z",
-          "vector": [
-            0.7,
-            0.3,
-            0.6,
-            0.4,
-            0.8,
-            0.2,
-            0.9,
-            0.1,
-            0.5,
-            0.5
-          ],
+          "vector": [0.7, 0.3, 0.6, 0.4, 0.8, 0.2, 0.9, 0.1, 0.5, 0.5],
           "prompt": "Middle-aged scientist with piercing eyes, charismatic but dangerous aura",
-          "tags": [
-            "portrait",
-            "antagonist",
-            "charismatic",
-            "dangerous",
-            "scientist"
-          ],
+          "tags": ["portrait", "antagonist", "charismatic", "dangerous", "scientist"],
           "mood": "intense",
           "context": "character portrait"
         }
@@ -415,26 +246,9 @@
           "path": "/location-images/quantum-lab.png",
           "description": "Interior del laboratorio cuántico con equipos futuristas",
           "createdAt": "2023-09-30T12:20:00Z",
-          "vector": [
-            0.8,
-            0.2,
-            0.7,
-            0.3,
-            0.9,
-            0.1,
-            0.6,
-            0.4,
-            0.5,
-            0.5
-          ],
+          "vector": [0.8, 0.2, 0.7, 0.3, 0.9, 0.1, 0.6, 0.4, 0.5, 0.5],
           "prompt": "Futuristic quantum laboratory with holographic displays, particle accelerators, clean design",
-          "tags": [
-            "laboratory",
-            "futuristic",
-            "quantum",
-            "technology",
-            "clean"
-          ],
+          "tags": ["laboratory", "futuristic", "quantum", "technology", "clean"],
           "mood": "scientific",
           "context": "location interior"
         }
@@ -453,26 +267,9 @@
           "path": "/location-images/neo-tokio-2157.png",
           "description": "Panorámica de Neo-Tokio con rascacielos holográficos",
           "createdAt": "2023-10-05T14:30:00Z",
-          "vector": [
-            0.9,
-            0.1,
-            0.8,
-            0.2,
-            0.6,
-            0.4,
-            0.7,
-            0.3,
-            0.5,
-            0.5
-          ],
+          "vector": [0.9, 0.1, 0.8, 0.2, 0.6, 0.4, 0.7, 0.3, 0.5, 0.5],
           "prompt": "Futuristic Tokyo cityscape with holographic buildings, flying vehicles, neon lights",
-          "tags": [
-            "cityscape",
-            "futuristic",
-            "holographic",
-            "neon",
-            "tokyo"
-          ],
+          "tags": ["cityscape", "futuristic", "holographic", "neon", "tokyo"],
           "mood": "technological",
           "context": "location exterior"
         }
@@ -482,17 +279,12 @@
   "chapters": [
     {
       "id": "chapter-1",
-      "title": "Ecos del Pasaitoh hermano",
+      "title": "Ecos del Pasado",
       "synopsis": "Maya Chen recibe el primer mensaje temporal anómalo que cambiará su vida para siempre. Mientras analiza las ondas cuánticas en su laboratorio, descubre patrones que no deberían existir: alguien del futuro está enviando información al pasado.",
       "status": "completed",
       "wordCount": 5200,
       "mood": "intriguing",
-      "themes": [
-        "discovery",
-        "mystery",
-        "science",
-        "destiny"
-      ],
+      "themes": ["discovery", "mystery", "science", "destiny"],
       "keyEvents": [
         "Recepción del primer mensaje temporal",
         "Análisis de patrones cuánticos anómalos",
@@ -508,26 +300,9 @@
           "path": "/chapter-images/ecos-manana/chapter-1/maya-first-message.png",
           "description": "Maya recibiendo el primer mensaje temporal en el laboratorio",
           "createdAt": "2023-11-25T10:15:00Z",
-          "vector": [
-            0.8,
-            0.2,
-            0.9,
-            0.1,
-            0.7,
-            0.3,
-            0.6,
-            0.4,
-            0.5,
-            0.5
-          ],
+          "vector": [0.8, 0.2, 0.9, 0.1, 0.7, 0.3, 0.6, 0.4, 0.5, 0.5],
           "prompt": "Maya Chen in quantum lab receiving temporal message, holographic displays, surprised expression",
-          "tags": [
-            "maya",
-            "laboratory",
-            "message",
-            "discovery",
-            "holographic"
-          ],
+          "tags": ["maya", "laboratory", "message", "discovery", "holographic"],
           "mood": "mysterious",
           "context": "key scene"
         }
@@ -540,12 +315,7 @@
       "status": "completed",
       "wordCount": 4800,
       "mood": "disorienting",
-      "themes": [
-        "alternate-reality",
-        "confusion",
-        "revelation",
-        "time"
-      ],
+      "themes": ["alternate-reality", "confusion", "revelation", "time"],
       "keyEvents": [
         "Primeras visiones de líneas temporales alternativas",
         "Encuentro con versiones alternativas de conocidos",
@@ -561,26 +331,9 @@
           "path": "/chapter-images/ecos-manana/chapter-2/temporal-visions.png",
           "description": "Maya experimentando visiones de múltiples líneas temporales",
           "createdAt": "2023-11-26T16:30:00Z",
-          "vector": [
-            0.9,
-            0.1,
-            0.8,
-            0.2,
-            0.6,
-            0.4,
-            0.7,
-            0.3,
-            0.5,
-            0.5
-          ],
+          "vector": [0.9, 0.1, 0.8, 0.2, 0.6, 0.4, 0.7, 0.3, 0.5, 0.5],
           "prompt": "Maya surrounded by swirling temporal visions, multiple reality fragments, ethereal effect",
-          "tags": [
-            "visions",
-            "temporal",
-            "multiple-realities",
-            "ethereal",
-            "maya"
-          ],
+          "tags": ["visions", "temporal", "multiple-realities", "ethereal", "maya"],
           "mood": "surreal",
           "context": "key scene"
         }

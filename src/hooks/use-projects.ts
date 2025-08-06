@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import profileData from '@/data/users/ricardo-machuca/profile.json'
 
 export interface Character {
   id: string
@@ -333,36 +334,33 @@ const dummyProjects: Project[] = [
   },
 ]
 
+// Función para convertir datos del profile.json al formato Project
+function convertProfileProjectsToProjects(): Project[] {
+  return profileData.projects.map((project: any) => ({
+    id: project.id,
+    title: project.title,
+    author: project.author,
+    genre: project.genre,
+    description: project.synopsis,
+    coverImage: project.portfolio?.[0]?.path || `/book-covers/${project.id}.png`,
+    progress: project.progress,
+    charactersCount: project.stats?.charactersCount || 0,
+    chaptersCount: project.stats?.chaptersCount || 0,
+    lastModified: project.lastModified?.split('T')[0] || new Date().toISOString().split('T')[0],
+    wordCount: project.currentWordCount,
+    characters: [], // Por ahora vacío, se puede expandir después
+    locations: [] // Por ahora vacío, se puede expandir después
+  }))
+}
+
 export function useProjects() {
   const [projects, setProjects] = useState<Project[]>([])
   const [currentProject, setCurrentProject] = useState<Project | null>(null)
 
   useEffect(() => {
-    const savedProjects = localStorage.getItem("novel-projects")
-    if (savedProjects) {
-      try {
-        const parsed = JSON.parse(savedProjects)
-        // Verificar si los datos guardados tienen la estructura actualizada
-        const hasNewStructure = parsed.some(
-          (p: Project) => p.characters && p.characters.some((c: Character) => c.appearances !== undefined),
-        )
-
-        if (hasNewStructure) {
-          setProjects(parsed)
-        } else {
-          // Si no tiene la nueva estructura, usar los datos dummy actualizados
-          setProjects(dummyProjects)
-          localStorage.setItem("novel-projects", JSON.stringify(dummyProjects))
-        }
-      } catch (error) {
-        console.error("Error parsing saved projects:", error)
-        setProjects(dummyProjects)
-        localStorage.setItem("novel-projects", JSON.stringify(dummyProjects))
-      }
-    } else {
-      setProjects(dummyProjects)
-      localStorage.setItem("novel-projects", JSON.stringify(dummyProjects))
-    }
+    // Usar datos del profile.json en lugar de localStorage
+    const profileProjects = convertProfileProjectsToProjects()
+    setProjects(profileProjects)
   }, [])
 
   const saveProjects = (updatedProjects: Project[]) => {

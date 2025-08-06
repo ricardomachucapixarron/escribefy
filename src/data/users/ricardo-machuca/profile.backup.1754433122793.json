@@ -48,25 +48,9 @@
         "path": "/user-avatars/ricardo-machuca-profile.png",
         "description": "Foto de perfil profesional de Ricardo Machuca",
         "createdAt": "2024-01-20T14:30:00Z",
-        "vector": [
-          0.8,
-          0.2,
-          0.9,
-          0.1,
-          0.7,
-          0.3,
-          0.6,
-          0.4,
-          0.5,
-          0.8
-        ],
+        "vector": [0.8, 0.2, 0.9, 0.1, 0.7, 0.3, 0.6, 0.4, 0.5, 0.8],
         "prompt": "Professional author headshot, warm lighting, creative background",
-        "tags": [
-          "profile",
-          "professional",
-          "author",
-          "headshot"
-        ],
+        "tags": ["profile", "professional", "author", "headshot"],
         "mood": "confident",
         "context": "profile picture"
       }
@@ -75,12 +59,12 @@
   "projects": [
     {
       "id": "reino-sombras",
-      "title": "El Reino de las Sombrah Perdidah",
+      "title": "El Reino de las Sombras Perdidas",
       "author": "Ricardo Machuca",
       "genre": "Fantasía Épica",
       "status": "in_progress",
       "visibility": "private",
-      "synopsis": "En un mundos dondes las sombras tienen vida propia y la magia se alimenta de los secretos más oscuros del alma, Lyra Nightwhisper debe dominar poderes que podrían destruir todo lo que ama. Cuando las fuerzas ancestrales despiertan y amenazan con sumir el reino en la oscuridad eterna, ella y sus aliados deberán enfrentar no solo enemigos externos, sino también los demonios internos que los han perseguido toda su vida.",
+      "synopsis": "En un mundo donde las sombras tienen vida propia y la magia se alimenta de los secretos más oscuros del alma, Lyra Nightwhisper debe dominar poderes que podrían destruir todo lo que ama. Cuando las fuerzas ancestrales despiertan y amenazan con sumir el reino en la oscuridad eterna, ella y sus aliados deberán enfrentar no solo enemigos externos, sino también los demonios internos que los han perseguido toda su vida.",
       "targetWordCount": 120000,
       "currentWordCount": 45000,
       "progress": 37.5,
@@ -108,26 +92,9 @@
           "path": "/book-covers/reino-sombras-cover-v2.png",
           "description": "Portada principal con Lyra y las sombras danzantes",
           "createdAt": "2024-01-22T11:15:00Z",
-          "vector": [
-            0.9,
-            0.1,
-            0.8,
-            0.2,
-            0.7,
-            0.3,
-            0.9,
-            0.1,
-            0.6,
-            0.4
-          ],
+          "vector": [0.9, 0.1, 0.8, 0.2, 0.7, 0.3, 0.9, 0.1, 0.6, 0.4],
           "prompt": "Epic fantasy book cover with Lyra surrounded by dancing shadows, mystical purple lighting",
-          "tags": [
-            "cover",
-            "epic",
-            "shadows",
-            "mystical",
-            "purple"
-          ],
+          "tags": ["cover", "epic", "shadows", "mystical", "purple"],
           "mood": "mysterious",
           "context": "book cover"
         }
@@ -169,26 +136,9 @@
           "path": "/book-covers/ecos-manana-cover.png",
           "description": "Portada con Maya Chen y ondas cuánticas temporales",
           "createdAt": "2023-11-25T16:20:00Z",
-          "vector": [
-            0.6,
-            0.4,
-            0.9,
-            0.1,
-            0.5,
-            0.5,
-            0.8,
-            0.2,
-            0.7,
-            0.3
-          ],
+          "vector": [0.6, 0.4, 0.9, 0.1, 0.5, 0.5, 0.8, 0.2, 0.7, 0.3],
           "prompt": "Sci-fi book cover with Maya Chen surrounded by quantum waves, futuristic cityscape, time distortion effects",
-          "tags": [
-            "cover",
-            "sci-fi",
-            "quantum",
-            "futuristic",
-            "time"
-          ],
+          "tags": ["cover", "sci-fi", "quantum", "futuristic", "time"],
           "mood": "technological",
           "context": "book cover"
         }
@@ -202,7 +152,7 @@
       "genre": "Realismo Mágico",
       "status": "planning",
       "visibility": "private",
-      "synopsis": "En un pequeños pueblos costero de Colombia, Elena Morales hereda la casa de su abuela junto con la extraña habilidad de escuchar los secretos que el viento lleva consigo. A medida que los susurros revelan historias ocultas del pueblo, Elena debe decidir si usar este don para sanar heridas del pasado o si algunos secretos es mejor que permanezcan enterrados.",
+      "synopsis": "En un pequeño pueblo costero de Colombia, Elena Morales hereda la casa de su abuela junto con la extraña habilidad de escuchar los secretos que el viento lleva consigo. A medida que los susurros revelan historias ocultas del pueblo, Elena debe decidir si usar este don para sanar heridas del pasado o si algunos secretos es mejor que permanezcan enterrados.",
       "targetWordCount": 65000,
       "currentWordCount": 8500,
       "progress": 13.1,
@@ -230,92 +180,14 @@
           "path": "/book-covers/susurros-viento-concept.png",
           "description": "Concepto inicial con Elena en el pueblo costero",
           "createdAt": "2024-01-12T10:45:00Z",
-          "vector": [
-            0.5,
-            0.5,
-            0.7,
-            0.3,
-            0.6,
-            0.4,
-            0.4,
-            0.6,
-            0.8,
-            0.2
-          ],
+          "vector": [0.5, 0.5, 0.7, 0.3, 0.6, 0.4, 0.4, 0.6, 0.8, 0.2],
           "prompt": "Magical realism scene with Elena in Colombian coastal town, wind carrying whispers, warm colors",
-          "tags": [
-            "concept",
-            "magical-realism",
-            "coastal",
-            "colombia",
-            "wind"
-          ],
+          "tags": ["concept", "magical-realism", "coastal", "colombia", "wind"],
           "mood": "nostalgic",
           "context": "concept art"
         }
       ],
       "dataPath": "/users/ricardo-machuca/projects/susurros-viento/project.json"
-    },
-    {
-      "id": "ecos-manana",
-      "title": "Ecos del Mañana",
-      "author": "Ricardo Machuca",
-      "genre": "Ciencia Ficción",
-      "status": "in_progress",
-      "visibility": "private",
-      "synopsis": "En un futuro donde la tecnología permite enviar información al pasado, Maya Chen descubre que alguien está alterando la línea temporal. Debe usar ecos temporales para restaurar la realidad antes de que las paradojas destruyan el continuum espacio-tiempo.",
-      "targetWordCount": 80000,
-      "currentWordCount": 15000,
-      "progress": 18.8,
-      "createdAt": "2024-01-05T12:00:00Z",
-      "lastModified": "2024-01-25T10:30:00Z",
-      "settings": {
-        "cinematicMode": true,
-        "arMode": false,
-        "aiAssistance": true,
-        "autoBackup": true
-      },
-      "stats": {
-        "chaptersCount": 5,
-        "charactersCount": 12,
-        "locationsCount": 6,
-        "factionsCount": 3,
-        "agentsCount": 2,
-        "averageChapterLength": 3000,
-        "readingTime": 60
-      },
-      "portfolio": [
-        {
-          "id": "ecos-img-001",
-          "filename": "ecos-cover.png",
-          "path": "/book-covers/ecos-manana-cover.png",
-          "description": "Portada con Maya y efectos temporales cuánticos",
-          "createdAt": "2024-01-08T14:20:00Z",
-          "vector": [
-            0.8,
-            0.2,
-            0.9,
-            0.1,
-            0.7,
-            0.3,
-            0.6,
-            0.4,
-            0.9,
-            0.1
-          ],
-          "prompt": "Futuristic sci-fi scene with quantum temporal effects, Maya Chen in high-tech laboratory",
-          "tags": [
-            "cover",
-            "sci-fi",
-            "temporal",
-            "quantum",
-            "maya"
-          ],
-          "mood": "mysterious",
-          "context": "book cover"
-        }
-      ],
-      "dataPath": "/users/ricardo-machuca/projects/ecos-manana/project.json"
     }
   ],
   "recentActivity": [
