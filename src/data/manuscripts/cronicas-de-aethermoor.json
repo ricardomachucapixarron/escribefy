@@ -1,0 +1,14 @@
+{
+  "id": "cronicas-de-aethermoor",
+  "title": "Crónicas de Aethermoor",
+  "synopsis": "En un mundo donde la magia y la tecnología convergen, el joven mago Kael debe unir las cinco naciones de Aethermoor para enfrentar una antigua amenaza que despierta desde las profundidades del tiempo. Una épica aventura que combina elementos clásicos de fantasía con innovaciones tecnológicas mágicas.",
+  "genre": "fantasy",
+  "status": "inprogress",
+  "authorId": "ricardo-machuca",
+  "authors": ["ricardo-machuca"],
+  "coverImage": "/covers/cronicas-de-aethermoor.jpg",
+  "tags": ["fantasía épica", "magia", "tecnología", "aventura", "worldbuilding"],
+  "createdAt": "2024-03-20T09:15:00Z",
+  "updatedAt": "2025-08-06T21:52:00Z",
+  "visibility": "public"
+}

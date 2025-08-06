@@ -6,6 +6,7 @@
 // Autor/Persona: Definición estándar tipo World Anvil/Campfire
 export const authorMeta = {
   key: 'author',
+  dataPath: '/data/authors',
   label: { es: 'Autores', en: 'Authors' },
   fields: [
     {

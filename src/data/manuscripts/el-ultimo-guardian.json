@@ -1,0 +1,14 @@
+{
+  "id": "el-ultimo-guardian",
+  "title": "El Último Guardián",
+  "synopsis": "Cuando los antiguos sellos que protegen el mundo de las criaturas del vacío comienzan a debilitarse, Lyra, la última guardiana de una orden milenaria, debe emprender un viaje épico para restaurar el equilibrio. Con la ayuda de aliados inesperados y enfrentando traiciones, deberá dominar poderes que creía perdidos para siempre.",
+  "genre": "fantasy",
+  "status": "completed",
+  "authorId": "ricardo-machuca",
+  "authors": ["ricardo-machuca"],
+  "coverImage": "/covers/el-ultimo-guardian.jpg",
+  "tags": ["fantasía", "guardianes", "magia antigua", "épica", "heroína"],
+  "createdAt": "2023-11-10T14:30:00Z",
+  "updatedAt": "2025-08-06T21:52:00Z",
+  "visibility": "public"
+}

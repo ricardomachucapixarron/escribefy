@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ArrowLeft, Save, Plus, Database } from 'lucide-react'
 
 // Imports de metadata reales
@@ -17,10 +17,37 @@ interface GenericEntityManagerProps {
 // Usar las metadata reales importadas
 const entities = [manuscriptMeta, authorMeta, characterMeta, organizationMeta, sceneMeta]
 
+// Función simple para cargar datos desde archivos JSON
+async function loadEntityData(entityMeta: any) {
+  if (!entityMeta.dataPath) return []
+  
+  try {
+    // Para authors, importamos directamente los archivos JSON
+    if (entityMeta.key === 'author') {
+      const ricardoData = await import('@/data/authors/ricardo-machuca.json')
+      const solangeData = await import('@/data/authors/solange-gongora.json')
+      const maiteData = await import('@/data/authors/maite-cantillana.json')
+      return [ricardoData.default, solangeData.default, maiteData.default]
+    }
+    
+    // Para manuscripts, importamos los archivos JSON
+    if (entityMeta.key === 'manuscript') {
+      const cronicasData = await import('@/data/manuscripts/cronicas-de-aethermoor.json')
+      const guardianData = await import('@/data/manuscripts/el-ultimo-guardian.json')
+      return [cronicasData.default, guardianData.default]
+    }
+    return []
+  } catch (error) {
+    console.error('Error loading entity data:', error)
+    return []
+  }
+}
+
 export default function GenericEntityManager({ onClose }: GenericEntityManagerProps) {
-  const [selectedEntityKey, setSelectedEntityKey] = useState('manuscript')
+  const [selectedEntityKey, setSelectedEntityKey] = useState('author')
   const [formData, setFormData] = useState<Record<string, any>>({})
   const [language, setLanguage] = useState<'es' | 'en'>('es')
+  const [selectedItem, setSelectedItem] = useState<any>(null)
   const [savedData, setSavedData] = useState<Record<string, any[]>>({
     manuscript: [],
     author: [],
@@ -30,6 +57,20 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
   })
 
   const currentEntity = entities.find(e => e.key === selectedEntityKey)!
+
+  // Cargar datos desde archivos JSON cuando cambia la entidad
+  useEffect(() => {
+    async function loadData() {
+      if ((currentEntity as any).dataPath) {
+        const data = await loadEntityData(currentEntity)
+        setSavedData(prev => ({
+          ...prev,
+          [selectedEntityKey]: data
+        }))
+      }
+    }
+    loadData()
+  }, [selectedEntityKey, currentEntity])
 
   // Inicializar formulario cuando cambia la entidad
   React.useEffect(() => {
@@ -60,15 +101,35 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
       return
     }
 
-    // Guardar datos
-    const newItem = { ...formData, createdAt: new Date().toISOString() }
-    setSavedData(prev => ({
-      ...prev,
-      [selectedEntityKey]: [...prev[selectedEntityKey], newItem]
-    }))
-
-    console.log('Guardado:', newItem)
-    alert('¡Datos guardados correctamente!')
+    if (selectedItem) {
+      // Modo edición: actualizar elemento existente
+      const updatedItem = { 
+        ...formData, 
+        updatedAt: new Date().toISOString(),
+        createdAt: selectedItem.createdAt // Mantener fecha de creación original
+      }
+      
+      setSavedData(prev => ({
+        ...prev,
+        [selectedEntityKey]: prev[selectedEntityKey].map(item => 
+          item.id === selectedItem.id ? updatedItem : item
+        )
+      }))
+      
+      setSelectedItem(updatedItem) // Actualizar el item seleccionado
+      console.log('Actualizado:', updatedItem)
+      alert('¡Datos actualizados correctamente!')
+    } else {
+      // Modo creación: agregar nuevo elemento
+      const newItem = { ...formData, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() }
+      setSavedData(prev => ({
+        ...prev,
+        [selectedEntityKey]: [...prev[selectedEntityKey], newItem]
+      }))
+      
+      console.log('Creado:', newItem)
+      alert('¡Datos guardados correctamente!')
+    }
 
     // Limpiar formulario
     const initialData: Record<string, any> = {}
@@ -228,15 +289,40 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold flex items-center gap-2">
                   <Plus className="h-5 w-5" />
-                  Crear {currentEntity.label[language]}
+                  {selectedItem ? `Editar ${currentEntity.label[language]}` : `Crear ${currentEntity.label[language]}`}
                 </h2>
-                <button
-                  onClick={handleSave}
-                  className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded flex items-center gap-2 transition-colors"
-                >
-                  <Save className="h-4 w-4" />
-                  Guardar
-                </button>
+                <div className="flex gap-2">
+                  {selectedItem && (
+                    <button
+                      onClick={() => {
+                        setSelectedItem(null)
+                        // Limpiar formulario
+                        const initialData: Record<string, any> = {}
+                        currentEntity.fields.forEach((field: any) => {
+                          if (field.key === 'id') {
+                            initialData[field.key] = `${selectedEntityKey}-${Date.now()}`
+                          } else if (field.type === 'number') {
+                            initialData[field.key] = 0
+                          } else {
+                            initialData[field.key] = ''
+                          }
+                        })
+                        setFormData(initialData)
+                      }}
+                      className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded flex items-center gap-2 transition-colors"
+                    >
+                      <Plus className="h-4 w-4" />
+                      Nuevo
+                    </button>
+                  )}
+                  <button
+                    onClick={handleSave}
+                    className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded flex items-center gap-2 transition-colors"
+                  >
+                    <Save className="h-4 w-4" />
+                    {selectedItem ? 'Actualizar' : 'Guardar'}
+                  </button>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -260,33 +346,37 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
             <div className="bg-slate-800 rounded-lg p-6">
               <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
                 <Database className="h-5 w-5" />
-                Datos Guardados
+                {currentEntity.label[language]} Guardados
               </h3>
               
-              {Object.entries(savedData).map(([entityKey, items]) => (
-                <div key={entityKey} className="mb-4">
-                  <h4 className="font-medium text-blue-400 mb-2">
-                    {entities.find(e => e.key === entityKey)?.label[language]} ({items.length})
-                  </h4>
-                  <div className="space-y-2 max-h-40 overflow-y-auto">
-                    {items.map((item, index) => (
-                      <div key={index} className="bg-slate-700 rounded p-2 text-sm">
-                        <div className="font-medium">{item.name || item.title || item.id}</div>
-                        <div className="text-gray-400 text-xs">
-                          {new Date(item.createdAt).toLocaleString()}
-                        </div>
-                      </div>
-                    ))}
+              <div className="space-y-2 max-h-80 overflow-y-auto">
+                {savedData[selectedEntityKey]?.map((item, index) => (
+                  <div 
+                    key={index} 
+                    className={`bg-slate-700 rounded p-2 text-sm cursor-pointer transition-colors hover:bg-slate-600 ${
+                      selectedItem?.id === item.id ? 'ring-2 ring-blue-500' : ''
+                    }`}
+                    onClick={() => {
+                      setSelectedItem(item)
+                      // Cargar datos del item seleccionado en el formulario
+                      setFormData({ ...item })
+                    }}
+                  >
+                    <div className="font-medium">{item.name || item.title || item.id}</div>
+                    <div className="text-gray-400 text-xs">
+                      {new Date(item.createdAt || item.updatedAt).toLocaleString()}
+                    </div>
                   </div>
-                </div>
-              ))}
+                )) || []}
+              </div>
               
-              {Object.values(savedData).every(items => items.length === 0) && (
+              {(!savedData[selectedEntityKey] || savedData[selectedEntityKey].length === 0) && (
                 <p className="text-gray-400 text-sm text-center py-4">
-                  No hay datos guardados aún
+                  No hay {currentEntity.label[language].toLowerCase()} guardados aún
                 </p>
               )}
             </div>
+
           </div>
         </div>
       </div>

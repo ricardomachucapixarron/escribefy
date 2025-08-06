@@ -6,6 +6,7 @@
 // Manuscrito/Obra: Definición estándar tipo World Anvil/Campfire
 export const manuscriptMeta = {
   key: 'manuscript',
+  dataPath: '/data/manuscripts',
   label: { es: 'Manuscritos', en: 'Manuscripts' },
   fields: [
     {
