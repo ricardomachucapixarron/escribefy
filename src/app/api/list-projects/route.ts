@@ -14,6 +14,16 @@ export async function GET(request: NextRequest) {
       )
     }
 
+    // Load user profile to get display name
+    let userDisplayName = 'Unknown'
+    try {
+      const profilePath = path.join(process.cwd(), 'src', 'data', 'users', userId, 'profile.json')
+      const profileData = JSON.parse(await fs.readFile(profilePath, 'utf-8'))
+      userDisplayName = profileData.user?.displayName || profileData.user?.username || userId
+    } catch (error) {
+      console.error(`Error reading user profile for ${userId}:`, error)
+    }
+
     const projectsDir = path.join(process.cwd(), 'src', 'data', 'users', userId, 'projects')
     
     try {
@@ -29,15 +39,16 @@ export async function GET(request: NextRequest) {
             const projectJsonPath = path.join(projectPath, 'project.json')
             const projectData = JSON.parse(await fs.readFile(projectJsonPath, 'utf-8'))
             
+            // Extract data from root of project.json (modern structure)
             projects.push({
-              id: folder,
-              title: projectData.project?.title || folder,
-              author: projectData.project?.author || 'Unknown',
-              genre: projectData.project?.genre || 'Unknown',
-              status: projectData.project?.status || 'draft',
-              synopsis: projectData.project?.synopsis || '',
-              wordCount: projectData.project?.wordCount || 0,
-              lastModified: stat.mtime
+              id: projectData.id || folder,
+              title: projectData.title || folder,
+              author: userDisplayName, // Use real display name from profile
+              genre: projectData.genre || 'Unknown',
+              status: projectData.status || 'draft',
+              synopsis: projectData.synopsis || '',
+              wordCount: projectData.wordCount || 0,
+              lastModified: projectData.lastModified || stat.mtime
             })
           } catch (error) {
             console.error(`Error reading project ${folder}:`, error)
@@ -45,7 +56,7 @@ export async function GET(request: NextRequest) {
             projects.push({
               id: folder,
               title: folder,
-              author: 'Unknown',
+              author: userDisplayName,
               genre: 'Unknown',
               status: 'draft',
               synopsis: 'Project data unavailable',

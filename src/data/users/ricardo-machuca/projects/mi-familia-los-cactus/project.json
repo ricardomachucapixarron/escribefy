@@ -1,0 +1,16 @@
+{
+  "id": "mi-familia-los-cactus",
+  "title": "Mi familia, los cactus",
+  "authorId": "ricardo-machuca",
+  "genre": "Narrativa familiar",
+  "synopsis": "Una historia entrañable sobre la vida, el crecimiento y la memoria de una familia vista a través de la colección de cactus que los acompaña generación tras generación.",
+  "created": "2025-08-06T09:56:00-04:00",
+  "lastModified": "2025-08-06T09:56:00-04:00",
+  "wordGoal": 12000,
+  "chapters": [
+    { "id": "capitulo-1", "title": "El cactus de la abuela" },
+    { "id": "capitulo-2", "title": "Espinas y abrazos" }
+  ],
+  "portfolio": [],
+  "status": "in-progress"
+}

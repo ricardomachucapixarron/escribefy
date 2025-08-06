@@ -1,17 +1,17 @@
 {
   "project": {
-    "id": "reino-sombras",
-    "title": "El Reinismo de las Sombras Perdidas",
-    "author": "Elena Martínez",
-    "genre": "Fantasía Épica",
-    "synopsis": "En un reino donde las sombras cobran vida propia y los antiguos secretos amenazan con destruir el equilibrio entre la luz y la oscuridad, Lyra Nightwhisper debe dominar poderes que no comprende completamente. Acompañada por el valiente guerrero Kael Stormforge, se embarca en una épica aventura que la llevará desde las torres de cristal de Umbraluna hasta las ruinas malditas de Corazón del Vacío. Mientras las fuerzas del mal se alzan bajo el liderazgo del corrupto Lord Malachar, nuestra heroína descubrirá que su destino está entrelazado con la supervivencia misma del reino. Una historia de magia ancestral, sacrificio y el poder redentor del amor verdadero.",
+    "id": "ecos-manana",
+    "title": "Ecos del Mañana",
+    "author": "Ricardo Machuca",
+    "genre": "Ciencia Ficción",
+    "synopsis": "En un futuro donde la tecnología y la humanidad han alcanzado un equilibrio perfecto, una serie de eventos misteriosos amenazan con destruir todo lo que conocemos. Maya Chen, una brillante científica especializada en inteligencia artificial, descubre que los ecos del pasado pueden ser la clave para salvar el futuro. Una historia de esperanza, innovación y la fuerza del espíritu humano.",
     "cinematicMode": true,
     "arEnabled": true,
     "visualStyle": "dark-fantasy-cinematic",
     "progress": 65,
-    "wordCount": 89500,
-    "chaptersCount": 24,
-    "charactersCount": 16,
+    "wordCount": 45000,
+    "chaptersCount": 12,
+    "charactersCount": 8,
     "lastModified": "2024-01-25T10:00:00Z",
     "portfolio": [
       {
@@ -508,7 +508,7 @@
     {
       "id": "loc-1",
       "name": "Umbraluna",
-      "description": "Ciudad de torres de cristal donde la magia y la tecnología se fusionan",
+      "description": "Ciudah de torreh de cristal donde la magia y la tecnología se fusionan",
       "atmosphere": "Mystical urban fantasy with crystal spires reaching toward the moon",
       "history": "Antigua capital construida sobre un nexo de energía mágica",
       "plotRelevance": "Lugar de origen de Lyra y escenario de los primeros capítulos",

@@ -1,0 +1,14 @@
+{
+  "id": "capitulo-1",
+  "title": "El cactus de la abuela",
+  "synopsis": "La llegada de un pequeño cactus a la casa marca el inicio de una tradición familiar y un vínculo especial entre generaciones.",
+  "status": "draft",
+  "mood": "nostálgico, tierno",
+  "themes": ["familia", "memoria", "naturaleza"],
+  "keyEvents": ["La abuela trae el cactus", "Primeros cuidados", "La familia se reúne alrededor de la planta"],
+  "content": "Mi abuela llegó una tarde de verano con un pequeño cactus en las manos...",
+  "audioAssets": [],
+  "imageAssets": [],
+  "mediaMarkers": [],
+  "lastModified": "2025-08-06T09:56:00-04:00"
+}

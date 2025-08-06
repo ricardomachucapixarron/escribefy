@@ -4,7 +4,7 @@ import path from 'path'
 
 export async function POST(request: NextRequest) {
   try {
-    const { fileType, data } = await request.json()
+    const { fileType, data, userId, projectId, chapterId } = await request.json()
     
     if (!fileType || !data) {
       return NextResponse.json(
@@ -19,9 +19,17 @@ export async function POST(request: NextRequest) {
       filePath = path.join(process.cwd(), 'src/data/users/ricardo-machuca/profile.json')
     } else if (fileType === 'project') {
       filePath = path.join(process.cwd(), 'src/data/users/ricardo-machuca/projects/ecos-manana/project.json')
+    } else if (fileType === 'chapter') {
+      if (!userId || !projectId || !chapterId) {
+        return NextResponse.json(
+          { error: 'Missing userId, projectId, or chapterId for chapter save' },
+          { status: 400 }
+        )
+      }
+      filePath = path.join(process.cwd(), `src/data/users/${userId}/projects/${projectId}/chapters/${chapterId}.json`)
     } else {
       return NextResponse.json(
-        { error: 'Invalid fileType. Must be "profile" or "project"' },
+        { error: 'Invalid fileType. Must be "profile", "project", or "chapter"' },
         { status: 400 }
       )
     }
@@ -32,20 +40,26 @@ export async function POST(request: NextRequest) {
       fs.mkdirSync(dir, { recursive: true })
     }
 
-    // Crear backup del archivo actual
+    // Crear backup del archivo actual en carpeta dedicada
     if (fs.existsSync(filePath)) {
-      const backupPath = filePath.replace('.json', `.backup.${Date.now()}.json`)
+      const backupDir = path.join(dir, '.backups')
+      if (!fs.existsSync(backupDir)) {
+        fs.mkdirSync(backupDir, { recursive: true })
+      }
+      
+      const fileName = path.basename(filePath, '.json')
+      const backupPath = path.join(backupDir, `${fileName}.backup.${Date.now()}.json`)
       fs.copyFileSync(filePath, backupPath)
       
-      // Mantener solo los últimos 5 backups
-      const backupFiles = fs.readdirSync(dir)
-        .filter(file => file.includes('.backup.') && file.endsWith('.json'))
+      // Mantener solo los últimos 5 backups por archivo
+      const backupFiles = fs.readdirSync(backupDir)
+        .filter(file => file.startsWith(`${fileName}.backup.`) && file.endsWith('.json'))
         .sort()
         .reverse()
       
       if (backupFiles.length > 5) {
         backupFiles.slice(5).forEach(file => {
-          fs.unlinkSync(path.join(dir, file))
+          fs.unlinkSync(path.join(backupDir, file))
         })
       }
     }

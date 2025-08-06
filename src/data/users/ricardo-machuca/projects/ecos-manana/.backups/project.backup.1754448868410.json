@@ -6,7 +6,7 @@
     "genre": "Ciencia Ficción",
     "status": "completed",
     "visibility": "public",
-    "synopsis": "En el año 2157, la humanidad ha desarrollado la capacidad de enviar mensajes al pasado a través de ondas cuánticas. Maya Chen, una científica especializada en paradojas temporales, descubre que alguien del futuro está tratando de alterar eventos clave de la historia. Con la ayuda de ecos temporales y fragmentos de memoria de líneas de tiempo alternativas, debe evitar que la realidad se desmorone mientras navega por las consecuencias de sus propias decisiones.",
+    "synopsis": "En el año 2157, la humanidah ha desarrollaoh la capacidad de enviar mensajes al pasado a través de ondas cuánticas. Maya Chen, una científica especializada en paradojas temporales, descubre que alguien del futuro está tratando de alterar eventos clave de la historia. Con la ayuda de ecos temporales y fragmentos de memoria de líneas de tiempo alternativas, debe evitar que la realidad se desmorone mientras navega por las consecuencias de sus propias decisiones.",
     "targetWordCount": 80000,
     "currentWordCount": 82500,
     "progress": 100,
@@ -275,7 +275,7 @@
   "characters": [
     {
       "id": "char-001",
-      "name": "Maya Chen",
+      "name": "Mayah Chenh",
       "role": "Protagonista",
       "age": 34,
       "occupation": "Científica Temporal",
@@ -482,7 +482,7 @@
   "chapters": [
     {
       "id": "chapter-1",
-      "title": "Ecos del Pasaoh",
+      "title": "Ecos del Pasaitoh hermano",
       "synopsis": "Maya Chen recibe el primer mensaje temporal anómalo que cambiará su vida para siempre. Mientras analiza las ondas cuánticas en su laboratorio, descubre patrones que no deberían existir: alguien del futuro está enviando información al pasado.",
       "status": "completed",
       "wordCount": 5200,

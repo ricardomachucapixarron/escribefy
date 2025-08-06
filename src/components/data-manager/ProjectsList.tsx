@@ -1,20 +1,26 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { BookOpen, Edit } from 'lucide-react'
+import { BookOpen, Edit, Users, MapPin, Layers } from 'lucide-react'
 
 interface ProjectsListProps {
   projects: any[]
   selectedUser: any
   onEditProject: (project: any) => void
   onViewChapters: (project: any) => void
+  onViewCharacters: (project: any) => void
+  onViewLocations: (project: any) => void
+  onViewGroups: (project: any) => void
 }
 
 export default function ProjectsList({ 
   projects, 
   selectedUser, 
   onEditProject, 
-  onViewChapters 
+  onViewChapters,
+  onViewCharacters,
+  onViewLocations,
+  onViewGroups
 }: ProjectsListProps) {
   return (
     <div>
@@ -68,20 +74,51 @@ export default function ProjectsList({
                 </span>
               </div>
               
-              <div className="flex gap-2">
-                <button
-                  onClick={() => onEditProject(project)}
-                  className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm flex items-center justify-center gap-2"
-                >
-                  <Edit className="h-4 w-4" />
-                  Editar
-                </button>
-                <button
-                  onClick={() => onViewChapters(project)}
-                  className="flex-1 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"
-                >
-                  Capítulos
-                </button>
+              <div className="space-y-2">
+                {/* Primera fila: Editar y Capítulos */}
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => onEditProject(project)}
+                    className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm flex items-center justify-center gap-2"
+                  >
+                    <Edit className="h-4 w-4" />
+                    Editar
+                  </button>
+                  <button
+                    onClick={() => onViewChapters(project)}
+                    className="flex-1 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
+                  >
+                    Capítulos
+                  </button>
+                </div>
+                
+                {/* Segunda fila: Personajes, Lugares, Grupos */}
+                <div className="grid grid-cols-3 gap-2">
+                  <button
+                    onClick={() => onViewCharacters(project)}
+                    className="px-2 py-1.5 bg-blue-500/20 border border-blue-500/30 text-blue-300 rounded-lg hover:bg-blue-500/30 hover:border-blue-500/40 transition-colors text-xs flex items-center justify-center gap-1"
+                  >
+                    <Users className="h-3 w-3" />
+                    <span className="hidden sm:inline">Personajes</span>
+                    <span className="sm:hidden">Pers.</span>
+                  </button>
+                  <button
+                    onClick={() => onViewLocations(project)}
+                    className="px-2 py-1.5 bg-orange-500/20 border border-orange-500/30 text-orange-300 rounded-lg hover:bg-orange-500/30 hover:border-orange-500/40 transition-colors text-xs flex items-center justify-center gap-1"
+                  >
+                    <MapPin className="h-3 w-3" />
+                    <span className="hidden sm:inline">Lugares</span>
+                    <span className="sm:hidden">Lug.</span>
+                  </button>
+                  <button
+                    onClick={() => onViewGroups(project)}
+                    className="px-2 py-1.5 bg-purple-500/20 border border-purple-500/30 text-purple-300 rounded-lg hover:bg-purple-500/30 hover:border-purple-500/40 transition-colors text-xs flex items-center justify-center gap-1"
+                  >
+                    <Layers className="h-3 w-3" />
+                    <span className="hidden sm:inline">Grupos</span>
+                    <span className="sm:hidden">Grp.</span>
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}
