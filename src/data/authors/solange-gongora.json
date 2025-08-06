@@ -1,0 +1,16 @@
+{
+  "id": "solange-gongora",
+  "name": "Solange Góngora",
+  "aliases": ["S. Góngora", "Solange G.", "La Visionaria"],
+  "gender": "female",
+  "birthDate": "1978-11-22",
+  "deathDate": null,
+  "biography": "Autora reconocida de novelas de misterio y suspenso psicológico. Con más de 15 años de experiencia, ha ganado varios premios literarios por sus obras que exploran la psicología humana y los secretos familiares. Sus novelas han sido traducidas a múltiples idiomas.",
+  "profileImage": "/user-avatars/solange-gongora-avatar.png",
+  "tags": ["misterio", "suspenso", "psicológico", "drama familiar"],
+  "email": "solange.gongora@escritora.com",
+  "website": "https://solangegongora.com",
+  "createdAt": "2023-08-10T14:20:00Z",
+  "updatedAt": "2025-08-06T21:19:00Z",
+  "visibility": "public"
+}

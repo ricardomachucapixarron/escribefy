@@ -1,0 +1,16 @@
+{
+  "id": "maite-cantillana",
+  "name": "Maite Cantillana",
+  "aliases": ["M. Cantillana", "Maite C.", "La Cronista"],
+  "gender": "female",
+  "birthDate": "1990-07-08",
+  "deathDate": null,
+  "biography": "Escritora contemporánea especializada en ficción histórica y realismo mágico. Sus obras se caracterizan por una prosa poética que entrelaza el pasado y el presente, explorando temas de identidad, memoria y tradición. Ha sido galardonada con varios premios nacionales de literatura.",
+  "profileImage": "/user-avatars/maite-cantillana-avatar.png",
+  "tags": ["ficción histórica", "realismo mágico", "identidad", "memoria"],
+  "email": "maite.cantillana@literatura.com",
+  "website": "https://maitecantillana.net",
+  "createdAt": "2022-05-20T16:45:00Z",
+  "updatedAt": "2025-08-06T21:19:00Z",
+  "visibility": "public"
+}

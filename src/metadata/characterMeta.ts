@@ -180,10 +180,11 @@ export const characterMeta = {
       },
       type: 'select',
       options: [
-        { es: 'Masculino', en: 'male' },
-        { es: 'Femenino', en: 'female' },
-        { es: 'No binario', en: 'non-binary' },
-        { es: 'Otro', en: 'other' },
+        { value: 'male', label: { es: 'Masculino', en: 'Male' } },
+        { value: 'female', label: { es: 'Femenino', en: 'Female' } },
+        { value: 'non-binary', label: { es: 'No binario', en: 'Non-binary' } },
+        { value: 'other', label: { es: 'Otro', en: 'Other' } },
+        { value: 'unknown', label: { es: 'Desconocido', en: 'Unknown' } }
       ],
       editable: true,
       show: false,

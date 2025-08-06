@@ -91,22 +91,48 @@ export const authorMeta = {
       show: true
     },
     {
+      key: 'email',
+      label: { es: 'Email', en: 'Email' },
+      description: {
+        es: 'Dirección de correo electrónico del autor.',
+        en: 'Author email address.'
+      },
+      type: 'email',
+      editable: true,
+      show: true
+    },
+    {
+      key: 'website',
+      label: { es: 'Sitio Web', en: 'Website' },
+      description: {
+        es: 'Sitio web personal del autor.',
+        en: 'Author personal website.'
+      },
+      type: 'url',
+      editable: true,
+      show: true
+    },
+    {
       key: 'createdAt',
       label: { es: 'Creado el', en: 'Created At' },
-      description: { es: 'Fecha de creación.', en: 'Creation date.' },
+      description: {
+        es: 'Fecha de creación del registro.',
+        en: 'Record creation date.'
+      },
       type: 'datetime',
       editable: false,
-      show: false,
-      system: true
+      show: false
     },
     {
       key: 'updatedAt',
       label: { es: 'Actualizado el', en: 'Updated At' },
-      description: { es: 'Última actualización.', en: 'Last update.' },
+      description: {
+        es: 'Fecha de última actualización.',
+        en: 'Last update date.'
+      },
       type: 'datetime',
       editable: false,
-      show: false,
-      system: true
+      show: false
     },
     {
       key: 'visibility',
@@ -119,85 +145,6 @@ export const authorMeta = {
       ],
       editable: true,
       show: true
-    }
-  ,
-    {
-      key: 'name',
-      label: { es: 'Nombre', en: 'Name' },
-      description: {
-        es: 'Nombre completo del autor.',
-        en: 'Full name of the author.'
-      },
-      type: 'text',
-      editable: true,
-      show: true,
-      required: true
-    },
-    {
-      key: 'email',
-      label: { es: 'Email', en: 'Email' },
-      description: {
-        es: 'Dirección de correo electrónico del autor.',
-        en: 'Author email address.'
-      },
-      type: 'email',
-      editable: true,
-      show: true,
-    },
-    {
-      key: 'bio',
-      label: { es: 'Biografía', en: 'Biography' },
-      description: {
-        es: 'Biografía o descripción del autor.',
-        en: 'Author biography or description.'
-      },
-      type: 'textarea',
-      editable: true,
-      show: true,
-    },
-    {
-      key: 'birthDate',
-      label: { es: 'Fecha de Nacimiento', en: 'Birth Date' },
-      description: {
-        es: 'Fecha de nacimiento del autor.',
-        en: 'Author birth date.'
-      },
-      type: 'date',
-      editable: true,
-      show: true,
-    },
-    {
-      key: 'website',
-      label: { es: 'Sitio Web', en: 'Website' },
-      description: {
-        es: 'Sitio web personal del autor.',
-        en: 'Author personal website.'
-      },
-      type: 'url',
-      editable: true,
-      show: true,
-    },
-    {
-      key: 'createdAt',
-      label: { es: 'Creado el', en: 'Created At' },
-      description: {
-        es: 'Fecha de creación del registro.',
-        en: 'Record creation date.'
-      },
-      type: 'datetime',
-      editable: false,
-      show: false,
-    },
-    {
-      key: 'updatedAt',
-      label: { es: 'Actualizado el', en: 'Updated At' },
-      description: {
-        es: 'Fecha de última actualización.',
-        en: 'Last update date.'
-      },
-      type: 'datetime',
-      editable: false,
-      show: false,
     }
   ]
 } as const;
