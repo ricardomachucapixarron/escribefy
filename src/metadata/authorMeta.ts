@@ -75,12 +75,13 @@ export const authorMeta = {
       show: true
     },
     {
-      key: 'profileImage',
-      label: { es: 'Imagen', en: 'Image' },
-      description: { es: 'Imagen o retrato.', en: 'Profile image or portrait.' },
-      type: 'image',
+      key: 'images',
+      label: { es: 'Imágenes', en: 'Images' },
+      description: { es: 'Galería de imágenes del autor.', en: 'Author image gallery.' },
+      type: 'imageGallery',
       editable: true,
-      show: true
+      show: true,
+      maxImages: 8
     },
     {
       key: 'tags',

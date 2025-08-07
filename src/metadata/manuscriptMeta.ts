@@ -68,12 +68,13 @@ export const manuscriptMeta = {
       show: true
     },
     {
-      key: 'coverImage',
-      label: { es: 'Portada', en: 'Cover Image' },
-      description: { es: 'Imagen de portada.', en: 'Cover image.' },
-      type: 'image',
+      key: 'images',
+      label: { es: 'Imágenes', en: 'Images' },
+      description: { es: 'Galería de portadas y arte del manuscrito.', en: 'Gallery of covers and artwork for the manuscript.' },
+      type: 'imageGallery',
       editable: true,
-      show: true
+      show: true,
+      maxImages: 15
     },
     {
       key: 'tags',

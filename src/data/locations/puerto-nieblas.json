@@ -1,0 +1,67 @@
+{
+  "id": "puerto-nieblas",
+  "name": "Puerto de las Nieblas Eternas",
+  "manuscriptId": "el-ultimo-guardian",
+  "type": "city",
+  "description": "Una ciudad portuaria construida sobre pilotes en una bahía perpetuamente envuelta en niebla. Sus edificios de madera oscura se alzan como fantasmas entre la bruma, conectados por puentes colgantes y escaleras serpenteantes. Es el último puerto antes de las Tierras Prohibidas y refugio de contrabandistas, aventureros y almas perdidas.",
+  "geography": "Bahía protegida rodeada de acantilados rocosos. La ciudad se extiende sobre el agua mediante una compleja red de muelles, plataformas flotantes y estructuras sobre pilotes. Canales navegables serpentean entre los distritos. Faros mágicos guían a los barcos a través de la niebla perpetua.",
+  "climate": "Frío y húmedo, con niebla constante que nunca se disipa completamente. Temperatura promedio de 8-15°C. Vientos salinos constantes del océano. Lluvias frecuentes pero suaves.",
+  "population": "Aproximadamente 8,000 habitantes: marineros, comerciantes, contrabandistas, refugiados de las guerras del interior, y algunos seres mágicos que prefieren la oscuridad. Población flotante de 2,000-3,000 viajeros.",
+  "government": "Gobernado por el Consejo de Capitanes, formado por los 7 capitanes de barco más influyentes. Las leyes son flexibles y se basan más en códigos de honor marítimo que en jurisprudencia formal. El Capitán-Alcalde actual es Theron Mareaoscura.",
+  "landmarks": "El Gran Faro de Cristal Negro, Taberna del Kraken Dormido, Mercado Flotante de Medianoche, Astilleros de Madera Fantasma, Torre del Vigía de Nieblas, Cementerio de Barcos Hundidos, Puente de los Susurros (conecta con tierra firme).",
+  "history": "Fundado hace 400 años por piratas que buscaban un refugio seguro. Se convirtió en puerto neutral durante las Guerras de los Guardianes. Fue el último lugar donde se vio al legendario barco 'Esperanza Perdida' antes de zarpar hacia las Tierras Prohibidas. Sobrevivió a tres asedios y dos tsunamis mágicos.",
+  "images": [
+    {
+      "id": "vista-puerto-niebla",
+      "url": "/uploads/locations/puerto-nieblas-vista.jpg",
+      "filename": "puerto-nieblas-vista.jpg",
+      "title": "Vista del Puerto en la Niebla",
+      "description": "Panorámica de la ciudad portuaria envuelta en niebla con sus edificios sobre pilotes",
+      "tags": ["puerto", "niebla", "panorámica", "pilotes", "ciudad"],
+      "isPrimary": true,
+      "uploadedAt": "2024-06-20T16:00:00Z",
+      "size": 1600000,
+      "dimensions": { "width": 1920, "height": 1080 }
+    },
+    {
+      "id": "gran-faro-cristal",
+      "url": "/uploads/locations/faro-cristal-negro.jpg",
+      "filename": "faro-cristal-negro.jpg",
+      "title": "Gran Faro de Cristal Negro",
+      "description": "El imponente faro que guía a los barcos a través de la niebla eterna",
+      "tags": ["faro", "cristal-negro", "guía", "imponente", "mágico"],
+      "isPrimary": false,
+      "uploadedAt": "2024-06-22T10:30:00Z",
+      "size": 1300000,
+      "dimensions": { "width": 1024, "height": 1536 }
+    },
+    {
+      "id": "mercado-flotante",
+      "url": "/uploads/locations/mercado-flotante-medianoche.jpg",
+      "filename": "mercado-flotante-medianoche.jpg",
+      "title": "Mercado Flotante de Medianoche",
+      "description": "El bullicioso mercado nocturno sobre plataformas flotantes iluminado por linternas",
+      "tags": ["mercado", "flotante", "medianoche", "linternas", "comercio"],
+      "isPrimary": false,
+      "uploadedAt": "2024-06-25T23:15:00Z",
+      "size": 1150000,
+      "dimensions": { "width": 1600, "height": 900 }
+    },
+    {
+      "id": "taberna-kraken",
+      "url": "/uploads/locations/taberna-kraken-dormido.jpg",
+      "filename": "taberna-kraken-dormido.jpg",
+      "title": "Taberna del Kraken Dormido",
+      "description": "La famosa taberna donde se reúnen marineros y aventureros a intercambiar historias",
+      "tags": ["taberna", "kraken", "marineros", "aventureros", "historias"],
+      "isPrimary": false,
+      "uploadedAt": "2024-06-28T19:45:00Z",
+      "size": 890000,
+      "dimensions": { "width": 1200, "height": 800 }
+    }
+  ],
+  "tags": ["puerto", "ciudad", "niebla", "marítimo", "contrabandistas", "refugio", "misterioso"],
+  "createdAt": "2024-06-20T16:00:00Z",
+  "updatedAt": "2024-06-20T16:00:00Z",
+  "visibility": "private"
+}

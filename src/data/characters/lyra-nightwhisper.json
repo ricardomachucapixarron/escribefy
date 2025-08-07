@@ -2,16 +2,52 @@
   "id": "lyra-nightwhisper",
   "name": "Lyra Nightwhisper",
   "manuscriptId": "cronicas-de-aethermoor",
-  "aliases": ["La Susurrante", "Guardiana de los Cristales"],
+  "aliases": [
+    "La Susurrante",
+    "Guardiana de los Cristales"
+  ],
   "gender": "female",
   "age": 24,
   "birthday": "1999-03-15",
   "description": "Una joven maga con cabello plateado y ojos violetas que brillan cuando usa magia. Lleva túnicas azul oscuro bordadas con runas ancestrales y un cristal de poder colgando de su cuello.",
   "personality": "Determinada y valiente, pero a veces impulsiva. Tiene un fuerte sentido de la justicia y se preocupa profundamente por proteger a los inocentes. Le gusta estudiar magia antigua y explorar lugares misteriosos.",
-  "relationships": ["maestro-aldric", "kael-stormwind"],
-  "image": "/characters/lyra-nightwhisper.jpg",
-  "tags": ["protagonista", "maga", "cristales", "aethermoor", "joven"],
+  "relationships": [
+    "maestro-aldric",
+    "kael-stormwind"
+  ],
+  "images": [
+    {
+      "id": "img-1754530411270",
+      "url": "/uploads/character/lyra-nightwhisper-1754530411270.png",
+      "filename": "lyra-nightwhisper-1754530411270.png",
+      "title": "elara moonweaver",
+      "description": "",
+      "tags": [],
+      "isPrimary": true,
+      "uploadedAt": "2025-08-07T01:33:31.273Z",
+      "size": 1252884,
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    }
+  ],
+  "tags": [
+    "protagonista",
+    "maga",
+    "cristales",
+    "aethermoor",
+    "joven"
+  ],
   "createdAt": "2024-01-10T10:00:00Z",
-  "updatedAt": "2024-01-10T10:00:00Z",
-  "visibility": "private"
+  "updatedAt": "2025-08-07T02:07:59.761Z",
+  "visibility": "private",
+  "fullName": "",
+  "nickname": "",
+  "species": "",
+  "role": "",
+  "appearance": "",
+  "goals": "",
+  "affiliations": "",
+  "history": ""
 }

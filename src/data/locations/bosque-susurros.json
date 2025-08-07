@@ -1,0 +1,55 @@
+{
+  "id": "bosque-susurros",
+  "name": "Bosque de los Susurros Ancestrales",
+  "manuscriptId": "cronicas-de-aethermoor",
+  "type": "forest",
+  "description": "Un bosque místico donde los árboles milenarios guardan los secretos del pasado. Sus hojas brillan con una luz tenue y el viento que pasa entre sus ramas parece susurrar palabras en idiomas olvidados. Es un lugar sagrado donde la magia fluye libremente y los espíritus ancestrales aún caminan entre las sombras.",
+  "geography": "Bosque denso de árboles gigantescos con troncos de hasta 50 metros de circunferencia. Senderos serpenteantes cubiertos de musgo luminiscente. Claros circulares donde la luz del sol crea patrones mágicos. Arroyos cristalinos que cantan melodías ancestrales.",
+  "climate": "Templado y húmedo, con nieblas matutinas que se disipan al mediodía. Temperatura constante de 18-22°C. Lluvias suaves frecuentes que nutren la vegetación mágica.",
+  "population": "Habitado por espíritus del bosque, hadas menores, druidas ermitaños y criaturas mágicas. Población estimada: 200-300 seres mágicos, 12-15 druidas permanentes.",
+  "government": "Regido por el Consejo de los Ancianos del Bosque, compuesto por los 5 árboles más antiguos que pueden comunicarse telepáticamente. Las decisiones se toman por consenso natural.",
+  "landmarks": "El Árbol Madre (centro del bosque), Círculo de Piedras Cantantes, Fuente de la Memoria Eterna, Puente de Raíces Entrelazadas, Santuario de los Espíritus Perdidos, Claro de la Luna Perpetua.",
+  "history": "Plantado hace 3,000 años por los primeros magos como refugio durante la Gran Guerra Arcana. Fue el lugar donde se firmó el Pacto de Equilibrio entre humanos y seres mágicos. Durante siglos ha servido como santuario neutral y biblioteca viviente de conocimiento ancestral.",
+  "images": [
+    {
+      "id": "entrada-bosque",
+      "url": "/uploads/locations/bosque-susurros-entrada.jpg",
+      "filename": "bosque-susurros-entrada.jpg",
+      "title": "Entrada al Bosque",
+      "description": "El arco natural formado por raíces entrelazadas que marca la entrada al bosque sagrado",
+      "tags": ["entrada", "arco", "raíces", "sagrado", "místico"],
+      "isPrimary": true,
+      "uploadedAt": "2024-05-15T09:30:00Z",
+      "size": 1200000,
+      "dimensions": { "width": 1600, "height": 1000 }
+    },
+    {
+      "id": "arbol-madre",
+      "url": "/uploads/locations/arbol-madre-centro.jpg",
+      "filename": "arbol-madre-centro.jpg",
+      "title": "El Árbol Madre",
+      "description": "El árbol ancestral gigante en el centro del bosque, con su tronco luminiscente",
+      "tags": ["árbol-madre", "centro", "ancestral", "luminiscente", "gigante"],
+      "isPrimary": false,
+      "uploadedAt": "2024-05-16T14:20:00Z",
+      "size": 1450000,
+      "dimensions": { "width": 1200, "height": 1600 }
+    },
+    {
+      "id": "senderos-musgo",
+      "url": "/uploads/locations/senderos-musgo-luminoso.jpg",
+      "filename": "senderos-musgo-luminoso.jpg",
+      "title": "Senderos de Musgo Luminoso",
+      "description": "Los senderos serpenteantes cubiertos de musgo que brilla suavemente en la penumbra",
+      "tags": ["senderos", "musgo", "luminoso", "penumbra", "mágico"],
+      "isPrimary": false,
+      "uploadedAt": "2024-05-18T11:45:00Z",
+      "size": 980000,
+      "dimensions": { "width": 1400, "height": 900 }
+    }
+  ],
+  "tags": ["bosque", "místico", "ancestral", "magia", "susurros", "sagrado", "druidas"],
+  "createdAt": "2024-05-15T09:30:00Z",
+  "updatedAt": "2024-05-15T09:30:00Z",
+  "visibility": "private"
+}

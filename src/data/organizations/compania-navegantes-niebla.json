@@ -1,0 +1,56 @@
+{
+  "id": "compania-navegantes-niebla",
+  "name": "Compañía de Navegantes de la Niebla",
+  "manuscriptId": "el-ultimo-guardian",
+  "type": "company",
+  "description": "Una compañía élite de navegantes y marineros especializados en navegar a través de las nieblas mágicas más peligrosas. Sus miembros poseen conocimientos únicos sobre corrientes ocultas, criaturas marinas y rutas secretas. Operan tanto como comerciantes legítimos como contrabandistas cuando es necesario.",
+  "founded": "1189-07-12",
+  "leader": "capitan-theron-mareaoscura",
+  "members": ["capitan-theron-mareaoscura", "navegante-isla", "contramaestre-erik", "vigía-luna"],
+  "headquarters": "Sede Flotante en Puerto de las Nieblas",
+  "allies": ["hermandad-vientos-eternos", "gremio-comerciantes-libres"],
+  "enemies": ["piratas-mar-negro", "guardia-costera-imperial"],
+  "resources": ["barcos-especializados", "mapas-secretos", "brujulas-magicas", "red-puertos"],
+  "images": [
+    {
+      "id": "bandera-compania",
+      "url": "/uploads/organizations/compania-navegantes-bandera.jpg",
+      "filename": "compania-navegantes-bandera.jpg",
+      "title": "Bandera de la Compañía",
+      "description": "La bandera distintiva: un timón rodeado de nieblas sobre fondo azul marino",
+      "tags": ["bandera", "timón", "nieblas", "marino", "compañía"],
+      "isPrimary": true,
+      "uploadedAt": "2024-05-05T08:00:00Z",
+      "size": 890000,
+      "dimensions": { "width": 1200, "height": 800 }
+    },
+    {
+      "id": "reunion-capitanes",
+      "url": "/uploads/organizations/reunion-capitanes-niebla.jpg",
+      "filename": "reunion-capitanes-niebla.jpg",
+      "title": "Reunión de Capitanes",
+      "description": "Los capitanes de la compañía planificando rutas secretas en una taberna portuaria",
+      "tags": ["reunión", "capitanes", "planificación", "rutas", "taberna"],
+      "isPrimary": false,
+      "uploadedAt": "2024-05-10T19:30:00Z",
+      "size": 1180000,
+      "dimensions": { "width": 1400, "height": 900 }
+    },
+    {
+      "id": "flota-niebla",
+      "url": "/uploads/organizations/flota-navegando-niebla.jpg",
+      "filename": "flota-navegando-niebla.jpg",
+      "title": "Flota en la Niebla",
+      "description": "Los barcos de la compañía navegando hábilmente a través de nieblas espesas",
+      "tags": ["flota", "navegando", "niebla", "barcos", "hábilmente"],
+      "isPrimary": false,
+      "uploadedAt": "2024-05-15T12:45:00Z",
+      "size": 1420000,
+      "dimensions": { "width": 1600, "height": 1000 }
+    }
+  ],
+  "tags": ["compañía", "navegantes", "marineros", "niebla", "comercio", "contrabando"],
+  "createdAt": "2024-05-05T08:00:00Z",
+  "updatedAt": "2024-05-05T08:00:00Z",
+  "visibility": "private"
+}

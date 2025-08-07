@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { ArrowLeft, Save, Plus, Database } from 'lucide-react'
+import ImageGalleryField from './ImageGalleryField'
+import ArrayField from './ArrayField'
 
 // Imports de metadata reales
 import { manuscriptMeta } from '@/metadata/manuscriptMeta'
@@ -9,13 +11,14 @@ import { authorMeta } from '@/metadata/authorMeta'
 import { characterMeta } from '@/metadata/characterMeta'
 import { organizationMeta } from '@/metadata/organizationMeta'
 import { sceneMeta } from '@/metadata/sceneMeta'
+import { locationMeta } from '@/metadata/locationMeta'
 
 interface GenericEntityManagerProps {
   onClose: () => void
 }
 
 // Usar las metadata reales importadas
-const entities = [manuscriptMeta, authorMeta, characterMeta, organizationMeta, sceneMeta]
+const entities = [manuscriptMeta, authorMeta, characterMeta, organizationMeta, sceneMeta, locationMeta]
 
 // Función para cargar datos desde archivos JSON
 async function loadEntityData(entityMeta: any) {
@@ -49,9 +52,17 @@ async function loadEntityData(entityMeta: any) {
     }
     
     if (entityMeta.key === 'organization') {
-      const ciudadData = await import('@/data/organizations/ciudad-aethermoor.json')
-      const temploData = await import('@/data/organizations/templo-equilibrio.json')
-      return [ciudadData.default, temploData.default]
+      const ordenCristalData = await import('@/data/organizations/orden-guardianes-cristal.json')
+      const hermandadVientosData = await import('@/data/organizations/hermandad-vientos-eternos.json')
+      const gremioArchivistasData = await import('@/data/organizations/gremio-archivistas-valdris.json')
+      const companiaNaveganteData = await import('@/data/organizations/compania-navegantes-niebla.json')
+      return [ordenCristalData.default, hermandadVientosData.default, gremioArchivistasData.default, companiaNaveganteData.default]
+    }
+    
+    if (entityMeta.key === 'location') {
+      const bosqueData = await import('@/data/locations/bosque-susurros.json')
+      const puertoData = await import('@/data/locations/puerto-nieblas.json')
+      return [bosqueData.default, puertoData.default]
     }
     
     return []
@@ -115,58 +126,92 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
     setFormData(prev => ({ ...prev, [fieldKey]: value }))
   }
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // Validar campos requeridos (buscar en la metadata real)
     const requiredFields = currentEntity.fields.filter((f: any) => f.required === true)
-    const missingFields = requiredFields.filter((f: any) => !formData[f.key] || formData[f.key].toString().trim() === '')
-    
+    const missingFields = requiredFields.filter((field: any) => {
+      const value = formData[field.key]
+      return !value || (typeof value === 'string' && value.trim() === '')
+    })
+
     if (missingFields.length > 0) {
-      alert(`Campos requeridos faltantes: ${missingFields.map((f: any) => f.label[language]).join(', ')}`)
+      const fieldNames = missingFields.map((f: any) => f.label[language]).join(', ')
+      alert(`Por favor completa los campos requeridos: ${fieldNames}`)
       return
     }
 
-    if (selectedItem) {
-      // Modo edición: actualizar elemento existente
-      const updatedItem = { 
-        ...formData, 
-        updatedAt: new Date().toISOString(),
-        createdAt: selectedItem.createdAt // Mantener fecha de creación original
+    try {
+      // Preparar datos para guardar
+      const dataToSave: any = {
+        ...formData,
+        updatedAt: new Date().toISOString()
       }
-      
-      setSavedData(prev => ({
-        ...prev,
-        [selectedEntityKey]: prev[selectedEntityKey].map(item => 
-          item.id === selectedItem.id ? updatedItem : item
-        )
-      }))
-      
-      setSelectedItem(updatedItem) // Actualizar el item seleccionado
-      console.log('Actualizado:', updatedItem)
-      alert('¡Datos actualizados correctamente!')
-    } else {
-      // Modo creación: agregar nuevo elemento
-      const newItem = { ...formData, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() }
-      setSavedData(prev => ({
-        ...prev,
-        [selectedEntityKey]: [...prev[selectedEntityKey], newItem]
-      }))
-      
-      console.log('Creado:', newItem)
-      alert('¡Datos guardados correctamente!')
-    }
 
-    // Limpiar formulario
-    const initialData: Record<string, any> = {}
-    currentEntity.fields.forEach((field: any) => {
-      if (field.key === 'id') {
-        initialData[field.key] = `${selectedEntityKey}-${Date.now()}`
-      } else if (field.type === 'number') {
-        initialData[field.key] = 0
-      } else {
-        initialData[field.key] = ''
+      // Si es nuevo elemento, agregar createdAt
+      if (!selectedItem) {
+        dataToSave.createdAt = new Date().toISOString()
       }
-    })
-    setFormData(initialData)
+
+      // Llamar a la API para persistir
+      const response = await fetch(`/api/entities/${selectedEntityKey}/${formData.id}`, {
+        method: selectedItem ? 'PUT' : 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataToSave)
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Error guardando datos')
+      }
+
+      const result = await response.json()
+      
+      if (result.success) {
+        // Actualizar estado local
+        if (selectedItem) {
+          // Actualizar elemento existente
+          setSavedData(prev => ({
+            ...prev,
+            [selectedEntityKey]: prev[selectedEntityKey].map((item: any) => 
+              item.id === selectedItem.id ? result.data : item
+            )
+          }))
+          
+          alert('¡Datos actualizados correctamente!')
+        } else {
+          // Crear nuevo elemento
+          setSavedData(prev => ({
+            ...prev,
+            [selectedEntityKey]: [...prev[selectedEntityKey], result.data]
+          }))
+          
+          alert('¡Datos guardados correctamente!')
+        }
+
+        // Limpiar formulario solo si es nuevo elemento
+        if (!selectedItem) {
+          const initialData: Record<string, any> = {}
+          currentEntity.fields.forEach((field: any) => {
+            if (field.key === 'id') {
+              initialData[field.key] = `${selectedEntityKey}-${Date.now()}`
+            } else if (field.type === 'number') {
+              initialData[field.key] = 0
+            } else if (field.type === 'imageGallery' || field.type === 'array') {
+              initialData[field.key] = []
+            } else {
+              initialData[field.key] = ''
+            }
+          })
+          setFormData(initialData)
+        }
+      }
+
+    } catch (error) {
+      console.error('Error guardando:', error)
+      alert(`Error guardando datos: ${error instanceof Error ? error.message : 'Error desconocido'}`)
+    }
   }
 
   const renderField = (field: any) => {
@@ -251,6 +296,30 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
             className={`${baseClasses} ${readonlyClasses}`}
             placeholder={label[language]}
             readOnly={isReadonly}
+          />
+        )
+      
+      case 'array':
+        const arrayValue = Array.isArray(value) ? value : []
+        return (
+          <ArrayField
+            value={arrayValue}
+            onChange={(newArray) => handleInputChange(key, newArray)}
+            placeholder={`Agregar ${label[language].toLowerCase()}...`}
+            maxItems={field.maxItems || 20}
+            label={label[language]}
+          />
+        )
+      
+      case 'imageGallery':
+        const images = Array.isArray(value) ? value : []
+        return (
+          <ImageGalleryField
+            value={images}
+            onChange={(newImages) => handleInputChange(key, newImages)}
+            maxImages={field.maxImages || 10}
+            entityType={selectedEntityKey}
+            entityId={formData.id || 'new'}
           />
         )
       

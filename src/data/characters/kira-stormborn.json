@@ -9,7 +9,32 @@
   "description": "Una guerrera alta y atlética con marcas tribales que brillan con poder ancestral. Sus ojos cambian de color según su estado emocional, y lleva una espada forjada con metal de las estrellas.",
   "personality": "Seria y disciplinada, pero con un corazón compasivo. Ha cargado con el peso del destino desde joven. Es sabia más allá de sus años y tiene una conexión profunda con los espíritus ancestrales.",
   "relationships": ["espiritu-ancestral", "guardian-corrompido"],
-  "image": "/characters/kira-stormborn.jpg",
+  "images": [
+    {
+      "id": "portrait-warrior",
+      "url": "/uploads/characters/kira-stormborn-portrait.jpg",
+      "filename": "kira-stormborn-portrait.jpg",
+      "title": "Retrato de guerrera",
+      "description": "Kira con sus marcas tribales brillantes y espada estelar",
+      "tags": ["retrato", "guerrera", "marcas-tribales", "espada"],
+      "isPrimary": true,
+      "uploadedAt": "2024-02-15T11:30:00Z",
+      "size": 945000,
+      "dimensions": { "width": 900, "height": 1200 }
+    },
+    {
+      "id": "battle-guardian",
+      "url": "/uploads/characters/kira-stormborn-battle.jpg",
+      "filename": "kira-stormborn-battle.jpg",
+      "title": "Enfrentando al Guardián",
+      "description": "Kira en la batalla final contra el Guardián Corrompido",
+      "tags": ["batalla", "guardian", "final", "equilibrio"],
+      "isPrimary": false,
+      "uploadedAt": "2024-02-20T16:45:00Z",
+      "size": 1200000,
+      "dimensions": { "width": 1200, "height": 800 }
+    }
+  ],
   "tags": ["protagonista", "guardiana", "guerrera", "equilibrio", "ancestral"],
   "createdAt": "2024-02-15T11:30:00Z",
   "updatedAt": "2024-02-15T11:30:00Z",

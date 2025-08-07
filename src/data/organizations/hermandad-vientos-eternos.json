@@ -1,0 +1,56 @@
+{
+  "id": "hermandad-vientos-eternos",
+  "name": "Hermandad de los Vientos Eternos",
+  "manuscriptId": "el-ultimo-guardian",
+  "type": "faction",
+  "description": "Una hermandad de guerreros élite que han dedicado sus vidas a dominar las artes del combate aéreo y la magia del viento. Sus miembros son conocidos por su velocidad sobrehumana y su capacidad para luchar en las alturas más peligrosas. Siguen un código de honor estricto y solo aceptan a los más valientes en sus filas.",
+  "founded": "1156-09-21",
+  "leader": "kira-stormborn",
+  "members": ["kira-stormborn", "comandante-thane", "capitana-aria", "veterano-gorim"],
+  "headquarters": "Aerie de los Vientos, en los Picos Celestiales",
+  "allies": ["guardia-real-montañas", "orden-dragones-cielo"],
+  "enemies": ["legion-sombras-terrestres", "piratas-aire"],
+  "resources": ["monturas-voladoras", "armas-viento", "mapas-corrientes-aereas", "armaduras-pluma"],
+  "images": [
+    {
+      "id": "insignia-hermandad",
+      "url": "/uploads/organizations/hermandad-vientos-insignia.jpg",
+      "filename": "hermandad-vientos-insignia.jpg",
+      "title": "Insignia de la Hermandad",
+      "description": "El distintivo de los Vientos Eternos: alas estilizadas rodeadas de torbellinos",
+      "tags": ["insignia", "alas", "vientos", "torbellinos", "hermandad"],
+      "isPrimary": true,
+      "uploadedAt": "2024-04-10T16:00:00Z",
+      "size": 920000,
+      "dimensions": { "width": 1000, "height": 800 }
+    },
+    {
+      "id": "entrenamiento-aereo",
+      "url": "/uploads/organizations/entrenamiento-combate-aereo.jpg",
+      "filename": "entrenamiento-combate-aereo.jpg",
+      "title": "Entrenamiento de Combate Aéreo",
+      "description": "Miembros de la hermandad practicando maniobras de combate en las alturas",
+      "tags": ["entrenamiento", "combate", "aéreo", "maniobras", "alturas"],
+      "isPrimary": false,
+      "uploadedAt": "2024-04-15T11:20:00Z",
+      "size": 1350000,
+      "dimensions": { "width": 1600, "height": 1000 }
+    },
+    {
+      "id": "juramento-vientos",
+      "url": "/uploads/organizations/juramento-vientos-eternos.jpg",
+      "filename": "juramento-vientos-eternos.jpg",
+      "title": "Juramento de los Vientos",
+      "description": "Ceremonia donde los nuevos miembros juran lealtad a los vientos eternos",
+      "tags": ["juramento", "ceremonia", "lealtad", "vientos", "ritual"],
+      "isPrimary": false,
+      "uploadedAt": "2024-04-18T09:45:00Z",
+      "size": 1100000,
+      "dimensions": { "width": 1200, "height": 900 }
+    }
+  ],
+  "tags": ["hermandad", "guerreros", "vientos", "combate-aéreo", "honor", "élite"],
+  "createdAt": "2024-04-10T16:00:00Z",
+  "updatedAt": "2024-04-10T16:00:00Z",
+  "visibility": "private"
+}

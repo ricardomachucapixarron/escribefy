@@ -95,12 +95,13 @@ export const organizationMeta = {
       show: true
     },
     {
-      key: 'logo',
-      label: { es: 'Logo', en: 'Logo' },
-      description: { es: 'Imagen o escudo.', en: 'Logo or insignia.' },
-      type: 'image',
+      key: 'images',
+      label: { es: 'Imágenes', en: 'Images' },
+      description: { es: 'Galería de imágenes, logos y arte de la organización.', en: 'Gallery of images, logos and artwork for the organization.' },
+      type: 'imageGallery',
       editable: true,
-      show: true
+      show: true,
+      maxImages: 8
     },
     {
       key: 'tags',

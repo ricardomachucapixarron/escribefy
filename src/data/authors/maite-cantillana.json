@@ -6,7 +6,20 @@
   "birthDate": "1990-07-08",
   "deathDate": null,
   "biography": "Escritora contemporánea especializada en ficción histórica y realismo mágico. Sus obras se caracterizan por una prosa poética que entrelaza el pasado y el presente, explorando temas de identidad, memoria y tradición. Ha sido galardonada con varios premios nacionales de literatura.",
-  "profileImage": "/user-avatars/maite-cantillana-avatar.png",
+  "images": [
+    {
+      "id": "profile-maite",
+      "url": "/user-avatars/maite-cantillana-avatar.png",
+      "filename": "maite-cantillana-avatar.png",
+      "title": "Foto de Perfil",
+      "description": "Retrato profesional de Maite Cantillana",
+      "tags": ["perfil", "retrato", "profesional", "autora"],
+      "isPrimary": true,
+      "uploadedAt": "2022-05-20T16:45:00Z",
+      "size": 480000,
+      "dimensions": { "width": 800, "height": 800 }
+    }
+  ],
   "tags": ["ficción histórica", "realismo mágico", "identidad", "memoria"],
   "email": "maite.cantillana@literatura.com",
   "website": "https://maitecantillana.net",

@@ -1,16 +1,40 @@
 {
   "id": "ricardo-machuca",
   "name": "Ricardo Machuca",
-  "aliases": ["R. Machuca", "Ricardo M."],
+  "aliases": [
+    "R. Machuca",
+    "Ricardo M."
+  ],
   "gender": "male",
   "birthDate": "1985-03-15",
   "deathDate": null,
   "biography": "Escritor de fantasía épica y desarrollador de experiencias narrativas inmersivas. Especializado en worldbuilding y storytelling cinematográfico. Ha publicado varias novelas que combinan elementos de fantasía clásica con tecnología moderna.",
-  "profileImage": "/user-avatars/ricardo-machuca-avatar.png",
-  "tags": ["fantasía", "épica", "worldbuilding", "storytelling"],
+  "images": [
+    {
+      "id": "img-1754534808751",
+      "url": "/uploads/authors/ricardo-machuca-1754534808751.png",
+      "filename": "ricardo-machuca-1754534808751.png",
+      "title": "shadow character",
+      "description": "",
+      "tags": [],
+      "isPrimary": true,
+      "uploadedAt": "2025-08-07T02:46:48.753Z",
+      "size": 847393,
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    }
+  ],
+  "tags": [
+    "fantasía",
+    "épica",
+    "worldbuilding",
+    "storytelling"
+  ],
   "email": "ricardo@pixarron.com",
   "website": "https://ricardomachuca.com",
   "createdAt": "2024-01-15T10:30:00Z",
-  "updatedAt": "2025-08-06T21:19:00Z",
+  "updatedAt": "2025-08-07T02:46:52.412Z",
   "visibility": "public"
 }

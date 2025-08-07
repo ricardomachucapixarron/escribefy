@@ -1,22 +1,23 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import { AuthProvider, useAuth } from "@/contexts/AuthContext"
+import LoginScreen from "@/components/LoginScreen"
+import UserHeader from "@/components/UserHeader"
 import { LandingPage } from "@/components/landing-page"
 import { ProjectManager } from "@/components/project-manager"
 import { NovelWritingSuite } from "@/components/novel-writing-suite"
-import { GlobalHeader } from "@/components/global-header"
 import { useProjects, type Project } from "@/hooks/use-projects"
 
-export default function App() {
+function AppContent() {
+  const { currentUser, login } = useAuth()
   const { projects, currentProject, setCurrentProject } = useProjects()
   const [currentView, setCurrentView] = useState<"landing" | "projects" | "suite">("landing")
 
-  useEffect(() => {
-    // Si hay un proyecto actual, ir directo a la suite
-    if (currentProject) {
-      setCurrentView("suite")
-    }
-  }, [currentProject])
+  // Si no hay usuario autenticado, mostrar pantalla de login
+  if (!currentUser) {
+    return <LoginScreen onLogin={login} />
+  }
 
   const handleGetStarted = () => {
     setCurrentView("projects")
@@ -28,32 +29,43 @@ export default function App() {
   }
 
   const handleBackToProjects = () => {
-    setCurrentProject(null)
     setCurrentView("projects")
   }
 
+  const handleBackToLanding = () => {
+    setCurrentView("landing")
+    setCurrentProject(null)
+  }
+
   return (
-    <>
-      {/* Global Header - shown in all views except landing */}
-      {currentView !== "landing" && (
-        <GlobalHeader 
-          currentView={currentView as 'projects' | 'suite'}
-          projectTitle={currentProject?.title}
-          onNavigateToProjects={handleBackToProjects}
+    <div className="min-h-screen bg-slate-900">
+      <UserHeader />
+      
+      {currentView === "landing" && (
+        <LandingPage onGetStarted={handleGetStarted} />
+      )}
+      
+      {currentView === "projects" && (
+        <ProjectManager 
+          projects={projects}
+          onProjectSelect={handleProjectSelect}
         />
       )}
       
-      {/* Main Content */}
-      <div>
-        {currentView === "landing" && <LandingPage onGetStarted={handleGetStarted} />}
-        {currentView === "projects" && <ProjectManager projects={projects} onProjectSelect={handleProjectSelect} />}
-        {currentView === "suite" && currentProject && (
-          <NovelWritingSuite project={currentProject} onBackToProjects={handleBackToProjects} />
-        )}
-        {currentView !== "landing" && currentView !== "projects" && currentView !== "suite" && (
-          <LandingPage onGetStarted={handleGetStarted} />
-        )}
-      </div>
-    </>
+      {currentView === "suite" && currentProject && (
+        <NovelWritingSuite 
+          project={currentProject} 
+          onBackToProjects={handleBackToProjects}
+        />
+      )}
+    </div>
+  )
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   )
 }

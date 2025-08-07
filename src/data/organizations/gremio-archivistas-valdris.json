@@ -1,0 +1,44 @@
+{
+  "id": "gremio-archivistas-valdris",
+  "name": "Gremio de Archivistas de Valdris",
+  "manuscriptId": "cronicas-de-aethermoor",
+  "type": "guild",
+  "description": "Un prestigioso gremio de eruditos, bibliotecarios y preservadores de conocimiento que se dedican a catalogar, proteger y estudiar los textos antiguos y artefactos mágicos. Sus miembros son expertos en lenguas muertas, técnicas de preservación y descifrado de códices ancestrales. Operan una red de bibliotecas y archivos secretos.",
+  "founded": "1203-11-08",
+  "leader": "archivista-eleanor",
+  "members": ["archivista-eleanor", "lyra-nightwhisper", "escriba-helena", "traductor-marcus"],
+  "headquarters": "Biblioteca Central de Valdris",
+  "allies": ["orden-guardianes-cristal", "academia-lenguas-antiguas"],
+  "enemies": ["saqueadores-tumbas", "comerciantes-negros-libros"],
+  "resources": ["manuscritos-raros", "herramientas-preservacion", "laboratorio-restauracion", "red-informantes"],
+  "images": [
+    {
+      "id": "sello-gremio",
+      "url": "/uploads/organizations/gremio-archivistas-sello.jpg",
+      "filename": "gremio-archivistas-sello.jpg",
+      "title": "Sello del Gremio",
+      "description": "El sello oficial del Gremio: una pluma cruzada con una llave sobre un libro abierto",
+      "tags": ["sello", "pluma", "llave", "libro", "gremio"],
+      "isPrimary": true,
+      "uploadedAt": "2024-02-20T13:15:00Z",
+      "size": 780000,
+      "dimensions": { "width": 900, "height": 700 }
+    },
+    {
+      "id": "salon-catalogacion",
+      "url": "/uploads/organizations/salon-catalogacion-manuscritos.jpg",
+      "filename": "salon-catalogacion-manuscritos.jpg",
+      "title": "Salón de Catalogación",
+      "description": "Archivistas trabajando meticulosamente en la catalogación de manuscritos antiguos",
+      "tags": ["salón", "catalogación", "manuscritos", "trabajo", "meticuloso"],
+      "isPrimary": false,
+      "uploadedAt": "2024-02-25T10:30:00Z",
+      "size": 1250000,
+      "dimensions": { "width": 1500, "height": 1000 }
+    }
+  ],
+  "tags": ["gremio", "archivistas", "conocimiento", "manuscritos", "preservación", "eruditos"],
+  "createdAt": "2024-02-20T13:15:00Z",
+  "updatedAt": "2024-02-20T13:15:00Z",
+  "visibility": "private"
+}

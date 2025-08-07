@@ -1,0 +1,42 @@
+{
+  "id": "orden-guardianes-cristal",
+  "name": "Orden de los Guardianes del Cristal",
+  "manuscriptId": "cronicas-de-aethermoor",
+  "type": "guild",
+  "description": "Una antigua orden de magos y guerreros dedicados a proteger los cristales de poder que mantienen el equilibrio mágico del mundo. Sus miembros son entrenados tanto en artes arcanas como en combate, y juran proteger los secretos cristalinos con sus vidas. La orden opera en secreto, infiltrándose en diferentes ciudades y reinos.",
+  "founded": "1247-03-15",
+  "leader": "lyra-nightwhisper",
+  "members": [
+    "lyra-nightwhisper",
+    "maestro-aldric",
+    "guardian-elena",
+    "aprendiz-marcus"
+  ],
+  "headquarters": "Santuario Oculto en las Montañas de Cristal",
+  "allies": [
+    "academia-magos-aethermoor",
+    "consejo-ancianos-valdris"
+  ],
+  "enemies": [
+    "culto-sombra-eterna",
+    "cazadores-cristales"
+  ],
+  "resources": [
+    "cristales-poder",
+    "tomos-magia-cristalina",
+    "armaduras-encantadas",
+    "red-espias"
+  ],
+  "images": [],
+  "tags": [
+    "orden",
+    "guardianes",
+    "cristal",
+    "magia",
+    "secreto",
+    "protección"
+  ],
+  "createdAt": "2024-03-15T10:00:00Z",
+  "updatedAt": "2025-08-07T02:39:56.367Z",
+  "visibility": "private"
+}

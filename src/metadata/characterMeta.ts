@@ -102,12 +102,13 @@ export const characterMeta = {
       show: true
     },
     {
-      key: 'image',
-      label: { es: 'Imagen', en: 'Image' },
-      description: { es: 'Imagen o retrato.', en: 'Portrait or image.' },
-      type: 'image',
+      key: 'images',
+      label: { es: 'Imágenes', en: 'Images' },
+      description: { es: 'Galería de imágenes del personaje.', en: 'Character image gallery.' },
+      type: 'imageGallery',
       editable: true,
-      show: true
+      show: true,
+      maxImages: 10
     },
     {
       key: 'tags',
