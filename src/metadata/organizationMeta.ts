@@ -6,6 +6,7 @@
 // Organización: Definición estándar tipo World Anvil/Campfire
 export const organizationMeta = {
   key: 'organization',
+  dataPath: '/data/organizations',
   label: { es: 'Organizaciones', en: 'Organizations' },
   fields: [
     {
@@ -25,6 +26,15 @@ export const organizationMeta = {
       editable: true,
       show: true,
       required: true
+    },
+    {
+      key: 'manuscriptId',
+      label: { es: 'Manuscrito', en: 'Manuscript' },
+      description: { es: 'Obra a la que pertenece la organización.', en: 'Work this organization belongs to.' },
+      type: 'relation',
+      relation: 'manuscript',
+      editable: true,
+      show: true
     },
     {
       key: 'type',

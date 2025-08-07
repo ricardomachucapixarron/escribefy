@@ -1,0 +1,17 @@
+{
+  "id": "kira-stormborn",
+  "name": "Kira Stormborn",
+  "manuscriptId": "el-ultimo-guardian",
+  "aliases": ["La Última Guardiana", "Hija de la Tormenta", "Portadora del Equilibrio"],
+  "gender": "female",
+  "age": 28,
+  "birthday": "1995-09-22",
+  "description": "Una guerrera alta y atlética con marcas tribales que brillan con poder ancestral. Sus ojos cambian de color según su estado emocional, y lleva una espada forjada con metal de las estrellas.",
+  "personality": "Seria y disciplinada, pero con un corazón compasivo. Ha cargado con el peso del destino desde joven. Es sabia más allá de sus años y tiene una conexión profunda con los espíritus ancestrales.",
+  "relationships": ["espiritu-ancestral", "guardian-corrompido"],
+  "image": "/characters/kira-stormborn.jpg",
+  "tags": ["protagonista", "guardiana", "guerrera", "equilibrio", "ancestral"],
+  "createdAt": "2024-02-15T11:30:00Z",
+  "updatedAt": "2024-02-15T11:30:00Z",
+  "visibility": "private"
+}

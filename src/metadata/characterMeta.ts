@@ -6,6 +6,7 @@
 // Personaje: Definición estándar tipo World Anvil/Campfire
 export const characterMeta = {
   key: 'character',
+  dataPath: '/data/characters',
   label: { es: 'Personajes', en: 'Characters' },
   fields: [
     {
@@ -25,6 +26,15 @@ export const characterMeta = {
       editable: true,
       show: true,
       required: true
+    },
+    {
+      key: 'manuscriptId',
+      label: { es: 'Manuscrito', en: 'Manuscript' },
+      description: { es: 'Obra a la que pertenece el personaje.', en: 'Work this character belongs to.' },
+      type: 'relation',
+      relation: 'manuscript',
+      editable: true,
+      show: true
     },
     {
       key: 'aliases',

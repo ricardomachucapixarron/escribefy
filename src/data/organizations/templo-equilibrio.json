@@ -1,0 +1,18 @@
+{
+  "id": "templo-equilibrio",
+  "name": "Templo del Equilibrio Ancestral",
+  "manuscriptId": "el-ultimo-guardian",
+  "type": "other",
+  "description": "Un antiguo templo construido en la intersección de las líneas de poder que atraviesan todos los reinos. Sus muros están cubiertos de runas que brillan con la sabiduría de los espíritus ancestrales. En su centro se encuentra el Altar del Equilibrio, donde los Guardianes realizan los rituales más sagrados.",
+  "purpose": "Santuario sagrado donde se mantiene el equilibrio entre las fuerzas de luz y oscuridad, y sede de los rituales ancestrales.",
+  "location": "En el corazón de la Montaña Sagrada, donde convergen todas las líneas de poder",
+  "members": ["kira-stormborn", "espiritu-ancestral"],
+  "allies": ["orden-guardianes", "espiritus-ancestrales"],
+  "enemies": ["guardian-corrompido", "fuerzas-caos"],
+  "resources": ["altar-equilibrio", "runas-ancestrales", "cristal-poder-central"],
+  "image": "/organizations/templo-equilibrio.jpg",
+  "tags": ["templo", "equilibrio", "ancestral", "sagrado", "poder"],
+  "createdAt": "2024-02-15T13:00:00Z",
+  "updatedAt": "2024-02-15T13:00:00Z",
+  "visibility": "private"
+}

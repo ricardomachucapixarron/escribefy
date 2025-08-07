@@ -28,14 +28,6 @@ export const manuscriptMeta = {
       required: true
     },
     {
-      key: 'synopsis',
-      label: { es: 'Sinopsis', en: 'Synopsis' },
-      description: { es: 'Resumen breve de la obra.', en: 'Short summary of the work.' },
-      type: 'textarea',
-      editable: true,
-      show: true
-    },
-    {
       key: 'genre',
       label: { es: 'Género', en: 'Genre' },
       description: { es: 'Género literario.', en: 'Literary genre.' },
@@ -151,11 +143,10 @@ export const manuscriptMeta = {
       es: 'Referencia al autor principal de la obra (author.id).',
       en: 'Reference to the main author of the work (author.id).'
     },
-    type: 'select',
-    options: [], // Se poblará dinámicamente con los autores disponibles
+    type: 'relation',
+    relation: 'author',
     editable: true,
-    show: true,
-    dependency: 'author',
+    show: true
   },
   {
     key: 'genre',

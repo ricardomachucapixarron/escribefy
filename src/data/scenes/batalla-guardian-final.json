@@ -1,0 +1,14 @@
+{
+  "id": "batalla-guardian-final",
+  "title": "El Último Enfrentamiento",
+  "summary": "Kira se enfrenta al Guardián Corrompido en una batalla épica que determinará el destino de todos los reinos. Debe usar todo su entrenamiento y la sabiduría ancestral para restaurar el equilibrio.",
+  "type": "scene",
+  "date": "2024-02-28",
+  "characters": ["kira-stormborn", "guardian-corrompido", "espiritu-ancestral"],
+  "location": "Templo del Equilibrio - Cámara Central",
+  "manuscriptId": "el-ultimo-guardian",
+  "tags": ["batalla", "clímax", "guardián", "equilibrio", "transformación"],
+  "createdAt": "2024-02-20T14:30:00Z",
+  "updatedAt": "2024-02-20T14:30:00Z",
+  "visibility": "private"
+}

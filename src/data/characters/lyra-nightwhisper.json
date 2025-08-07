@@ -1,0 +1,17 @@
+{
+  "id": "lyra-nightwhisper",
+  "name": "Lyra Nightwhisper",
+  "manuscriptId": "cronicas-de-aethermoor",
+  "aliases": ["La Susurrante", "Guardiana de los Cristales"],
+  "gender": "female",
+  "age": 24,
+  "birthday": "1999-03-15",
+  "description": "Una joven maga con cabello plateado y ojos violetas que brillan cuando usa magia. Lleva túnicas azul oscuro bordadas con runas ancestrales y un cristal de poder colgando de su cuello.",
+  "personality": "Determinada y valiente, pero a veces impulsiva. Tiene un fuerte sentido de la justicia y se preocupa profundamente por proteger a los inocentes. Le gusta estudiar magia antigua y explorar lugares misteriosos.",
+  "relationships": ["maestro-aldric", "kael-stormwind"],
+  "image": "/characters/lyra-nightwhisper.jpg",
+  "tags": ["protagonista", "maga", "cristales", "aethermoor", "joven"],
+  "createdAt": "2024-01-10T10:00:00Z",
+  "updatedAt": "2024-01-10T10:00:00Z",
+  "visibility": "private"
+}

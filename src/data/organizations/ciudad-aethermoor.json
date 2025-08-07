@@ -1,0 +1,18 @@
+{
+  "id": "ciudad-aethermoor",
+  "name": "Ciudad Flotante de Aethermoor",
+  "manuscriptId": "cronicas-de-aethermoor",
+  "type": "other",
+  "description": "Una majestuosa ciudad que flota en el aire gracias a enormes cristales de poder incrustados en su base. Sus torres espirales se elevan hacia las nubes, conectadas por puentes de luz cristalina. Es el centro del conocimiento mágico y hogar de los Guardianes de los Cristales.",
+  "purpose": "Centro de aprendizaje mágico y sede del poder cristalino que mantiene el equilibrio entre los mundos.",
+  "location": "Suspendida entre las nubes, sobre el Valle de los Vientos Eternos",
+  "members": ["lyra-nightwhisper", "maestro-aldric"],
+  "allies": ["gremio-cristaleros", "orden-guardianes"],
+  "enemies": ["sombras-corruptas"],
+  "resources": ["cristales-poder", "biblioteca-ancestral", "forjas-magicas"],
+  "image": "/organizations/ciudad-aethermoor.jpg",
+  "tags": ["ciudad", "flotante", "cristales", "magia", "centro-poder"],
+  "createdAt": "2024-01-10T12:00:00Z",
+  "updatedAt": "2024-01-10T12:00:00Z",
+  "visibility": "private"
+}

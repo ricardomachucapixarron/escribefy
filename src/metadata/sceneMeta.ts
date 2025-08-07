@@ -6,6 +6,7 @@
 // Escena/Evento: Definición estándar tipo World Anvil/Campfire
 export const sceneMeta = {
   key: 'scene',
+  dataPath: '/data/scenes',
   label: { es: 'Escenas', en: 'Scenes' },
   fields: [
     {
@@ -74,7 +75,7 @@ export const sceneMeta = {
       show: true
     },
     {
-      key: 'manuscript',
+      key: 'manuscriptId',
       label: { es: 'Manuscrito', en: 'Manuscript' },
       description: { es: 'Obra a la que pertenece.', en: 'Work this scene belongs to.' },
       type: 'relation',
@@ -129,17 +130,6 @@ export const sceneMeta = {
       en: 'Scene title.'
     },
     type: 'text',
-    editable: true,
-    show: true,
-  },
-  {
-    key: 'summary',
-    label: { es: 'Resumen', en: 'Summary' },
-    description: {
-      es: 'Resumen breve de la escena.',
-      en: 'Brief summary of the scene.'
-    },
-    type: 'textarea',
     editable: true,
     show: true,
   },

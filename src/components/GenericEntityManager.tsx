@@ -17,12 +17,12 @@ interface GenericEntityManagerProps {
 // Usar las metadata reales importadas
 const entities = [manuscriptMeta, authorMeta, characterMeta, organizationMeta, sceneMeta]
 
-// Función simple para cargar datos desde archivos JSON
+// Función para cargar datos desde archivos JSON
 async function loadEntityData(entityMeta: any) {
   if (!entityMeta.dataPath) return []
   
   try {
-    // Para authors, importamos directamente los archivos JSON
+    // Carga específica por tipo de entidad
     if (entityMeta.key === 'author') {
       const ricardoData = await import('@/data/authors/ricardo-machuca.json')
       const solangeData = await import('@/data/authors/solange-gongora.json')
@@ -30,12 +30,30 @@ async function loadEntityData(entityMeta: any) {
       return [ricardoData.default, solangeData.default, maiteData.default]
     }
     
-    // Para manuscripts, importamos los archivos JSON
     if (entityMeta.key === 'manuscript') {
       const cronicasData = await import('@/data/manuscripts/cronicas-de-aethermoor.json')
       const guardianData = await import('@/data/manuscripts/el-ultimo-guardian.json')
       return [cronicasData.default, guardianData.default]
     }
+    
+    if (entityMeta.key === 'scene') {
+      const aperturaData = await import('@/data/scenes/escena-apertura-cronicas.json')
+      const batallaData = await import('@/data/scenes/batalla-guardian-final.json')
+      return [aperturaData.default, batallaData.default]
+    }
+    
+    if (entityMeta.key === 'character') {
+      const lyraData = await import('@/data/characters/lyra-nightwhisper.json')
+      const kiraData = await import('@/data/characters/kira-stormborn.json')
+      return [lyraData.default, kiraData.default]
+    }
+    
+    if (entityMeta.key === 'organization') {
+      const ciudadData = await import('@/data/organizations/ciudad-aethermoor.json')
+      const temploData = await import('@/data/organizations/templo-equilibrio.json')
+      return [ciudadData.default, temploData.default]
+    }
+    
     return []
   } catch (error) {
     console.error('Error loading entity data:', error)
@@ -71,6 +89,11 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
     }
     loadData()
   }, [selectedEntityKey, currentEntity])
+  
+  // Limpiar selección cuando cambia la entidad (useEffect separado)
+  useEffect(() => {
+    setSelectedItem(null)
+  }, [selectedEntityKey])
 
   // Inicializar formulario cuando cambia la entidad
   React.useEffect(() => {
@@ -84,6 +107,7 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
         initialData[field.key] = ''
       }
     })
+    
     setFormData(initialData)
   }, [selectedEntityKey, currentEntity])
 
@@ -285,7 +309,7 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
             </div>
 
             {/* Formulario Dinámico */}
-            <div className="bg-slate-800 rounded-lg p-6">
+            <div key={selectedEntityKey} className="bg-slate-800 rounded-lg p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold flex items-center gap-2">
                   <Plus className="h-5 w-5" />
@@ -358,8 +382,21 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
                     }`}
                     onClick={() => {
                       setSelectedItem(item)
-                      // Cargar datos del item seleccionado en el formulario
-                      setFormData({ ...item })
+                      // Cargar solo campos válidos según el metadata actual
+                      const filteredData: Record<string, any> = {}
+                      currentEntity.fields.forEach((field: any) => {
+                        if (item[field.key] !== undefined) {
+                          filteredData[field.key] = item[field.key]
+                        } else {
+                          // Valor por defecto si el campo no existe en el item
+                          if (field.type === 'number') {
+                            filteredData[field.key] = 0
+                          } else {
+                            filteredData[field.key] = ''
+                          }
+                        }
+                      })
+                      setFormData(filteredData)
                     }}
                   >
                     <div className="font-medium">{item.name || item.title || item.id}</div>
