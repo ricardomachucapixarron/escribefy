@@ -33,6 +33,7 @@ import {
 } from "lucide-react"
 import { motion, useScroll, AnimatePresence } from "framer-motion"
 import { CharacterSelector } from "./character-selector"
+import ChapterReader from "./ChapterReader"
 import type { Project, Character } from "@/hooks/use-projects"
 
 interface ProjectManagerProps {
@@ -224,6 +225,8 @@ export function ProjectManager({ projects, onProjectSelect }: ProjectManagerProp
     description: "",
   })
   const [projectData, setProjectData] = useState<any>(null)
+  const [selectedChapter, setSelectedChapter] = useState<Chapter | null>(null)
+  const [isReadingMode, setIsReadingMode] = useState(false)
   const [chaptersData, setChaptersData] = useState<Record<string, Chapter[]>>({
     "reino-sombras": [
       {
@@ -622,9 +625,29 @@ export function ProjectManager({ projects, onProjectSelect }: ProjectManagerProp
     }
   }
 
+  const handleChapterClick = (chapter: Chapter) => {
+    setSelectedChapter(chapter)
+    setIsReadingMode(true)
+  }
+
+  const handleBackFromReading = () => {
+    setIsReadingMode(false)
+    setSelectedChapter(null)
+  }
+
   if (!currentProject) {
+    // Si estamos en modo lectura, mostrar solo el ChapterReader
+    if (isReadingMode && selectedChapter) {
+      return (
+        <ChapterReader
+          chapter={selectedChapter}
+          onBack={handleBackFromReading}
+        />
+      )
+    }
+
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-x-hidden">
         <div className="text-center">
           <motion.div
             className="bg-gradient-to-br from-purple-600/20 to-blue-600/20 backdrop-blur-md w-40 h-48 rounded-2xl flex items-center justify-center mx-auto mb-8"
@@ -703,6 +726,16 @@ export function ProjectManager({ projects, onProjectSelect }: ProjectManagerProp
   }
 
   const hasBeenViewed = viewedProjects.has(currentProject.id)
+
+  // Si estamos en modo lectura, mostrar solo el ChapterReader
+  if (isReadingMode && selectedChapter) {
+    return (
+      <ChapterReader
+        chapter={selectedChapter}
+        onBack={handleBackFromReading}
+      />
+    )
+  }
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -974,6 +1007,7 @@ export function ProjectManager({ projects, onProjectSelect }: ProjectManagerProp
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.02 }}
+                    onClick={() => handleChapterClick(chapter)}
                   >
                     {/* Episode Number */}
                     <div className="flex-shrink-0 w-8 text-center">

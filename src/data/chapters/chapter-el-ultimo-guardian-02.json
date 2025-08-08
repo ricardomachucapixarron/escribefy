@@ -8,6 +8,23 @@
   "wordCount": 3800,
   "order": 2,
   "mood": "melancólico y misterioso",
+  "images": [
+    {
+      "id": "img-1754694316791",
+      "url": "/uploads/chapter/chapter-el-ultimo-guardian-02-1754694316791.png",
+      "filename": "chapter-el-ultimo-guardian-02-1754694316791.png",
+      "title": "chapter 1",
+      "description": "",
+      "tags": [],
+      "isPrimary": true,
+      "uploadedAt": "2025-08-08T23:05:16.794Z",
+      "size": 1073517,
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    }
+  ],
   "themes": [
     "memoria",
     "legado",
@@ -21,7 +38,5 @@
     "Entrada al bosque de Susurros"
   ],
   "lastModified": "2025-08-09T22:04:32.000Z",
-  "images": [],
-  "createdAt": "2025-08-09T22:04:32.000Z",
-  "updatedAt": "2025-08-09T22:04:32.000Z"
+  "updatedAt": "2025-08-08T23:05:28.147Z"
 }
