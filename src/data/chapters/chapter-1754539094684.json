@@ -1,0 +1,31 @@
+{
+  "id": "chapter-1754539094684",
+  "title": "asd",
+  "synopsis": "asdasd",
+  "manuscriptId": "manuscript-1754537758826",
+  "status": "draft",
+  "wordCount": 0,
+  "order": 0,
+  "mood": "",
+  "themes": "",
+  "keyEvents": "",
+  "lastModified": "2025-08-07T03:58:34.518Z",
+  "images": [
+    {
+      "id": "img-1754579980871",
+      "url": "/uploads/chapter/chapter-1754539094684-1754579980871.png",
+      "filename": "chapter-1754539094684-1754579980871.png",
+      "title": "chapter 1",
+      "description": "",
+      "tags": [],
+      "isPrimary": true,
+      "uploadedAt": "2025-08-07T15:19:40.879Z",
+      "size": 1073517,
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    }
+  ],
+  "updatedAt": "2025-08-07T15:19:44.026Z"
+}

@@ -15,7 +15,7 @@ export const manuscriptMeta = {
       description: { es: 'Identificador único de la obra.', en: 'Unique identifier for the work.' },
       type: 'text',
       editable: false,
-      show: false,
+      show: true,
       system: true
     },
     {
@@ -115,28 +115,6 @@ export const manuscriptMeta = {
       editable: true,
       show: true
     },
-    {
-      key: 'title',
-      label: { es: 'Título', en: 'Title' },
-      description: {
-        es: 'Título principal del manuscrito.',
-        en: 'Main title of the manuscript.'
-      },
-      type: 'text',
-      editable: true,
-      show: true,
-  },
-  {
-    key: 'title',
-    label: { es: 'Título', en: 'Title' },
-    description: {
-      es: 'Título principal del manuscrito.',
-      en: 'Main title of the manuscript.'
-    },
-    type: 'text',
-    editable: true,
-    show: true,
-  },
   {
     key: 'authorId',
     label: { es: 'Autor', en: 'Author' },

@@ -17,52 +17,47 @@ export async function GET(request: NextRequest) {
     // Load user profile to get display name
     let userDisplayName = 'Unknown'
     try {
-      const profilePath = path.join(process.cwd(), 'src', 'data', 'users', userId, 'profile.json')
-      const profileData = JSON.parse(await fs.readFile(profilePath, 'utf-8'))
-      userDisplayName = profileData.user?.displayName || profileData.user?.username || userId
+      const authorPath = path.join(process.cwd(), 'src', 'data', 'authors', `${userId}.json`)
+      const authorData = JSON.parse(await fs.readFile(authorPath, 'utf-8'))
+      userDisplayName = authorData.name || userId
     } catch (error) {
-      console.error(`Error reading user profile for ${userId}:`, error)
+      console.error(`Error reading author profile for ${userId}:`, error)
     }
 
-    const projectsDir = path.join(process.cwd(), 'src', 'data', 'users', userId, 'projects')
+    // Read manuscripts from /src/data/manuscripts/ and filter by authorId
+    const manuscriptsDir = path.join(process.cwd(), 'src', 'data', 'manuscripts')
     
     try {
-      const projectFolders = await fs.readdir(projectsDir)
+      const manuscriptFiles = await fs.readdir(manuscriptsDir)
       const projects = []
 
-      for (const folder of projectFolders) {
-        const projectPath = path.join(projectsDir, folder)
-        const stat = await fs.stat(projectPath)
-        
-        if (stat.isDirectory()) {
+      for (const file of manuscriptFiles) {
+        if (file.endsWith('.json')) {
           try {
-            const projectJsonPath = path.join(projectPath, 'project.json')
-            const projectData = JSON.parse(await fs.readFile(projectJsonPath, 'utf-8'))
+            const manuscriptPath = path.join(manuscriptsDir, file)
+            const manuscriptData = JSON.parse(await fs.readFile(manuscriptPath, 'utf-8'))
+            const stat = await fs.stat(manuscriptPath)
             
-            // Extract data from root of project.json (modern structure)
-            projects.push({
-              id: projectData.id || folder,
-              title: projectData.title || folder,
-              author: userDisplayName, // Use real display name from profile
-              genre: projectData.genre || 'Unknown',
-              status: projectData.status || 'draft',
-              synopsis: projectData.synopsis || '',
-              wordCount: projectData.wordCount || 0,
-              lastModified: projectData.lastModified || stat.mtime
-            })
+            // Filter by authorId - check if this manuscript belongs to the user
+            if (manuscriptData.authorId === userId) {
+              projects.push({
+                id: manuscriptData.id,
+                title: manuscriptData.title,
+                author: userDisplayName,
+                genre: manuscriptData.genre || 'Unknown',
+                status: manuscriptData.status || 'draft',
+                synopsis: manuscriptData.synopsis || '',
+                wordCount: 0, // Will be calculated from chapters later
+                lastModified: stat.mtime,
+                tags: manuscriptData.tags || [],
+                coverImage: manuscriptData.coverImage || null,
+                createdAt: manuscriptData.createdAt || stat.birthtime,
+                updatedAt: manuscriptData.updatedAt || stat.mtime
+              })
+            }
           } catch (error) {
-            console.error(`Error reading project ${folder}:`, error)
-            // Include folder even if project.json is missing or corrupted
-            projects.push({
-              id: folder,
-              title: folder,
-              author: userDisplayName,
-              genre: 'Unknown',
-              status: 'draft',
-              synopsis: 'Project data unavailable',
-              wordCount: 0,
-              lastModified: stat.mtime
-            })
+            console.error(`Error reading manuscript ${file}:`, error)
+            // Skip corrupted files
           }
         }
       }

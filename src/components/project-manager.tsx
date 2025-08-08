@@ -347,31 +347,74 @@ export function ProjectManager({ projects, onProjectSelect }: ProjectManagerProp
     }
   }, [currentProject?.id])
 
-  // Obtener capítulos del JSON o usar fallback hardcodeado
-  const getChaptersFromProject = (): Chapter[] => {
-    console.log('getChaptersFromProject called')
-    console.log('projectData:', projectData)
-    console.log('currentProject.id:', currentProject?.id)
-    
-    if (projectData && projectData.chapters) {
-      console.log('Using JSON data - chapters:', projectData.chapters)
-      const mappedChapters = projectData.chapters.map((chapter: any, index: number) => ({
-        id: chapter.id,
-        title: chapter.title,
-        synopsis: chapter.synopsis,
-        image: chapter.portfolio?.[0]?.path || `/chapter-images/${currentProject.id}-ch${index + 1}.png`,
-        duration: `${Math.ceil(chapter.wordCount / 200)} min lectura`,
-        episode: index + 1,
-        status: chapter.status === 'completed' ? 'published' : 'in-construction'
-      }))
-      console.log('Mapped chapters:', mappedChapters)
-      return mappedChapters
+  // Cargar capítulos dinámicamente cuando cambie el proyecto
+  useEffect(() => {
+    const loadChaptersForProject = async () => {
+      if (!currentProject) return
+      
+      const manuscriptId = currentProject.id
+      console.log('Loading chapters for manuscript:', manuscriptId)
+      
+      try {
+        const response = await fetch(`/api/list-chapters-by-manuscript?manuscriptId=${manuscriptId}`)
+        if (response.ok) {
+          const data = await response.json()
+          const chapters = data.chapters || []
+          
+          // Mapear los capítulos al formato esperado por el componente
+          const mappedChapters: Chapter[] = chapters.map((chapter: any, index: number) => ({
+            id: chapter.id,
+            title: chapter.title,
+            synopsis: chapter.synopsis || 'Sin sinopsis',
+            image: `/chapter-images/${manuscriptId}-ch${index + 1}.png`,
+            duration: `${Math.ceil((chapter.wordCount || 1000) / 200)} min lectura`,
+            episode: chapter.order || index + 1,
+            status: chapter.status === 'completed' ? 'published' as const : 
+                   chapter.status === 'draft' ? 'in-construction' as const : 'upcoming' as const
+          }))
+          
+          console.log('Mapped chapters for', manuscriptId, ':', mappedChapters)
+          
+          // Actualizar chaptersData con los capítulos cargados
+          setChaptersData(prev => ({
+            ...prev,
+            [manuscriptId]: mappedChapters
+          }))
+        } else {
+          console.log('No chapters found for manuscript:', manuscriptId)
+          // Limpiar capítulos si no hay datos
+          setChaptersData(prev => ({
+            ...prev,
+            [manuscriptId]: []
+          }))
+        }
+      } catch (error) {
+        console.error('Error loading chapters:', error)
+        setChaptersData(prev => ({
+          ...prev,
+          [manuscriptId]: []
+        }))
+      }
     }
     
-    console.log('Using fallback hardcoded data')
-    const fallbackChapters = chaptersData[currentProject?.id] || []
-    console.log('Fallback chapters:', fallbackChapters)
-    return fallbackChapters
+    loadChaptersForProject()
+  }, [currentProject?.id])
+
+  // Obtener capítulos desde la nueva API basada en manuscriptId
+  const getChaptersFromProject = (): Chapter[] => {
+    console.log('getChaptersFromProject called')
+    console.log('currentProject:', currentProject)
+    
+    // Los capítulos ahora se cargan dinámicamente desde chaptersData usando manuscriptId
+    // El manuscriptId es el mismo que el project.id en la nueva estructura
+    const manuscriptId = currentProject?.id
+    if (manuscriptId && chaptersData[manuscriptId]) {
+      console.log('Using chapters for manuscript:', manuscriptId, chaptersData[manuscriptId])
+      return chaptersData[manuscriptId]
+    }
+    
+    console.log('No chapters found for manuscript:', manuscriptId)
+    return []
   }
   
   const currentChapters = currentProject ? getChaptersFromProject() : []

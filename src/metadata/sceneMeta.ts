@@ -15,7 +15,7 @@ export const sceneMeta = {
       description: { es: 'Identificador único de la escena/evento.', en: 'Unique identifier for the scene/event.' },
       type: 'text',
       editable: false,
-      show: false,
+      show: true,
       system: true
     },
     {

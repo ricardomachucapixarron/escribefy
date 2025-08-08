@@ -1,9 +1,10 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
-import { ArrowLeft, Save, Plus, Database } from 'lucide-react'
-import ImageGalleryField from './ImageGalleryField'
+import { ArrowLeft, Plus, Save, Database } from 'lucide-react'
 import ArrayField from './ArrayField'
+import ImageGalleryField from './ImageGalleryField'
+import RichTextEditor from './RichTextEditor'
 
 // Imports de metadata reales
 import { manuscriptMeta } from '@/metadata/manuscriptMeta'
@@ -12,13 +13,14 @@ import { characterMeta } from '@/metadata/characterMeta'
 import { organizationMeta } from '@/metadata/organizationMeta'
 import { sceneMeta } from '@/metadata/sceneMeta'
 import { locationMeta } from '@/metadata/locationMeta'
+import { chapterMeta } from '@/metadata/chapterMeta'
 
 interface GenericEntityManagerProps {
   onClose: () => void
 }
 
 // Usar las metadata reales importadas
-const entities = [manuscriptMeta, authorMeta, characterMeta, organizationMeta, sceneMeta, locationMeta]
+const entities = [manuscriptMeta, authorMeta, characterMeta, organizationMeta, sceneMeta, locationMeta, chapterMeta]
 
 // Función para cargar datos desde archivos JSON
 async function loadEntityData(entityMeta: any) {
@@ -34,9 +36,16 @@ async function loadEntityData(entityMeta: any) {
     }
     
     if (entityMeta.key === 'manuscript') {
-      const cronicasData = await import('@/data/manuscripts/cronicas-de-aethermoor.json')
-      const guardianData = await import('@/data/manuscripts/el-ultimo-guardian.json')
-      return [cronicasData.default, guardianData.default]
+      try {
+        const response = await fetch('/api/list-all-manuscripts')
+        if (response.ok) {
+          const data = await response.json()
+          return data.manuscripts || []
+        }
+      } catch (error) {
+        console.error('Error loading manuscripts from API:', error)
+      }
+      return []
     }
     
     if (entityMeta.key === 'scene') {
@@ -65,6 +74,20 @@ async function loadEntityData(entityMeta: any) {
       return [bosqueData.default, puertoData.default]
     }
     
+    if (entityMeta.key === 'chapter') {
+      // Cargar todos los capítulos desde la API simplificada
+      try {
+        const response = await fetch('/api/list-all-chapters')
+        if (response.ok) {
+          const data = await response.json()
+          return data.chapters || []
+        }
+      } catch (error) {
+        console.error('Error loading chapters from API:', error)
+      }
+      return []
+    }
+    
     return []
   } catch (error) {
     console.error('Error loading entity data:', error)
@@ -77,12 +100,15 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
   const [formData, setFormData] = useState<Record<string, any>>({})
   const [language, setLanguage] = useState<'es' | 'en'>('es')
   const [selectedItem, setSelectedItem] = useState<any>(null)
+  const [selectedManuscriptFilter, setSelectedManuscriptFilter] = useState<string>('all')
   const [savedData, setSavedData] = useState<Record<string, any[]>>({
     manuscript: [],
     author: [],
     character: [],
     organization: [],
-    scene: []
+    scene: [],
+    location: [],
+    chapter: []
   })
 
   const currentEntity = entities.find(e => e.key === selectedEntityKey)!
@@ -90,12 +116,45 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
   // Cargar datos desde archivos JSON cuando cambia la entidad
   useEffect(() => {
     async function loadData() {
+      // Cargar la entidad actual
       if ((currentEntity as any).dataPath) {
         const data = await loadEntityData(currentEntity)
         setSavedData(prev => ({
           ...prev,
           [selectedEntityKey]: data
         }))
+      }
+      
+      // Cargar todas las entidades necesarias para las relaciones
+      const relationEntities = new Set<string>()
+      currentEntity.fields.forEach((field: any) => {
+        if (field.type === 'relation' && field.relation) {
+          relationEntities.add(field.relation)
+        }
+      })
+      
+      // Cargar datos de entidades relacionadas
+      for (const entityKey of relationEntities) {
+        const relatedEntity = entities.find(e => e.key === entityKey)
+        if (relatedEntity && !savedData[entityKey]?.length) {
+          const relatedData = await loadEntityData(relatedEntity)
+          setSavedData(prev => ({
+            ...prev,
+            [entityKey]: relatedData
+          }))
+        }
+      }
+      
+      // Cargar manuscritos cuando se seleccionen capítulos (para el filtro)
+      if (selectedEntityKey === 'chapter' && !savedData.manuscript?.length) {
+        const manuscriptEntity = entities.find(e => e.key === 'manuscript')
+        if (manuscriptEntity) {
+          const manuscriptData = await loadEntityData(manuscriptEntity)
+          setSavedData(prev => ({
+            ...prev,
+            manuscript: manuscriptData
+          }))
+        }
       }
     }
     loadData()
@@ -104,23 +163,27 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
   // Limpiar selección cuando cambia la entidad (useEffect separado)
   useEffect(() => {
     setSelectedItem(null)
+    setSelectedManuscriptFilter('all') // Resetear filtro de manuscrito
   }, [selectedEntityKey])
 
-  // Inicializar formulario cuando cambia la entidad
+  // Inicializar formulario cuando cambia la entidad (solo para nuevos items)
   React.useEffect(() => {
-    const initialData: Record<string, any> = {}
-    currentEntity.fields.forEach((field: any) => {
-      if (field.key === 'id') {
-        initialData[field.key] = `${selectedEntityKey}-${Date.now()}`
-      } else if (field.type === 'number') {
-        initialData[field.key] = 0
-      } else {
-        initialData[field.key] = ''
-      }
-    })
-    
-    setFormData(initialData)
-  }, [selectedEntityKey, currentEntity])
+    // Solo inicializar si no hay un item seleccionado (nuevo item)
+    if (!selectedItem) {
+      const initialData: Record<string, any> = {}
+      currentEntity.fields.forEach((field: any) => {
+        if (field.key === 'id') {
+          initialData[field.key] = `${selectedEntityKey}-${Date.now()}`
+        } else if (field.type === 'number') {
+          initialData[field.key] = 0
+        } else {
+          initialData[field.key] = ''
+        }
+      })
+      
+      setFormData(initialData)
+    }
+  }, [selectedEntityKey, currentEntity, selectedItem])
 
   const handleInputChange = (fieldKey: string, value: any) => {
     setFormData(prev => ({ ...prev, [fieldKey]: value }))
@@ -234,6 +297,17 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
           />
         )
       
+      case 'richtext':
+        return (
+          <RichTextEditor
+            value={value}
+            onChange={(newValue) => handleInputChange(key, newValue)}
+            placeholder={label[language]}
+            readOnly={isReadonly}
+            className=""
+          />
+        )
+      
       case 'select':
         return (
           <select
@@ -321,6 +395,24 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
             entityType={selectedEntityKey}
             entityId={formData.id || 'new'}
           />
+        )
+      
+      case 'relation':
+        const relationData = savedData[field.relation] || []
+        return (
+          <select
+            value={value || ''}
+            onChange={(e) => handleInputChange(key, e.target.value)}
+            className={`${baseClasses} ${readonlyClasses}`}
+            disabled={isReadonly}
+          >
+            <option value="">Seleccionar {label[language].toLowerCase()}...</option>
+            {relationData.map((item: any) => (
+              <option key={item.id} value={item.id}>
+                {item.name || item.title || item.id}
+              </option>
+            ))}
+          </select>
         )
       
       default:
@@ -422,7 +514,7 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
                 {currentEntity.fields
                   .filter((field: any) => field.show === true)
                   .map((field: any) => (
-                  <div key={field.key} className={field.type === 'textarea' ? 'md:col-span-2' : ''}>
+                  <div key={field.key} className={field.type === 'textarea' || field.type === 'richtext' ? 'md:col-span-2' : ''}>
                     <label className="block text-sm font-medium mb-1">
                       {field.label[language]}
                       {field.required === true && <span className="text-red-400 ml-1">*</span>}
@@ -442,30 +534,112 @@ export default function GenericEntityManager({ onClose }: GenericEntityManagerPr
                 {currentEntity.label[language]} Guardados
               </h3>
               
+              {/* Filtro de manuscrito para capítulos */}
+              {selectedEntityKey === 'chapter' && (
+                <div className="mb-4">
+                  <label className="block text-sm font-medium mb-2">Filtrar por Manuscrito:</label>
+                  <select
+                    value={selectedManuscriptFilter}
+                    onChange={(e) => setSelectedManuscriptFilter(e.target.value)}
+                    className="w-full bg-slate-700 border border-slate-600 rounded px-3 py-2 text-sm"
+                  >
+                    <option value="all">Todos los manuscritos</option>
+                    {savedData.manuscript?.map((manuscript: any) => (
+                      <option key={manuscript.id} value={manuscript.id}>
+                        {manuscript.title || manuscript.id}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+              
               <div className="space-y-2 max-h-80 overflow-y-auto">
-                {savedData[selectedEntityKey]?.map((item, index) => (
+                {(selectedEntityKey === 'chapter' 
+                  ? savedData[selectedEntityKey]?.filter((item: any) => 
+                      selectedManuscriptFilter === 'all' || item.manuscriptId === selectedManuscriptFilter
+                    )
+                  : savedData[selectedEntityKey]
+                )?.map((item, index) => (
                   <div 
                     key={index} 
                     className={`bg-slate-700 rounded p-2 text-sm cursor-pointer transition-colors hover:bg-slate-600 ${
                       selectedItem?.id === item.id ? 'ring-2 ring-blue-500' : ''
                     }`}
-                    onClick={() => {
+                    onClick={async () => {
                       setSelectedItem(item)
-                      // Cargar solo campos válidos según el metadata actual
-                      const filteredData: Record<string, any> = {}
-                      currentEntity.fields.forEach((field: any) => {
-                        if (item[field.key] !== undefined) {
-                          filteredData[field.key] = item[field.key]
-                        } else {
-                          // Valor por defecto si el campo no existe en el item
-                          if (field.type === 'number') {
-                            filteredData[field.key] = 0
+                      
+                      // Para capítulos, cargar el contenido completo desde la API individual
+                      if (selectedEntityKey === 'chapter') {
+                        try {
+                          const response = await fetch(`/api/entities/chapter/${item.id}`)
+                          if (response.ok) {
+                            const result = await response.json()
+                            const fullChapterData = result.data || item
+                            
+                            // Cargar campos del capítulo completo
+                            const filteredData: Record<string, any> = {}
+                            currentEntity.fields.forEach((field: any) => {
+                              if (fullChapterData[field.key] !== undefined) {
+                                filteredData[field.key] = fullChapterData[field.key]
+                              } else {
+                                if (field.type === 'number') {
+                                  filteredData[field.key] = 0
+                                } else {
+                                  filteredData[field.key] = ''
+                                }
+                              }
+                            })
+                            setFormData(filteredData)
                           } else {
-                            filteredData[field.key] = ''
+                            console.error('Error loading full chapter data')
+                            // Fallback a datos básicos
+                            const filteredData: Record<string, any> = {}
+                            currentEntity.fields.forEach((field: any) => {
+                              if (item[field.key] !== undefined) {
+                                filteredData[field.key] = item[field.key]
+                              } else {
+                                if (field.type === 'number') {
+                                  filteredData[field.key] = 0
+                                } else {
+                                  filteredData[field.key] = ''
+                                }
+                              }
+                            })
+                            setFormData(filteredData)
                           }
+                        } catch (error) {
+                          console.error('Error fetching chapter content:', error)
+                          // Fallback a datos básicos
+                          const filteredData: Record<string, any> = {}
+                          currentEntity.fields.forEach((field: any) => {
+                            if (item[field.key] !== undefined) {
+                              filteredData[field.key] = item[field.key]
+                            } else {
+                              if (field.type === 'number') {
+                                filteredData[field.key] = 0
+                              } else {
+                                filteredData[field.key] = ''
+                              }
+                            }
+                          })
+                          setFormData(filteredData)
                         }
-                      })
-                      setFormData(filteredData)
+                      } else {
+                        // Para otras entidades, usar lógica normal
+                        const filteredData: Record<string, any> = {}
+                        currentEntity.fields.forEach((field: any) => {
+                          if (item[field.key] !== undefined) {
+                            filteredData[field.key] = item[field.key]
+                          } else {
+                            if (field.type === 'number') {
+                              filteredData[field.key] = 0
+                            } else {
+                              filteredData[field.key] = ''
+                            }
+                          }
+                        })
+                        setFormData(filteredData)
+                      }
                     }}
                   >
                     <div className="font-medium">{item.name || item.title || item.id}</div>

@@ -1,0 +1,42 @@
+{
+  "id": "chapter-el-ultimo-guardian-01",
+  "title": "Los Sellos Quebrados",
+  "synopsis": "Lyra descubre que los antiguos sellos que protegen el mundo están fallando cuando una criatura del vacío ataca su santuario. Como la última guardiana de la orden milenaria, debe aceptar su destino y comenzar la búsqueda para restaurar el equilibrio antes de que sea demasiado tarde.",
+  "content": "La noche había caído sobre el Santuario de los Vientos Eternos [cue:sound|viento-nocturno|volume=0.5] cuando Lyra sintió la primera perturbación. Un escalofrío recorrió su espina dorsal, no del frío de la montaña, sino de algo mucho más siniestro.\n\nSe incorporó en su lecho de piedra, sus sentidos de guardiana completamente alerta [cue:sound|latido-acelerado|fade-in=1]. Las runas protectoras que adornaban las paredes del santuario parpadeaban débilmente [cue:vfx|runas-parpadeantes|color=azul|intensity=0.6], su luz ancestral fluctuando como velas al viento.\n\n\"Esto no puede estar pasando,\" murmuró, pero incluso mientras las palabras salían de sus labios, supo que sus peores temores se estaban haciendo realidad.\n\nUn rugido desgarrador atravesó la noche [cue:sound|rugido-vacio|reverb=heavy|delay=0.5] [cue:vfx|vibracion-cristales|duration=3] [cue:vfx|grieta-vacio|color=purpura|expansion=slow], un sonido que no pertenecía a este mundo. Las ventanas del santuario se estremecieron, y Lyra vio con horror cómo una grieta se abría en el aire mismo, revelando el vacío púrpura y hambriento que se extendía más allá.\n\nDe la grieta emergió una criatura que desafiaba toda descripción [cue:image|criatura-vacio|fade-in=2|opacity=0.8]. Sus múltiples ojos brillaban con una luz malévola [cue:vfx|ojos-malevolos|count=6|brillo=intenso], y sus tentáculos de sombra se extendían hacia ella con una intención claramente hostil.\n\n\"Los sellos...\" susurró Lyra, comprendiendo finalmente la magnitud de lo que estaba presenciando [cue:sound|susurro-realizacion|echo=true]. \"Se están rompiendo.\"\n\nCon manos temblorosas, alcanzó el bastón de su orden [cue:vfx|luz-baston|color=dorado|pulse=rhythmic] [cue:sound|magia-despertando|crescendo=3] [cue:vfx|aura-destino|color=blanco|expansion=radial], sintiendo cómo la magia ancestral fluía a través de ella por primera vez en años. Era la última guardiana, y el destino del mundo ahora descansaba sobre sus hombros.",
+  "manuscriptId": "el-ultimo-guardian",
+  "status": "completed",
+  "wordCount": 4200,
+  "order": 1,
+  "mood": "misterioso y épico",
+  "images": [
+    {
+      "id": "img-1754693448679",
+      "url": "/uploads/chapter/chapter-el-ultimo-guardian-01-1754693448679.png",
+      "filename": "chapter-el-ultimo-guardian-01-1754693448679.png",
+      "title": "chapter 1",
+      "description": "",
+      "tags": [],
+      "isPrimary": true,
+      "uploadedAt": "2025-08-08T22:50:48.683Z",
+      "size": 1073517,
+      "dimensions": {
+        "width": 800,
+        "height": 600
+      }
+    }
+  ],
+  "themes": [
+    "destino",
+    "responsabilidad",
+    "magia antigua",
+    "soledad del poder"
+  ],
+  "keyEvents": [
+    "Ataque de la criatura del vacío al santuario",
+    "Lyra descubre que es la última guardiana",
+    "Revelación sobre el debilitamiento de los sellos",
+    "Decisión de emprender el viaje épico"
+  ],
+  "lastModified": "2025-08-07T21:20:19.000Z",
+  "updatedAt": "2025-08-08T22:50:52.580Z"
+}

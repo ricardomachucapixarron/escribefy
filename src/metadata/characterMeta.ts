@@ -15,7 +15,7 @@ export const characterMeta = {
       description: { es: 'Identificador único del personaje.', en: 'Unique identifier for the character.' },
       type: 'text',
       editable: false,
-      show: false,
+      show: true,
       system: true
     },
     {

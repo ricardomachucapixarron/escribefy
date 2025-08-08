@@ -15,7 +15,7 @@ export const authorMeta = {
       description: { es: 'Identificador único del autor/persona.', en: 'Unique identifier for the person/author.' },
       type: 'text',
       editable: false,
-      show: false,
+      show: true,
       system: true
     },
     {

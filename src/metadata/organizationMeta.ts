@@ -15,7 +15,7 @@ export const organizationMeta = {
       description: { es: 'Identificador único de la organización.', en: 'Unique identifier for the organization.' },
       type: 'text',
       editable: false,
-      show: false,
+      show: true,
       system: true
     },
     {

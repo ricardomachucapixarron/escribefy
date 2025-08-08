@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import profileData from '@/data/users/ricardo-machuca/profile.json'
+import { useAuth } from '@/contexts/AuthContext'
 
 export interface Character {
   id: string
@@ -334,34 +334,55 @@ const dummyProjects: Project[] = [
   },
 ]
 
-// Función para convertir datos del profile.json al formato Project
-function convertProfileProjectsToProjects(): Project[] {
-  return profileData.projects.map((project: any) => ({
-    id: project.id,
-    title: project.title,
-    author: project.author,
-    genre: project.genre,
-    description: project.synopsis,
-    coverImage: project.portfolio?.[0]?.path || `/book-covers/${project.id}.png`,
-    progress: project.progress,
-    charactersCount: project.stats?.charactersCount || 0,
-    chaptersCount: project.stats?.chaptersCount || 0,
-    lastModified: project.lastModified?.split('T')[0] || new Date().toISOString().split('T')[0],
-    wordCount: project.currentWordCount,
-    characters: [], // Por ahora vacío, se puede expandir después
-    locations: [] // Por ahora vacío, se puede expandir después
-  }))
-}
+// Función eliminada - ahora se usan datos de la API
 
 export function useProjects() {
   const [projects, setProjects] = useState<Project[]>([])
   const [currentProject, setCurrentProject] = useState<Project | null>(null)
+  const [loading, setLoading] = useState(true)
+  const { currentUser } = useAuth()
 
   useEffect(() => {
-    // Usar datos del profile.json en lugar de localStorage
-    const profileProjects = convertProfileProjectsToProjects()
-    setProjects(profileProjects)
-  }, [])
+    const loadProjects = async () => {
+      if (!currentUser?.id) {
+        setLoading(false)
+        return
+      }
+
+      try {
+        const response = await fetch(`/api/list-projects?userId=${encodeURIComponent(currentUser.id)}`)
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        
+        const data = await response.json()
+        const formattedProjects = data.projects.map((project: any) => ({
+          id: project.id,
+          title: project.title,
+          author: project.author,
+          genre: project.genre,
+          description: project.synopsis,
+          coverImage: project.coverImage || `/book-covers/${project.id}.png`,
+          progress: 0, // Will be calculated later
+          charactersCount: 0, // Will be calculated later
+          chaptersCount: 0, // Will be calculated later
+          lastModified: new Date(project.lastModified).toISOString().split('T')[0],
+          wordCount: project.wordCount,
+          characters: [],
+          locations: []
+        }))
+        
+        setProjects(formattedProjects)
+      } catch (error) {
+        console.error('Error loading projects:', error)
+        setProjects([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadProjects()
+  }, [currentUser?.id])
 
   const saveProjects = (updatedProjects: Project[]) => {
     setProjects(updatedProjects)
@@ -422,5 +443,6 @@ export function useProjects() {
     addCharacter,
     updateCharacter,
     addLocation,
+    loading,
   }
 }

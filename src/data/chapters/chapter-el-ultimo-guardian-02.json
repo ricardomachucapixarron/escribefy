@@ -1,0 +1,27 @@
+{
+  "id": "chapter-el-ultimo-guardian-02",
+  "title": "El Despertar de los Recuerdos",
+  "synopsis": "Lyra experimenta visiones del pasado mientras viaja hacia el primer sello. Los recuerdos de su entrenamiento y la caída de los otros guardianes la atormentan, pero también le revelan pistas cruciales sobre cómo restaurar los sellos antiguos.",
+  "content": "El viento helado cortaba su rostro mientras Lyra cabalgaba por el sendero serpenteante [cue:sound|viento-helado|volume=0.7]. Las montañas se alzaban como gigantes silenciosos a ambos lados, sus picos cubiertos de nieve eterna que brillaba bajo la luz de la luna [cue:vfx|brillo-nieve|duration=3].\n\nDe repente, sintió un mareo repentino [cue:vfx|blur|intensity=0.8] [cue:sound|latido|delay=1] [cue:image|recuerdo-borroso|delay=2]. Las imágenes del pasado comenzaron a filtrarse en su mente como agua a través de una presa agrietada.\n\n*Maestro Aldric la observaba con ojos severos pero bondadosos* [cue:vfx|sepia|fade-in=2]. \"Recuerda, Lyra,\" *le decía con voz grave*, \"los sellos no son solo barreras. Son promesas hechas en sangre y sacrificio\" [cue:sound|eco-voz|reverb=heavy].\n\nLa visión se desvaneció tan rápidamente como había llegado [cue:vfx|fade-out|duration=1.5], dejándola jadeando sobre la silla de montar. Su caballo, Sombraluna, relinchó nerviosamente [cue:sound|relincho|pitch=low] y se detuvo, como si hubiera sentido la perturbación mágica.\n\n\"Tranquilo, viejo amigo,\" murmuró Lyra, acariciando el cuello del animal [cue:vfx|particulas-calma|color=azul]. Pero sus manos temblaban. Los recuerdos se estaban volviendo más frecuentes, más vívidos. Era como si el debilitamiento de los sellos también estuviera liberando memorias que había mantenido enterradas.\n\nMiró hacia adelante, donde el camino se perdía en la oscuridad del bosque de Susurros [cue:sound|ambiente-bosque|loop=true|volume=0.4]. Según el mapa antiguo que llevaba, el primer sello estaba a solo dos días de viaje. Pero cada paso la acercaba no solo a su destino, sino también a verdades que había preferido olvidar [cue:vfx|sombras-danzantes|opacity=0.3].\n\nEspoleó a Sombraluna y se adentraron en la penumbra del bosque, donde los árboles parecían susurrar secretos de tiempos olvidados [cue:sound|susurros-arboles|stereo=wide] y las luciérnagas danzaban como almas perdidas [cue:vfx|luciérnagas|count=50|movement=random].",
+  "manuscriptId": "el-ultimo-guardian",
+  "status": "draft",
+  "wordCount": 3800,
+  "order": 2,
+  "mood": "melancólico y misterioso",
+  "themes": [
+    "memoria",
+    "legado",
+    "conexión con el pasado",
+    "destino inevitable"
+  ],
+  "keyEvents": [
+    "Viaje hacia el primer sello",
+    "Visión del Maestro Aldric",
+    "Revelación sobre la naturaleza de los sellos",
+    "Entrada al bosque de Susurros"
+  ],
+  "lastModified": "2025-08-09T22:04:32.000Z",
+  "images": [],
+  "createdAt": "2025-08-09T22:04:32.000Z",
+  "updatedAt": "2025-08-09T22:04:32.000Z"
+}
