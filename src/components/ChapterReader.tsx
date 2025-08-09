@@ -66,12 +66,14 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
   const [isMounted, setIsMounted] = useState(false)
   
   const containerRef = useRef<HTMLDivElement>(null)
+  const textContainerRef = useRef<HTMLDivElement>(null)
 
   // Always call these hooks - they must be called every render
   const { scrollYProgress } = useScroll()
-  const textProgress = useTransform(scrollYProgress, [0, 0.95], [0, 1])
-  const backgroundOpacity = useTransform(scrollYProgress, [0.2, 0.7], [0, 1])
-  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0])
+  // Ultra slow scroll for letter-by-letter reveal
+  const textProgress = useTransform(scrollYProgress, [0, 0.99], [0, 1])
+  const backgroundOpacity = useTransform(scrollYProgress, [0.05, 0.2], [0, 1])
+  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.01], [1, 0])
 
   // All useEffect hooks
   useEffect(() => {
@@ -104,11 +106,16 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
     if (!content || loading || !isMounted) return
 
     const unsubscribe = textProgress.on("change", (progress) => {
-      const targetIndex = Math.floor(progress * content.length)
-      setDisplayedText(content.slice(0, targetIndex))
+      // Letter-by-letter reveal with much more granular control
+      const cleanContent = content.replace(/\\n\\n/g, '\n\n') // Handle escaped newlines
+      const targetIndex = Math.floor(progress * cleanContent.length)
+      setDisplayedText(cleanContent.slice(0, targetIndex))
     })
     return unsubscribe
   }, [textProgress, content, loading, isMounted])
+
+  // No auto-scroll - let the user control text reveal with scroll direction
+  // Scroll down = reveal more text, Scroll up = hide text (retrocede)
 
   useEffect(() => {
     if (loading || !isMounted) return
@@ -196,6 +203,46 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
     return groups
   }
 
+  // Simple letter-by-letter animation like in landing page
+  const AnimatedText = ({ text }: { text: string }) => {
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
+    return (
+      <span className="inline-block">
+        {text.split("").map((char, index) => {
+          // Handle line breaks
+          if (char === '\n') {
+            return <br key={index} />
+          }
+          
+          return (
+            <motion.span
+              key={index}
+              className="inline-block cursor-pointer"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              animate={{
+                scale: hoveredIndex === index ? 1.1 : 1,
+                color: hoveredIndex === index ? "#a855f7" : undefined,
+              }}
+              transition={{
+                duration: 0.2,
+                ease: "easeOut",
+              }}
+              style={{
+                display: char === " " ? "inline" : "inline-block",
+                marginRight: char === " " ? "0.25em" : "0",
+              }}
+            >
+              {char === " " ? "\u00A0" : char}
+            </motion.span>
+          )
+        })}
+      </span>
+    )
+  }
+  
+  // Enhanced cue rendering that works with letter-by-letter
   const renderTextWithCues = (text: string) => {
     const cues = parseCues(text)
     const groupedCues = groupConsecutiveCues(cues)
@@ -340,19 +387,46 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
           <div className="absolute inset-0 bg-black/60" />
         </motion.div>
 
-        {/* Main Content */}
-        <div className="relative z-10 pt-32 pb-20">
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="prose prose-lg prose-invert max-w-none">
-              <div className="text-white text-xl md:text-2xl leading-relaxed space-y-6">
-                {renderTextWithCues(displayedText)}
-                <motion.span
-                  className="inline-block w-1 h-8 bg-purple-400 ml-2"
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                />
+        {/* Spacer to create ultra-long scroll height for letter-by-letter reading */}
+        <div className="h-[2000vh]" />
+        
+        {/* Fixed Text Container - Growing Upward */}
+        <div className="fixed inset-x-0 bottom-20 z-10 flex justify-center pointer-events-none">
+          <div className="w-full max-w-4xl mx-auto px-6 pointer-events-auto">
+            <motion.div 
+              className="w-full bg-black/40 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl"
+              style={{
+                minHeight: '200px',
+                maxHeight: '70vh'
+              }}
+              animate={{
+                height: 'auto'
+              }}
+              transition={{
+                duration: 0.3,
+                ease: 'easeOut'
+              }}
+            >
+              <div 
+                ref={textContainerRef}
+                className="prose prose-xl prose-invert max-w-none overflow-hidden" 
+                style={{ 
+                  maxHeight: 'calc(70vh - 4rem)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-end'
+                }}
+              >
+                <div className="text-white text-2xl md:text-3xl lg:text-4xl leading-relaxed space-y-8">
+                  <AnimatedText text={displayedText} />
+                  <motion.span
+                    className="inline-block w-1 h-8 bg-purple-400 ml-2"
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                  />
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
@@ -393,8 +467,7 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
               <div className="w-24 h-1 bg-white/20 rounded-full overflow-hidden">
                 <motion.div
                   className="h-full bg-gradient-to-r from-purple-400 to-blue-400 rounded-full"
-                  style={{ scaleX: textProgress }}
-                  transformOrigin="left"
+                  style={{ scaleX: textProgress, transformOrigin: "left" }}
                 />
               </div>
               <motion.span>
