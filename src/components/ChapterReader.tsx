@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowLeft, ChevronDown, MousePointer } from 'lucide-react'
 import Hypher from 'hypher'
 import spanish from 'hyphenation.es'
+import { gsap } from 'gsap'
 
 interface CueInfo {
   type: 'vfx' | 'sound' | 'image'
@@ -73,11 +74,17 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
   const [visibleLines, setVisibleLines] = useState<{lineIndex: number, text: string, revealedChars: number}[]>([])
   const [viewportStartLine, setViewportStartLine] = useState(0)
   
+  // Global cues positions (in raw content) and triggers
+  const [allCues, setAllCues] = useState<Array<{ start: number; end: number; cue: CueInfo }>>([])
+  const triggeredCuesRef = useRef<Set<number>>(new Set())
+  
   // Hypher initialization
   const [hypher, setHypher] = useState<any>(null)
   
   const containerRef = useRef<HTMLDivElement>(null)
   const textContainerRef = useRef<HTMLDivElement>(null)
+  const effectRef = useRef<HTMLDivElement>(null)
+  const isEffectRunningRef = useRef<boolean>(false)
 
   // Always call these hooks - they must be called every render
   const { scrollYProgress } = useScroll()
@@ -104,12 +111,30 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
         if (response.ok) {
           const result = await response.json()
           const rawContent = result.data?.content || 'Contenido no disponible'
-          setContent(rawContent)
+          // Normalize escaped newlines ("\n") to real newlines so they render correctly
+          const normalizedContent = rawContent.replace(/\\n/g, '\n')
+          setContent(normalizedContent)
           
           // Split content into lines for viewport management
-          const lines = rawContent.replace(/\\n\\n/g, '\n\n').split('\n')
+          const lines = normalizedContent.split('\n')
           setTextLines(lines)
-          console.log('📄 Content loaded:', { totalLines: lines.length, totalChars: rawContent.length })
+          console.log('📄 Content loaded:', { totalLines: lines.length, totalChars: normalizedContent.length })
+
+          // Compute all cues (global positions over the raw content)
+          try {
+            const found = parseCues(normalizedContent)
+            const mapped = found.map(({ index, cue }) => ({
+              start: index,
+              end: index + cue.originalCode.length,
+              cue
+            }))
+            setAllCues(mapped)
+            triggeredCuesRef.current.clear()
+            console.log('🎯 Cues detected:', mapped.length)
+          } catch (e) {
+            console.warn('Cue parsing error:', e)
+            setAllCues([])
+          }
         } else {
           setContent('Error al cargar el contenido del capítulo')
           setTextLines(['Error al cargar el contenido del capítulo'])
@@ -185,6 +210,16 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
       
       setVisibleLines(newVisibleLines)
       
+      // Trigger effects for cues that just became fully revealed (once)
+      if (allCues.length > 0) {
+        for (const c of allCues) {
+          if (c.end <= targetCharIndex && !triggeredCuesRef.current.has(c.start)) {
+            triggeredCuesRef.current.add(c.start)
+            triggerCueEffect(c.cue)
+          }
+        }
+      }
+      
       console.log('🔄 Viewport update:', {
         progress: progress.toFixed(3),
         targetLine,
@@ -196,7 +231,7 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
       })
     })
     return unsubscribe
-  }, [textProgress, content, loading, isMounted, textLines, maxRevealedLine, maxRevealedChar])
+  }, [textProgress, content, loading, isMounted, textLines, maxRevealedLine, maxRevealedChar, allCues])
 
   // Hyphenation function for natural syllable breaks (without visual dots)
   const applyHyphenation = (text: string): string => {
@@ -209,6 +244,31 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
       console.warn('Hyphenation error:', error)
       return text
     }
+  }
+
+  // --- Effects: Minimal screen shake test ---
+  const screenShake = () => {
+    const el = effectRef.current
+    if (!el || isEffectRunningRef.current) return
+    isEffectRunningRef.current = true
+    gsap.killTweensOf(el)
+    gsap.timeline({
+      onComplete: () => {
+        // Reset transform to avoid any lingering offsets and allow reading to continue
+        gsap.set(el, { clearProps: 'transform' })
+        isEffectRunningRef.current = false
+      }
+    })
+      .to(el, { x: -8, rotate: -0.4, duration: 0.06, ease: 'power2.out' })
+      .to(el, { x: 8, rotate: 0.4, duration: 0.08, ease: 'power2.out' })
+      .to(el, { x: -5, rotate: -0.25, duration: 0.06, ease: 'power2.out' })
+      .to(el, { x: 0, rotate: 0, duration: 0.12, ease: 'power2.out' })
+  }
+
+  const triggerCueEffect = (cue: CueInfo) => {
+    // Simple mapping: any cue triggers a gentle screen shake for this test
+    // Future: map by cue.type/effect/params
+    screenShake()
   }
 
   // No auto-scroll - let the user control text reveal with scroll direction
@@ -485,6 +545,7 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
         <div className="fixed inset-x-0 bottom-20 z-10 flex justify-center pointer-events-none">
           <div className="w-full max-w-4xl mx-auto px-6 pointer-events-auto">
             <motion.div 
+              ref={effectRef}
               className="w-full bg-black/40 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl"
               style={{
                 minHeight: '200px',

@@ -23,6 +23,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "framer-motion": "^12.23.12",
+    "gsap": "^3.13.0",
     "hyphenation.es": "^0.2.1",
     "hypher": "^0.2.5",
     "lucide-react": "^0.536.0",
