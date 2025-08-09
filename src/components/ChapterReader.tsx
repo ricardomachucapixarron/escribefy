@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowLeft, ChevronDown, MousePointer } from 'lucide-react'
+// Using CSS hyphens instead of Hyphenopoly for better compatibility
 
 interface CueInfo {
   type: 'vfx' | 'sound' | 'image'
@@ -57,13 +58,19 @@ const RedTriangle: React.FC<{
 const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
   // All hooks must be called in the same order every time
   const [content, setContent] = useState<string>('')
-  const [displayedText, setDisplayedText] = useState('')
   const [showScrollMessage, setShowScrollMessage] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
   const [loading, setLoading] = useState(true)
   const [hoveredCue, setHoveredCue] = useState<CueInfo[] | null>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isMounted, setIsMounted] = useState(false)
+  
+  // Viewport-based text management
+  const [textLines, setTextLines] = useState<string[]>([])
+  const [maxRevealedLine, setMaxRevealedLine] = useState(0)
+  const [maxRevealedChar, setMaxRevealedChar] = useState(0)
+  const [visibleLines, setVisibleLines] = useState<{lineIndex: number, text: string, revealedChars: number}[]>([])
+  const [viewportStartLine, setViewportStartLine] = useState(0)
   
   const containerRef = useRef<HTMLDivElement>(null)
   const textContainerRef = useRef<HTMLDivElement>(null)
@@ -87,13 +94,21 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
         const response = await fetch(`/api/entities/chapter/${chapter.id}`)
         if (response.ok) {
           const result = await response.json()
-          setContent(result.data?.content || 'Contenido no disponible')
+          const rawContent = result.data?.content || 'Contenido no disponible'
+          setContent(rawContent)
+          
+          // Split content into lines for viewport management
+          const lines = rawContent.replace(/\\n\\n/g, '\n\n').split('\n')
+          setTextLines(lines)
+          console.log('📄 Content loaded:', { totalLines: lines.length, totalChars: rawContent.length })
         } else {
           setContent('Error al cargar el contenido del capítulo')
+          setTextLines(['Error al cargar el contenido del capítulo'])
         }
       } catch (error) {
         console.error('Error loading chapter content:', error)
         setContent('Error al cargar el contenido del capítulo')
+        setTextLines(['Error al cargar el contenido del capítulo'])
       } finally {
         setLoading(false)
       }
@@ -103,16 +118,76 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
   }, [chapter.id])
 
   useEffect(() => {
-    if (!content || loading || !isMounted) return
+    if (!content || loading || !isMounted || textLines.length === 0) return
 
     const unsubscribe = textProgress.on("change", (progress) => {
-      // Letter-by-letter reveal with much more granular control
-      const cleanContent = content.replace(/\\n\\n/g, '\n\n') // Handle escaped newlines
-      const targetIndex = Math.floor(progress * cleanContent.length)
-      setDisplayedText(cleanContent.slice(0, targetIndex))
+      // Calculate total characters revealed based on progress
+      const totalChars = content.length
+      const targetCharIndex = Math.floor(progress * totalChars)
+      
+      // Find which line and character we should reveal up to
+      let charCount = 0
+      let targetLine = 0
+      let targetCharInLine = 0
+      
+      for (let i = 0; i < textLines.length; i++) {
+        const lineLength = textLines[i].length + 1 // +1 for newline
+        if (charCount + lineLength > targetCharIndex) {
+          targetLine = i
+          targetCharInLine = targetCharIndex - charCount
+          break
+        }
+        charCount += lineLength
+      }
+      
+      // Allow scroll up to retract text (bidirectional reveal)
+      setMaxRevealedLine(targetLine)
+      setMaxRevealedChar(targetCharInLine)
+      
+      // Calculate visible lines (viewport culling)
+      const linesPerViewport = 5 // Show ~5 lines at a time
+      const currentRevealedLine = targetLine
+      const startLine = Math.max(0, currentRevealedLine - linesPerViewport + 1)
+      const endLine = Math.min(textLines.length - 1, currentRevealedLine)
+      
+      setViewportStartLine(startLine)
+      
+      // Build visible lines with their reveal state
+      const newVisibleLines = []
+      for (let i = startLine; i <= endLine; i++) {
+        const line = textLines[i]
+        let revealedChars = 0
+        
+        if (i < targetLine) {
+          // Fully revealed line
+          revealedChars = line.length
+        } else if (i === targetLine) {
+          // Partially revealed line (current reveal position)
+          revealedChars = Math.min(targetCharInLine, line.length)
+        }
+        // else: not revealed yet (revealedChars = 0)
+        
+        newVisibleLines.push({
+          lineIndex: i,
+          text: line,
+          revealedChars
+        })
+      }
+      
+      setVisibleLines(newVisibleLines)
+      
+      console.log('🔄 Viewport update:', {
+        progress: progress.toFixed(3),
+        targetLine,
+        targetChar: targetCharInLine,
+        currentRevealedLine: targetLine,
+        visibleRange: `${startLine}-${endLine}`,
+        visibleLinesCount: newVisibleLines.length,
+        direction: progress > 0.5 ? '⬇️ down' : '⬆️ up'
+      })
     })
     return unsubscribe
-  }, [textProgress, content, loading, isMounted])
+  }, [textProgress, content, loading, isMounted, textLines, maxRevealedLine, maxRevealedChar])
 
   // No auto-scroll - let the user control text reveal with scroll direction
   // Scroll down = reveal more text, Scroll up = hide text (retrocede)
@@ -203,42 +278,43 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
     return groups
   }
 
-  // Simple letter-by-letter animation like in landing page
-  const AnimatedText = ({ text }: { text: string }) => {
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-
+  // Viewport-based text display - only renders visible lines for performance
+  const ViewportText = () => {
     return (
-      <span className="inline-block">
-        {text.split("").map((char, index) => {
-          // Handle line breaks
-          if (char === '\n') {
-            return <br key={index} />
-          }
+      <div className="space-y-4">
+        {visibleLines.map((lineData, index) => {
+          const { lineIndex, text, revealedChars } = lineData
+          const revealedText = text.slice(0, revealedChars)
+          const isCurrentRevealLine = lineIndex === maxRevealedLine
+          const hasRevealedText = revealedChars > 0
           
           return (
-            <motion.span
-              key={index}
-              className="inline-block cursor-pointer"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              animate={{
-                scale: hoveredIndex === index ? 1.1 : 1,
-                color: hoveredIndex === index ? "#a855f7" : undefined,
-              }}
-              transition={{
-                duration: 0.2,
-                ease: "easeOut",
-              }}
-              style={{
-                display: char === " " ? "inline" : "inline-block",
-                marginRight: char === " " ? "0.25em" : "0",
-              }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
+            <div key={lineIndex} className="leading-relaxed">
+              {revealedText.split("").map((char, charIndex) => (
+                <span
+                  key={`${lineIndex}-${charIndex}`}
+                  style={{
+                    display: char === " " ? "inline" : "inline-block",
+                    marginRight: char === " " ? "0.25em" : "0",
+                  }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              ))}
+              
+              {/* Show cursor on the current reveal line at the end of revealed text */}
+              {isCurrentRevealLine && hasRevealedText && (
+                <motion.span
+                  className="inline-block w-1 h-8 bg-purple-400"
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                  style={{ marginLeft: '1px' }}
+                />
+              )}
+            </div>
           )
         })}
-      </span>
+      </div>
     )
   }
   
@@ -417,13 +493,17 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
                   justifyContent: 'flex-end'
                 }}
               >
-                <div className="text-white text-2xl md:text-3xl lg:text-4xl leading-relaxed space-y-8">
-                  <AnimatedText text={displayedText} />
-                  <motion.span
-                    className="inline-block w-1 h-8 bg-purple-400 ml-2"
-                    animate={{ opacity: [1, 0, 1] }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                  />
+                <div 
+                  className="text-white text-2xl md:text-3xl lg:text-4xl leading-relaxed"
+                  style={{
+                    hyphens: 'auto',
+                    wordBreak: 'break-word',
+                    overflowWrap: 'break-word',
+                    textAlign: 'justify'
+                  }}
+                  lang="es"
+                >
+                  <ViewportText />
                 </div>
               </div>
             </motion.div>

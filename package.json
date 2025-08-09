@@ -23,6 +23,8 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "framer-motion": "^12.23.12",
+    "hyphenation.es": "^0.2.1",
+    "hypher": "^0.2.5",
     "lucide-react": "^0.536.0",
     "next": "15.4.5",
     "react": "19.1.0",
