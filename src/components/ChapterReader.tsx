@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowLeft, ChevronDown, MousePointer } from 'lucide-react'
-// Using CSS hyphens instead of Hyphenopoly for better compatibility
+import Hypher from 'hypher'
+import spanish from 'hyphenation.es'
 
 interface CueInfo {
   type: 'vfx' | 'sound' | 'image'
@@ -72,6 +73,9 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
   const [visibleLines, setVisibleLines] = useState<{lineIndex: number, text: string, revealedChars: number}[]>([])
   const [viewportStartLine, setViewportStartLine] = useState(0)
   
+  // Hypher initialization
+  const [hypher, setHypher] = useState<any>(null)
+  
   const containerRef = useRef<HTMLDivElement>(null)
   const textContainerRef = useRef<HTMLDivElement>(null)
 
@@ -91,6 +95,11 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
     const loadChapterContent = async () => {
       setLoading(true)
       try {
+        // Initialize Hypher with Spanish patterns
+        const hypherInstance = new Hypher(spanish)
+        setHypher(hypherInstance)
+        console.log('🔤 Hypher initialized for Spanish')
+        
         const response = await fetch(`/api/entities/chapter/${chapter.id}`)
         if (response.ok) {
           const result = await response.json()
@@ -188,6 +197,45 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
     })
     return unsubscribe
   }, [textProgress, content, loading, isMounted, textLines, maxRevealedLine, maxRevealedChar])
+
+  // Hyphenation function to add red dots at syllable breaks
+  const addHyphenationDots = (text: string): React.ReactNode[] => {
+    if (!hypher || !text) return [text]
+    
+    try {
+      // Use Hypher to get hyphenated text with soft hyphens
+      const hyphenatedText = hypher.hyphenateText(text)
+      
+      // Split by soft hyphens and add red dots
+      const parts = hyphenatedText.split('\u00AD')
+      const result: React.ReactNode[] = []
+      
+      parts.forEach((part: string, index: number) => {
+        result.push(part)
+        // Add red dot between syllables (except after the last part)
+        if (index < parts.length - 1) {
+          result.push(
+            <span 
+              key={`hyphen-${index}`} 
+              className="text-red-500 font-bold mx-1"
+              style={{ 
+                fontSize: '1em', 
+                verticalAlign: 'middle',
+                display: 'inline-block'
+              }}
+            >
+              •
+            </span>
+          )
+        }
+      })
+      
+      return result
+    } catch (error) {
+      console.warn('Hyphenation error:', error)
+      return [text]
+    }
+  }
 
   // No auto-scroll - let the user control text reveal with scroll direction
   // Scroll down = reveal more text, Scroll up = hide text (retrocede)
@@ -290,17 +338,31 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
           
           return (
             <div key={lineIndex} className="leading-relaxed">
-              {revealedText.split("").map((char, charIndex) => (
-                <span
-                  key={`${lineIndex}-${charIndex}`}
-                  style={{
-                    display: char === " " ? "inline" : "inline-block",
-                    marginRight: char === " " ? "0.25em" : "0",
-                  }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))}
+              {/* Process each word separately for hyphenation */}
+              {revealedText.split(' ').map((word, wordIndex) => {
+                if (!word) return null
+                
+                const words = revealedText.split(' ')
+                const isLastWord = wordIndex === words.length - 1
+                const isLineFullyRevealed = revealedChars >= text.length
+                
+                // Only show hyphenation dots if:
+                // 1. This is the last word in the revealed text AND
+                // 2. The line is not fully revealed (word is cut off)
+                const shouldShowHyphenation = isLastWord && !isLineFullyRevealed && isCurrentRevealLine
+                
+                const displayWord = shouldShowHyphenation ? addHyphenationDots(word) : [word]
+                
+                return (
+                  <React.Fragment key={`${lineIndex}-word-${wordIndex}`}>
+                    <span className="inline">
+                      {displayWord}
+                    </span>
+                    {/* Add normal space after word (except last word) */}
+                    {wordIndex < words.length - 1 && ' '}
+                  </React.Fragment>
+                )
+              })}
               
               {/* Show cursor on the current reveal line at the end of revealed text */}
               {isCurrentRevealLine && hasRevealedText && (
