@@ -3,9 +3,14 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowLeft, ChevronDown, MousePointer } from 'lucide-react'
-import Hypher from 'hypher'
-import spanish from 'hyphenation.es'
 import { gsap } from 'gsap'
+import { parseCues as parseCuesUtil } from '../utils/cues'
+import ViewportText from './ViewportText'
+import { flash as fxFlash, vignette as fxVignette, particlesBurst as fxParticlesBurst, rippleGlobal as fxRippleGlobal, confettiBurst as fxConfettiBurst, zoomPulse as fxZoomPulse, scream as fxScream } from '../effects/global'
+import { breeze5s as wxBreeze5s, sandstorm5s as wxSandstorm5s, rain5s as wxRain5s } from '../effects/weather'
+import type { BreezeOptions as WxBreezeOptions, SandstormOptions as WxSandstormOptions, RainOptions as WxRainOptions } from '../effects/weather'
+import { motoRide5s as fxMotoRide5s } from '../effects/moto'
+import type { MotoRideOptions as FxMotoRideOptions } from '../effects/moto'
 
 interface CueInfo {
   type: 'vfx' | 'sound' | 'image'
@@ -77,14 +82,39 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
   // Global cues positions (in raw content) and triggers
   const [allCues, setAllCues] = useState<Array<{ start: number; end: number; cue: CueInfo }>>([])
   const triggeredCuesRef = useRef<Set<number>>(new Set())
-  
-  // Hypher initialization
-  const [hypher, setHypher] = useState<any>(null)
+
+  // Mapping to ignore cues during reveal
+  const nonCueSegmentsRef = useRef<Array<{ start: number; end: number; prefix: number }>>([])
+  const totalVisibleCharsRef = useRef<number>(0)
+  const lineStartOffsetsRef = useRef<number[]>([])
+  const prevTargetRawIndexRef = useRef<number | null>(null)
   
   const containerRef = useRef<HTMLDivElement>(null)
   const textContainerRef = useRef<HTMLDivElement>(null)
   const effectRef = useRef<HTMLDivElement>(null)
   const isEffectRunningRef = useRef<boolean>(false)
+  const globalFxRef = useRef<HTMLDivElement>(null)
+  const [selectedFx, setSelectedFx] = useState<string>('shake')
+  const [fxParams, setFxParams] = useState<{ duration: number; opacity: number; intensity: number; count: number }>({
+    duration: 0.5,
+    opacity: 0.25,
+    intensity: 0.2,
+    count: 80,
+  })
+  const [fxMenuOpen, setFxMenuOpen] = useState(false)
+  const [hoveredFxKey, setHoveredFxKey] = useState<string | null>(null)
+  const fxMenuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (fxMenuRef.current && !fxMenuRef.current.contains(e.target as Node)) {
+        setFxMenuOpen(false)
+        setHoveredFxKey(null)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   // Always call these hooks - they must be called every render
   const { scrollYProgress } = useScroll()
@@ -102,11 +132,6 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
     const loadChapterContent = async () => {
       setLoading(true)
       try {
-        // Initialize Hypher with Spanish patterns
-        const hypherInstance = new Hypher(spanish)
-        setHypher(hypherInstance)
-        console.log('🔤 Hypher initialized for Spanish')
-        
         const response = await fetch(`/api/entities/chapter/${chapter.id}`)
         if (response.ok) {
           const result = await response.json()
@@ -122,7 +147,7 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
 
           // Compute all cues (global positions over the raw content)
           try {
-            const found = parseCues(normalizedContent)
+            const found = parseCuesUtil(normalizedContent)
             const mapped = found.map(({ index, cue }) => ({
               start: index,
               end: index + cue.originalCode.length,
@@ -131,9 +156,54 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
             setAllCues(mapped)
             triggeredCuesRef.current.clear()
             console.log('🎯 Cues detected:', mapped.length)
+
+            // Build non-cue segments for reveal mapping (skip cue code during scroll)
+            const ranges = [...mapped].sort((a, b) => a.start - b.start)
+            const merged: Array<{ start: number; end: number }> = []
+            for (const r of ranges) {
+              if (merged.length === 0 || r.start > merged[merged.length - 1].end) {
+                merged.push({ start: r.start, end: r.end })
+              } else {
+                merged[merged.length - 1].end = Math.max(merged[merged.length - 1].end, r.end)
+              }
+            }
+            const nonCueSegments: Array<{ start: number; end: number; prefix: number }> = []
+            let last = 0
+            let prefix = 0
+            for (const m of merged) {
+              if (last < m.start) {
+                const segLen = m.start - last
+                nonCueSegments.push({ start: last, end: m.start, prefix })
+                prefix += segLen
+              }
+              last = m.end
+            }
+            if (last < normalizedContent.length) {
+              const segLen = normalizedContent.length - last
+              nonCueSegments.push({ start: last, end: normalizedContent.length, prefix })
+              prefix += segLen
+            }
+            nonCueSegmentsRef.current = nonCueSegments
+            totalVisibleCharsRef.current = prefix
+
+            // Precompute line start offsets for raw-index → (line,char) mapping
+            const lineStarts: number[] = []
+            let off = 0
+            for (let i = 0; i < lines.length; i++) {
+              lineStarts.push(off)
+              off += lines[i].length + 1 // +1 for newline
+            }
+            lineStartOffsetsRef.current = lineStarts
           } catch (e) {
             console.warn('Cue parsing error:', e)
             setAllCues([])
+            // Fallback mapping when parsing fails: treat entire content as visible
+            nonCueSegmentsRef.current = [{ start: 0, end: normalizedContent.length, prefix: 0 }]
+            totalVisibleCharsRef.current = normalizedContent.length
+            const lineStarts: number[] = []
+            let off = 0
+            for (let i = 0; i < lines.length; i++) { lineStarts.push(off); off += lines[i].length + 1 }
+            lineStartOffsetsRef.current = lineStarts
           }
         } else {
           setContent('Error al cargar el contenido del capítulo')
@@ -151,27 +221,51 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
     loadChapterContent()
   }, [chapter.id])
 
+
   useEffect(() => {
     if (!content || loading || !isMounted || textLines.length === 0) return
 
     const unsubscribe = textProgress.on("change", (progress) => {
-      // Calculate total characters revealed based on progress
-      const totalChars = content.length
-      const targetCharIndex = Math.floor(progress * totalChars)
-      
+      // Calculate target VISIBLE characters (ignoring cue codes)
+      const totalVisible = totalVisibleCharsRef.current || content.length
+      const clampedProgress = Math.max(0, Math.min(1, progress))
+      const targetVisibleIndex = Math.floor(clampedProgress * totalVisible)
+
+      // Map visible index → raw index using non-cue segments
+      const segments = nonCueSegmentsRef.current
+      let targetRawIndex = 0
+      if (segments.length === 0) {
+        targetRawIndex = Math.floor(clampedProgress * content.length)
+      } else {
+        // Find segment containing this visible index
+        let seg = segments[segments.length - 1]
+        for (let i = 0; i < segments.length; i++) {
+          if (targetVisibleIndex < segments[i].prefix + (segments[i].end - segments[i].start)) {
+            seg = segments[i]
+            break
+          }
+        }
+        const withinSeg = targetVisibleIndex - seg.prefix
+        targetRawIndex = seg.start + Math.max(0, Math.min(withinSeg, seg.end - seg.start))
+      }
+
       // Find which line and character we should reveal up to
-      let charCount = 0
-      let targetLine = 0
-      let targetCharInLine = 0
-      
-      for (let i = 0; i < textLines.length; i++) {
-        const lineLength = textLines[i].length + 1 // +1 for newline
-        if (charCount + lineLength > targetCharIndex) {
+      const lineStarts = lineStartOffsetsRef.current.length ? lineStartOffsetsRef.current : (() => {
+        const ls: number[] = []
+        let o = 0
+        for (let i = 0; i < textLines.length; i++) { ls.push(o); o += textLines[i].length + 1 }
+        return ls
+      })()
+      let targetLine = textLines.length - 1
+      let targetCharInLine = textLines[targetLine]?.length || 0
+      for (let i = 0; i < lineStarts.length; i++) {
+        const start = lineStarts[i]
+        const end = start + (textLines[i]?.length || 0) + 1
+        if (targetRawIndex < end) {
           targetLine = i
-          targetCharInLine = targetCharIndex - charCount
+          targetCharInLine = Math.min(textLines[i].length, targetRawIndex - start)
           break
         }
-        charCount += lineLength
       }
       
       // Allow scroll up to retract text (bidirectional reveal)
@@ -211,12 +305,20 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
       setVisibleLines(newVisibleLines)
       
       // Trigger effects for cues that just became fully revealed (once)
+      // Only when crossing their raw end index, and not on the very first update
       if (allCues.length > 0) {
-        for (const c of allCues) {
-          if (c.end <= targetCharIndex && !triggeredCuesRef.current.has(c.start)) {
-            triggeredCuesRef.current.add(c.start)
-            triggerCueEffect(c.cue)
+        const prev = prevTargetRawIndexRef.current
+        // Initialize without triggering at progress 0
+        if (prev === null) {
+          prevTargetRawIndexRef.current = targetRawIndex
+        } else {
+          for (const c of allCues) {
+            if (prev < c.end && c.end <= targetRawIndex && !triggeredCuesRef.current.has(c.start)) {
+              triggeredCuesRef.current.add(c.start)
+              triggerCueEffect(c.cue)
+            }
           }
+          prevTargetRawIndexRef.current = targetRawIndex
         }
       }
       
@@ -224,6 +326,8 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
         progress: progress.toFixed(3),
         targetLine,
         targetChar: targetCharInLine,
+        targetRawIndex,
+        targetVisibleIndex,
         currentRevealedLine: targetLine,
         visibleRange: `${startLine}-${endLine}`,
         visibleLinesCount: newVisibleLines.length,
@@ -233,17 +337,9 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
     return unsubscribe
   }, [textProgress, content, loading, isMounted, textLines, maxRevealedLine, maxRevealedChar, allCues])
 
-  // Hyphenation function for natural syllable breaks (without visual dots)
-  const applyHyphenation = (text: string): string => {
-    if (!hypher || !text) return text
-    
-    try {
-      // Use Hypher to get hyphenated text with soft hyphens for natural breaks
-      return hypher.hyphenateText(text)
-    } catch (error) {
-      console.warn('Hyphenation error:', error)
-      return text
-    }
+  // Motorcycle ride (duration param) - delegates to effects/moto.ts
+  const motoRide = (opts?: FxMotoRideOptions) => {
+    fxMotoRide5s(globalFxRef.current, effectRef.current, opts)
   }
 
   // --- Effects: Minimal screen shake test ---
@@ -266,9 +362,250 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
   }
 
   const triggerCueEffect = (cue: CueInfo) => {
-    // Simple mapping: any cue triggers a gentle screen shake for this test
-    // Future: map by cue.type/effect/params
+    const effectName = (cue.effect || '').toLowerCase()
+    if (cue.type === 'vfx') {
+      if (/(moto|motorbike|motorcycle)/.test(effectName)) {
+        const d = Number(cue.params?.duration)
+        const i = Number(cue.params?.intensity)
+        const s = Number(cue.params?.speed)
+        const night = String(cue.params?.night || '').toLowerCase() === 'true'
+        motoRide({
+          duration: isNaN(d) ? 5 : d,
+          intensity: isNaN(i) ? 0.7 : Math.max(0, Math.min(1, i)),
+          speed: isNaN(s) ? 1.0 : Math.max(0.4, Math.min(2.5, s)),
+          night,
+        })
+        return
+      }
+      if (effectName === 'scream' || effectName === 'grito' || effectName === 'shout' || effectName === 'scream2s') {
+        const d = Number(cue.params?.duration)
+        const i = Number(cue.params?.intensity)
+        scream({
+          duration: isNaN(d) ? 2 : d,
+          intensity: isNaN(i) ? 0.8 : Math.max(0, Math.min(1, i))
+        })
+        return
+      }
+      if (effectName === 'sandstorm' || effectName === 'tormenta' || effectName === 'arena' || effectName === 'sandstorm5s') {
+        const d = Number(cue.params?.duration)
+        const i = Number(cue.params?.intensity)
+        sandstorm({
+          duration: isNaN(d) ? 5 : d,
+          intensity: isNaN(i) ? 0.7 : Math.max(0, Math.min(1, i))
+        })
+        return
+      }
+      if (effectName === 'breeze' || effectName === 'brisa' || effectName === 'breeze5s') {
+        const d = Number(cue.params?.duration)
+        const o = Number(cue.params?.opacity)
+        breeze({
+          duration: isNaN(d) ? 5 : d,
+          opacity: isNaN(o) ? fxParams.opacity : Math.max(0, Math.min(1, o))
+        })
+        return
+      }
+      if (effectName === 'rain' || effectName === 'lluvia' || effectName === 'rain5s') {
+        const d = Number(cue.params?.duration)
+        const i = Number(cue.params?.intensity)
+        const w = Number(cue.params?.wind)
+        const a = Number((cue.params?.angledeg ?? cue.params?.angleDeg))
+        const variant = (cue.params?.variant as WxRainOptions['variant']) || undefined
+        rain({
+          duration: isNaN(d) ? 5 : d,
+          intensity: isNaN(i) ? 0.5 : Math.max(0, Math.min(1, i)),
+          wind: isNaN(w) ? 0.4 : Math.max(0, Math.min(2, w)),
+          angleDeg: isNaN(a) ? 12 : Math.max(0, Math.min(25, a)),
+          variant
+        })
+        return
+      }
+      if (effectName === 'flash') {
+        const color = cue.params?.color || '#ffffff'
+        const o = Number(cue.params?.opacity)
+        const d = Number(cue.params?.duration)
+        flash({ color, opacity: isNaN(o) ? 0.2 : Math.max(0, Math.min(1, o)), duration: isNaN(d) ? 0.25 : Math.max(0.05, d) })
+        return
+      }
+      if (effectName === 'vignette') {
+        const o = Number(cue.params?.opacity)
+        const d = Number(cue.params?.duration)
+        vignette({ opacity: isNaN(o) ? 0.25 : Math.max(0, Math.min(1, o)), duration: isNaN(d) ? 0.3 : Math.max(0.05, d) })
+        return
+      }
+      if (effectName === 'ripple' || effectName === 'rippleglobal') {
+        const d = Number(cue.params?.duration)
+        const i = Number(cue.params?.intensity)
+        rippleGlobal({ duration: isNaN(d) ? 0.6 : Math.max(0.05, d), intensity: isNaN(i) ? 0.3 : Math.max(0, Math.min(1, i)) })
+        return
+      }
+      if (effectName === 'particlesburst' || effectName === 'particles' || effectName === 'burst') {
+        const c = Number(cue.params?.count)
+        particlesBurst(isNaN(c) ? 40 : Math.max(1, Math.min(500, c)))
+        return
+      }
+      if (effectName === 'zoompulse' || effectName === 'pulse') {
+        // scale param is currently ignored; zoomPulse is a fixed local pulse
+        zoomPulse()
+        return
+      }
+      // fallback for other vfx cues
+      screenShake()
+      return
+    }
+    // Non-vfx cues: placeholder gentle feedback
     screenShake()
+  }
+
+
+  // --- Global overlay effects (full window) ---
+  const flash = (opts?: { color?: string; opacity?: number; duration?: number }) => {
+    fxFlash(globalFxRef.current, opts)
+  }
+
+  const zoomPulse = () => {
+    fxZoomPulse(effectRef.current)
+  }
+
+  const glitchLocal = () => {
+    const el = effectRef.current
+    if (!el) return
+    gsap.killTweensOf(el)
+    gsap.timeline({ onComplete: () => { gsap.set(el, { clearProps: 'transform,filter' }) } })
+     .to(el, { filter: 'saturate(1.5) hue-rotate(20deg) blur(1px)', skewX: 2, duration: 0.06, ease: 'power2.out' })
+     .to(el, { filter: 'none', skewX: 0, duration: 0.08, ease: 'power2.in' })
+  }
+
+  // Breeze: Global sweep + Local sway (delegates to effects/weather.ts)
+  const breeze = (opts?: WxBreezeOptions) => {
+    wxBreeze5s(globalFxRef.current, effectRef.current, { opacity: fxParams.opacity, ...(opts || {}) })
+  }
+
+  // Heartbeat sequence using zoomPulse in lub-dub rhythm
+  const heartbeat = () => {
+    const el = effectRef.current
+    if (!el) return
+    const totalMs = Math.max(0.5, fxParams.duration) * 1000
+    const dubGap = 0.12 // seconds between lub and dub
+    const restGap = 0.4  // rest between cycles
+    const start = performance.now()
+
+    // Ensure no lingering transforms
+    gsap.killTweensOf(el)
+    const loop = () => {
+      if (performance.now() - start >= totalMs) {
+        gsap.set(el, { clearProps: 'transform,filter' })
+        return
+      }
+      // Lub
+      zoomPulse()
+      // Dub shortly after
+      gsap.delayedCall(dubGap, () => {
+        if (performance.now() - start >= totalMs) return
+        zoomPulse()
+        // Rest, then next cycle
+        gsap.delayedCall(restGap, loop)
+      })
+    }
+    loop()
+  }
+
+  // Scream combo: flash + shockwave + vignette pulse + camera shake + local jitter/skew
+  const scream = (opts?: { duration?: number; intensity?: number }) => {
+    fxScream(globalFxRef.current, effectRef.current, opts)
+  }
+
+  // Sandstorm (delegates to effects/weather.ts)
+  const sandstorm = (opts?: WxSandstormOptions) => {
+    wxSandstorm5s(globalFxRef.current, effectRef.current, opts)
+  }
+
+  // Rain variants (delegates to effects/weather.ts)
+  const rain = (opts?: WxRainOptions) => {
+    wxRain5s(globalFxRef.current, effectRef.current, opts)
+  }
+
+  const triggerSelectedFx = () => {
+    switch (selectedFx) {
+      case 'shake':
+        screenShake(); break
+      case 'flashWhite':
+        flash({ color: '#ffffff', opacity: fxParams.opacity, duration: fxParams.duration }); break
+      case 'flashDark':
+        flash({ color: '#000000', opacity: fxParams.opacity, duration: fxParams.duration }); break
+      case 'zoomPulse':
+        zoomPulse(); break
+      case 'heartbeat':
+        heartbeat(); break
+      case 'breeze':
+        breeze({ duration: fxParams.duration }); break
+      case 'glitch':
+        glitchLocal(); break
+      case 'vignette':
+        vignette({ opacity: fxParams.opacity, duration: fxParams.duration }); break
+      case 'particles':
+        particlesBurst(fxParams.count); break
+      case 'ripple':
+        rippleGlobal({ duration: fxParams.duration, intensity: fxParams.intensity }); break
+      case 'confetti':
+        confettiBurst(fxParams.count); break
+      case 'scream':
+        scream({ duration: fxParams.duration, intensity: fxParams.intensity }); break
+      case 'sandstorm':
+        sandstorm({ duration: fxParams.duration, intensity: fxParams.intensity }); break
+      case 'rainDrizzle':
+        rain({ duration: fxParams.duration, intensity: fxParams.intensity, wind: 0.3, angleDeg: 8, variant: 'drizzle' }); break
+      case 'rainDownpour':
+        rain({ duration: fxParams.duration, intensity: fxParams.intensity, wind: 0.5, angleDeg: 12, variant: 'downpour' }); break
+      case 'rainStorm':
+        rain({ duration: fxParams.duration, intensity: fxParams.intensity, wind: 0.7, angleDeg: 15, variant: 'storm' }); break
+      case 'motoRide':
+        motoRide({ duration: fxParams.duration, intensity: fxParams.intensity, speed: 1 + (fxParams.intensity ?? 0.2) }); break
+      default:
+        screenShake(); break
+    }
+  }
+
+  // Global vignette (radial darkening) overlay
+  const vignette = (opts?: { opacity?: number; duration?: number }) => {
+    fxVignette(globalFxRef.current, opts)
+  }
+
+  // Spawn simple colored particles across the screen (no external deps)
+  const particlesBurst = (count: number = 50) => {
+    fxParticlesBurst(globalFxRef.current, count)
+  }
+
+  // Global ripple: centered radial pulse on overlay
+  const rippleGlobal = (opts?: { duration?: number; intensity?: number }) => {
+    fxRippleGlobal(globalFxRef.current, opts)
+  }
+
+  // Canvas-based confetti burst without external deps
+  const confettiBurst = (count: number = 120) => {
+    fxConfettiBurst(globalFxRef.current, count)
+  }
+
+  // Stop all running FX: kill tweens, clear transforms, remove overlays
+  const stopAllFx = () => {
+    const root = globalFxRef.current
+    const card = effectRef.current
+    isEffectRunningRef.current = false
+    // Stop local card animations
+    if (card) {
+      gsap.killTweensOf(card)
+      gsap.set(card, { clearProps: 'transform,filter' })
+    }
+    // Stop and cleanup global overlays
+    if (root) {
+      try { gsap.killTweensOf(root) } catch {}
+      // Remove any children/overlays appended by effects
+      Array.from(root.querySelectorAll('*')).forEach((n) => {
+        try { gsap.killTweensOf(n as any) } catch {}
+        ;(n as HTMLElement).remove()
+      })
+      // Final reset of the overlay root
+      gsap.set(root, { display: 'none', clearProps: 'opacity,backgroundColor,backgroundImage' })
+    }
   }
 
   // No auto-scroll - let the user control text reveal with scroll direction
@@ -305,149 +642,9 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
     setHoveredCue(null)
   }
 
-  // Parsing functions
-  const parseCues = (text: string) => {
-    const cueRegex = /\[cue:([^|]+)\|([^|]+)(?:\|([^\]]+))?\]/g
-    const cues: Array<{ index: number; cue: CueInfo }> = []
-    let match
+  // Parsing helpers are provided by src/utils/cues.ts
 
-    while ((match = cueRegex.exec(text)) !== null) {
-      const [fullMatch, type, effect, params = ''] = match
-      const cueInfo: CueInfo = {
-        type: type as 'vfx' | 'sound' | 'image',
-        effect,
-        params: {},
-        originalCode: fullMatch
-      }
-
-      if (params) {
-        params.split('|').forEach(param => {
-          const [key, value] = param.split('=')
-          if (key && value) {
-            cueInfo.params[key.trim()] = value.trim()
-          }
-        })
-      }
-
-      cues.push({ index: match.index, cue: cueInfo })
-    }
-
-    return cues
-  }
-
-  const groupConsecutiveCues = (cues: Array<{ index: number; cue: CueInfo }>) => {
-    if (cues.length === 0) return []
-
-    const groups: Array<{ index: number; cues: CueInfo[] }> = []
-    let currentGroup: CueInfo[] = [cues[0].cue]
-    let currentIndex = cues[0].index
-
-    for (let i = 1; i < cues.length; i++) {
-      const prevCueEnd = cues[i - 1].index + cues[i - 1].cue.originalCode.length
-      const currentCueStart = cues[i].index
-      const textBetween = content.slice(prevCueEnd, currentCueStart).trim()
-
-      if (textBetween === '') {
-        currentGroup.push(cues[i].cue)
-      } else {
-        groups.push({ index: currentIndex, cues: [...currentGroup] })
-        currentGroup = [cues[i].cue]
-        currentIndex = cues[i].index
-      }
-    }
-
-    groups.push({ index: currentIndex, cues: currentGroup })
-    return groups
-  }
-
-  // Viewport-based text display - only renders visible lines for performance
-  const ViewportText = () => {
-    return (
-      <div className="space-y-4">
-        {visibleLines.map((lineData, index) => {
-          const { lineIndex, text, revealedChars } = lineData
-          const revealedText = text.slice(0, revealedChars)
-          const isCurrentRevealLine = lineIndex === maxRevealedLine
-          const hasRevealedText = revealedChars > 0
-          
-          return (
-            <div key={lineIndex} className="leading-relaxed">
-              {/* Apply hyphenation to the entire revealed text for natural breaks */}
-              <span>
-                {applyHyphenation(revealedText)}
-              </span>
-              
-              {/* Show cursor on the current reveal line at the end of revealed text */}
-              {isCurrentRevealLine && hasRevealedText && (
-                <motion.span
-                  className="inline-block w-1 h-8 bg-purple-400"
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                  style={{ marginLeft: '1px' }}
-                />
-              )}
-            </div>
-          )
-        })}
-      </div>
-    )
-  }
   
-  // Enhanced cue rendering that works with letter-by-letter
-  const renderTextWithCues = (text: string) => {
-    const cues = parseCues(text)
-    const groupedCues = groupConsecutiveCues(cues)
-    
-    if (groupedCues.length === 0) {
-      return <span>{text}</span>
-    }
-
-    const parts: React.ReactNode[] = []
-    let lastIndex = 0
-
-    // Remove all cue codes first
-    let cleanText = text.replace(/\[cue:[^\]]+\]/g, '')
-    
-    // Calculate positions in clean text
-    const cleanCuePositions: Array<{ index: number; cues: CueInfo[] }> = []
-    let offset = 0
-    
-    groupedCues.forEach(group => {
-      // Find where this group should be in the clean text
-      const beforeCue = text.slice(0, group.index)
-      const cleanBeforeCue = beforeCue.replace(/\[cue:[^\]]+\]/g, '')
-      cleanCuePositions.push({
-        index: cleanBeforeCue.length,
-        cues: group.cues
-      })
-    })
-
-    cleanCuePositions.forEach((group, i) => {
-      // Add text before this cue group
-      if (group.index > lastIndex) {
-        parts.push(cleanText.slice(lastIndex, group.index))
-      }
-      
-      // Add the cue marker
-      parts.push(
-        <RedTriangle
-          key={`cue-${i}`}
-          cues={group.cues}
-          onHover={handleCueHover}
-          onLeave={handleCueLeave}
-        />
-      )
-      
-      lastIndex = group.index
-    })
-
-    // Add remaining text
-    if (lastIndex < cleanText.length) {
-      parts.push(cleanText.slice(lastIndex))
-    }
-
-    return <>{parts}</>
-  }
 
   // Render logic - no early returns after hooks
   let content_to_render
@@ -525,17 +722,17 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
           </div>
         </motion.header>
 
-        {/* Background Image */}
+        {/* Background Image (consistent with Dashboard) */}
         <motion.div
           className="fixed inset-0 z-0"
           style={{ opacity: backgroundOpacity }}
         >
           <img
-            src={chapter.image}
-            alt={chapter.title}
+            src="/story-images/aethermoor-world-background.png"
+            alt="El mundo de Aethermoor"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-black/50" />
         </motion.div>
 
         {/* Spacer to create ultra-long scroll height for letter-by-letter reading */}
@@ -549,7 +746,8 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
               className="w-full bg-black/40 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl"
               style={{
                 minHeight: '200px',
-                maxHeight: '70vh'
+                maxHeight: '70vh',
+                willChange: 'transform, filter'
               }}
               animate={{
                 height: 'auto'
@@ -579,10 +777,30 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
                   }}
                   lang="es"
                 >
-                  <ViewportText />
+                  <ViewportText
+                    visibleLines={visibleLines}
+                    maxRevealedLine={maxRevealedLine}
+                    onCueHover={(cues, e) => {
+                      setHoveredCue(cues)
+                      setMousePosition({ x: e.clientX, y: e.clientY })
+                    }}
+                    onCueLeave={() => setHoveredCue(null)}
+                  />
                 </div>
               </div>
             </motion.div>
+            {hoveredCue && (
+              <div
+                className="fixed z-50 pointer-events-none"
+                style={{ left: mousePosition.x + 12, top: mousePosition.y + 12 }}
+              >
+                <div className="bg-black/80 text-white text-xs px-3 py-2 rounded-md border border-white/20 shadow-lg whitespace-nowrap">
+                  {hoveredCue.length === 1
+                    ? `${hoveredCue[0].type.toUpperCase()}: ${hoveredCue[0].effect}`
+                    : hoveredCue.map(c => `${c.type.toUpperCase()}: ${c.effect}`).join(' • ')}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -632,6 +850,99 @@ const ChapterReader: React.FC<ChapterReaderProps> = ({ chapter, onBack }) => {
             </div>
           </div>
         </div>
+
+        {/* FX Selector (Dev Tool) */}
+        <div className="fixed bottom-20 right-6 z-[60] pointer-events-auto">
+          <div className="bg-black/80 backdrop-blur-md rounded-xl px-3 py-2 border border-white/30 flex items-center gap-3 text-white shadow-lg">
+            <span className="text-xs font-semibold uppercase tracking-wide text-white/80">FX</span>
+            {/* Dropdown compacto con submenú (click abre hacia arriba) */}
+            <div ref={fxMenuRef} className="relative">
+              <button
+                onClick={() => setFxMenuOpen(v => !v)}
+                className="px-2 py-1 rounded-md border border-white/20 bg-black/40 hover:bg-white/10 text-xs"
+              >
+                {selectedFx ? `FX: ${selectedFx}` : 'Elegir FX'}
+              </button>
+              {fxMenuOpen && (
+                <div className="absolute right-0 bottom-full mb-2 z-[61]">
+                  <div className="bg-black/90 backdrop-blur-md border border-white/20 rounded-md shadow-lg p-2 min-w-[220px]">
+                    <ul className="flex flex-col gap-1">
+                      {[
+                        { key: 'heartbeat', label: 'Pulsación' },
+                        { key: 'breeze', label: 'Brisa' },
+                        { key: 'scream', label: 'Grito' },
+                        { key: 'sandstorm', label: 'Tormenta de Arena' },
+                        { key: 'rainDrizzle', label: 'Lluvia Llovizna' },
+                        { key: 'rainDownpour', label: 'Lluvia Aguacero' },
+                        { key: 'rainStorm', label: 'Lluvia Tormenta' },
+                        { key: 'motoRide', label: 'Moto Ride' },
+                      ].map(item => (
+                        <li key={item.key} className="relative">
+                          <div className="flex items-center">
+                            <button
+                              onMouseEnter={() => setHoveredFxKey(item.key)}
+                              onFocus={() => setHoveredFxKey(item.key)}
+                              onClick={() => setSelectedFx(item.key)}
+                              className={`flex-1 text-left px-2 py-1 text-xs rounded hover:bg-white/10 ${selectedFx === item.key ? 'ring-1 ring-purple-500' : ''}`}
+                            >
+                              {item.label}
+                            </button>
+                            <span className="ml-2 text-xs opacity-60">▶</span>
+                          </div>
+                          {hoveredFxKey === item.key && (
+                            <div className="absolute right-full top-0 mr-2 z-[62]">
+                              <div className="bg-black/90 backdrop-blur-md border border-white/20 rounded-md shadow-lg p-2 flex flex-col gap-1 min-w-[150px]">
+                                <button
+                                  className="px-2 py-1 text-xs rounded hover:bg-white/10"
+                                  onClick={() => setFxParams(p => ({ ...p, duration: 5 }))}
+                                >
+                                  5s
+                                </button>
+                                <button
+                                  className="px-2 py-1 text-xs rounded hover:bg-white/10"
+                                  onClick={() => setFxParams(p => ({ ...p, duration: 30 }))}
+                                >
+                                  30s
+                                </button>
+                                <button
+                                  className="px-2 py-1 text-xs rounded hover:bg-white/10"
+                                  onClick={() => setFxParams(p => ({ ...p, duration: 600 }))}
+                                >
+                                  Todo el cap.
+                                </button>
+                              </div>
+                            </div>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* Params: removidos */}
+            <button
+              onClick={triggerSelectedFx}
+              className="px-3 py-1 bg-purple-600 hover:bg-purple-500 text-white text-sm rounded-md border border-white/10"
+            >
+              Probar
+            </button>
+            <button
+              onClick={stopAllFx}
+              className="px-3 py-1 bg-red-600 hover:bg-red-500 text-white text-sm rounded-md border border-white/10"
+              aria-label="Detener efectos"
+            >
+              Detener
+            </button>
+          </div>
+        </div>
+
+        {/* Global FX Overlay */}
+        <div
+          ref={globalFxRef}
+          className="fixed inset-0 z-[80] pointer-events-none"
+          style={{ display: 'none', opacity: 0 }}
+        />
 
         {/* Completion Message */}
         {textProgress.get() > 0.95 && (
